@@ -11,12 +11,24 @@
     <![endif]-->
     
     <style type="text/css">
-      html, body { height: 100% }
+    html, body { height: 100% }
         body {
             padding: 0;
             margin: 0;
         }
-      #map { width: 100%;height: 100%;  }
+    #map { 
+        width: 70%;
+        height: 100%;
+        float: left;
+        }
+
+    #gov {
+        width: 30%;
+        height: 100%;
+        float: right;
+        color: #FFF;
+    }
+
 
     </style>
 
@@ -36,11 +48,68 @@
 
     <div id="map" >
     </div> <!-- /container -->
+    <div id="gov">
+
+         <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+
+        <header id="geolocation">
+            <span aria-hidden="true" class="icon-target"></span>
+            <p class="tw3166-t"></p>
+            <a href="#" class="manual"><span aria-hidden="true" class="icon-loop"></span><span class="screen-reader-text">手動定位</span></a>
+        </header>
+
+        <section itemscope itemtype="http://data-vocabulary.org/Person">
+
+            <header id="legislator">
+                <img itemprop="photo" src="" class="photo" id="legi_pic"/>
+                <div class="legislator">
+                    <h1 itemprop="name" class="leginame"></h1>
+                    <aside class="party" id="party_s"></aside>
+                </div>
+                <div class="standpoint nuke">
+                    <p class="positions"></p>
+                </div>
+            </header>
+
+            <article id="quote">
+                <aside class="stamp unfavorable"><span class="types"></span></aside>
+                <div class="responds">
+<!--        <p>對反核民意的回應？</p>
+                <p>「沒有必要回應。」</p>
+                <p>若很多民眾打進辦公室？</p>
+                <p>「不會拉！」</p>-->
+                </div>
+            </article>
+
+            <footer id="contact">
+
+
+            </footer>
+
+        </section>
+
+        <footer id="credit">
+            <address>
+                <a href="http://g0v.tw">
+                    <img src="img/g0v-full-white.png" alt="g0v.tw 零時政府黑客松" class="credit" />
+                </a>
+            </address>
+        </footer>
+
+    </div>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src="http://code.jquery.com/jquery-1.8.3.min.js"  type="text/javascript"></script>
     <script src="./src/js/l.control.geosearch.js"></script>
     <script src="./src/js/l.geosearch.provider.openstreetmap.js"></script>
+
+    <script type="text/javascript" src="./src/address.js"></script>
+    <script type="text/javascript" src="./src/gears_init.js"></script>
+    <script src="./src/plugin.js"></script>
 
     <script type="text/javascript">
     var geocoder;
@@ -71,14 +140,136 @@
         
             navigator.geolocation.getCurrentPosition(function(option) {
                 field.setValue(option.coords.latitude, option.coords.longitude)
-            });
+                mapServiceProvider(option.coords.latitude, option.coords.longitude);
+            }, function(error) {
+                switch (error.code) {
+                    case error.TIMEOUT:
+                        alert('GPS 定位連線逾時，請手動輸入所在地');
+                        break;
+         
+                    case error.POSITION_UNAVAILABLE:
+                        alert('無法取得 GPS 定位，請手動輸入所在地');
+                        break;
+         
+                    case error.PERMISSION_DENIED://拒絕
+                        //alert('不允許 GPS 自動定位，請手動輸入所在地');
+                        break;
+         
+                    case error.UNKNOWN_ERROR:
+                        alert('不明的錯誤，請手動輸入所在地');
+                        break;
+                }
+            })
 
-        } else {
+        } else { // 不支援 HTML5 定位
+ 
+            // 若支援 Google Gears
+            if (window.google && google.gears) {
+                try {
+                      // 嘗試以 Gears 取得定位
+                      var geo = google.gears.factory.create('beta.geolocation');
+                      geo.getCurrentPosition(successCallback, errorCallback, { enableHighAccuracy: true,gearsRequestAddress: true });
+                } catch(e){
+                      alert("定位失敗，請手動輸入所在地");
+                }
+            }else{
+                alert("不允許 GPS 自動定位，請手動輸入所在地");
+            }
 
-            alert("Geolocation is not supported by this browser.");
+            function errorCallback(err) {
+                var msg = '自動定位有誤，請手動輸入所在地<br>錯誤訊息：' + err.message;
+                alert(msg);
+            }
+             
+            // 成功取得 Gears 定位
+            function successCallback(option) {
+                  field.setValue(option.coords.latitude, option.coords.longitude);
+                  mapServiceProvider(option.latitude, option.longitude);
+            }
+
+
 
         }
+         
     }
+
+    function mapServiceProvider(latitude, longitude) {
+        lat = latitude;
+        longti = longitude;
+        finding();
+    }
+    
+    function mapServiceProvider_done(latitude, longitude) {
+        $.ajax({
+            type:"GET",
+            data:{'latlng' : latitude+','+longitude, sensor: false, language: 'zh_TW'},
+            url:"https://maps.googleapis.com/maps/api/geocode/json", //傳出資料網址
+            //curl 'http://maps.googleapis.com/maps/api/geocode/json?address=台北市研究院路二段,TW&sensor=false&language=zh_TW' > gc.json
+
+            dataType: "json",
+            error:function(){ //如果接收資料失敗
+                alert("AJAX ERROR!!!");
+            },
+            success:function(val){
+                var result = addressToConstituency(val);
+                var legi = result[2][0]; 
+                var callto = [], contact = [];
+                var contacts_text = '';
+                
+                                
+                for (name in legi['contact']) {
+                    callto.push(name);
+                    contact.push(legi['contact'][name]);
+                    //contacts_text += name+'電話：'++'<br>傳真：'++'<br>地址：'++"<br><br>";
+
+                contacts_text += 
+                '<h2>'+name+'</h2>'
+                +'<ul>'
+                    +'<li><span class="contact">電話</span><span class="data"><a itemprop="tel" href="tel:'+legi['contact'][name]['phone']+'">'+legi['contact'][name]['phone']+'<span aria-hidden="true" class="icon-phone"></span></a></span></li>'
+                    +'<li><span class="contact">傳真</span><span class="data" itemprop="fax"><span class="no-link">'+legi['contact'][name]['fax']+'</span></span></li>'
+                    +'<li><span class="contact">地址</span><span class="data"><a itemprop="address" href="https://maps.google.com.tw/?q='+legi['contact'][name]['address']+'"><span class="address">'+legi['contact'][name]['address']+'</span><span aria-hidden="true" class="icon-map"></span></a></span></li>'
+                +'</ul>';
+
+
+                    
+                }
+
+                if(legi['name'] != '李桐豪' && legi['name'] != '林國正') { legi['position'] = '反核'; }else{ legi['position'] = '未知'; }
+
+                for(kp = 0, length_p = position.length; kp < length_p; kp++) {
+                    if(position[kp].name == legi['name']) {
+                            legi['position'] = '擁核';
+                            legi['type'] = position[kp].type;
+                            legi['respond'] = position[kp].respond;
+                    }
+                } 
+            
+/*              var words = 'latitde：'+latitude+'<br>longitude：'+longitude+'<br>縣市：'+tw3166[result[0]]+' 第 '+result[1]+' 選區<br>立委('+result[2][1]+')：'+legi['name']
+                +'<br>政黨：'+legi['party']+'<br>'+contacts_text
+                +'<br>立場：'+legi['position']+'<br>類型：'+legi['type']+'<br>'+legi['respond'] 
+                +'<img src="'+legi['avatar']+'?size=medium">';
+                $('.post-p').append(words); */
+                
+                var words_tw3166 = tw3166[result[0]]+'第 '+result[1]+' 選區';
+                $('.tw3166-t').append(words_tw3166);
+                $('.types').append(legi['type']);
+                $('.responds').append(legi['respond']);
+                $('.leginame').append(legi['name']);
+                $('.positions').append(legi['position']);
+                
+                $('#legi_pic').attr('src', legi['avatar']+'?size=medium');
+                $('#contact').append(contacts_text);
+                var partyclass = 'party icons-party-'+ legi['party'].toLowerCase();
+                var partyclass_s = legi['party'].toLowerCase();
+                
+                $('#party_s').attr('class', partyclass);
+                $('#legislator').attr('class', partyclass_s);
+                
+            }
+            });
+
+    }
+
 
     function createMap (setplace) {
         map.setView(setplace, 13);
@@ -111,6 +302,9 @@
     startLocate()
 
     </script>
+
+
+
     
 </body>
 </html>
