@@ -1,0 +1,11 @@
+{
+  "name": "L.geocoder",
+  "version": "0.1.0",
+  "description": "geocoder",
+  "main": "",
+  "repository": {
+      "connect": "2.8.3"
+  },
+  "author": "chilijung <chilijung@gmail.com> (http://lijung.com/)",
+  "license": "MIT"
+}
