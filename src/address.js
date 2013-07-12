@@ -3,11 +3,11 @@ var ctvToConstituency, addressToConstituency, getLegislator;
 
 function finding() {
 
-$.getJSON('../json_data/ly-section.json', function(constituency_g){
-  return $.getJSON('../json_data/3166-2-tw.json', function(tw3166_g){
-	  return $.getJSON('../json_data/legislator.json', function(legislator_g){
-		return $.getJSON('../json_data/mly-8.json', function(mly8_g){
-				return $.getJSON('../json_data/position.json', function(position_g){
+$.getJSON('./json_data/ly-section.json', function(constituency_g){
+  return $.getJSON('./json_data/3166-2-tw.json', function(tw3166_g){
+	  return $.getJSON('./json_data/legislator.json', function(legislator_g){
+		return $.getJSON('./json_data/mly-8.json', function(mly8_g){
+				return $.getJSON('./json_data/position.json', function(position_g){
 
 
 constituency = constituency_g;
