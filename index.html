@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>L.Geocoder.OpenStreetMap</title>
+    <title>L.Geocoder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
     <!--[if lte IE 8]>
@@ -46,6 +46,26 @@
     var geocoder;
     var field = new Field();
 
+    function initialize () {
+
+        map = L.map('map', {
+            zoomControl: false,
+            attributionControl: false
+        });
+
+        geocoder = new L.Control.GeoSearch({
+            provider: new L.GeoSearch.Provider.OpenStreetMap()
+        }).addTo(map);
+
+        L.tileLayer('http://{s}.tile.cloudmade.com/f59941c17eda4947ae395e907fe531a3/997/256/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        }).addTo(map);
+
+        map.setView(['21', '121'], 13);
+
+        map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
+    }
+
     function startLocate() {
         if (navigator.geolocation) {
         
@@ -61,18 +81,13 @@
     }
 
     function createMap (setplace) {
-        var map = L.map('map').setView(setplace, 13);
+        map.setView(setplace, 13);
 
-        L.tileLayer('http://{s}.tile.cloudmade.com/f59941c17eda4947ae395e907fe531a3/997/256/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        }).addTo(map);
 
         L.marker(setplace).addTo(map)
         .bindPopup("<b>I found you :))</b>").openPopup();
 
-        new L.Control.GeoSearch({
-            provider: new L.GeoSearch.Provider.OpenStreetMap()
-        }).addTo(map);
+        
     }
 
     function Field(){
@@ -92,6 +107,7 @@
         };
     }
 
+    initialize();
     startLocate()
 
     </script>

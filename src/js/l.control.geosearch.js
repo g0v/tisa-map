@@ -38,6 +38,7 @@ L.Control.GeoSearch = L.Control.extend({
     },
 
     onAdd: function (map) {
+        console.log(map)
         var $controlContainer = $(map._controlContainer);
 
         if ($controlContainer.children('.leaflet-top.leaflet-center').length == 0) {
