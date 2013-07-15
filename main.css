@@ -1,0 +1,658 @@
+/* line 58, icons/*.png */
+.icons-sprite, .icons-party-dpp, .icons-party-gp, .icons-party-kmt {
+  background: url('../img/icons-s5c42c5d14b.png') no-repeat;
+}
+
+/* line 60, ../../../../../Downloads/fire.app.windows.v1.11/fire.app/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-party-dpp {
+  background-position: 0 -48px;
+}
+
+/* line 60, ../../../../../Downloads/fire.app.windows.v1.11/fire.app/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-party-gp {
+  background-position: 0 0;
+}
+
+/* line 60, ../../../../../Downloads/fire.app.windows.v1.11/fire.app/lib/ruby/compass_0.12/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-party-kmt {
+  background-position: 0 -24px;
+}
+
+/* selectors from default h5bp */
+/* line 15, ../sass/main.scss */
+nav,
+article,
+aside,
+footer,
+header,
+section,
+div {
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 24, ../sass/main.scss */
+html,
+button,
+input,
+select,
+textarea {
+  font-family: sans-serif;
+  color: #333;
+}
+
+/* line 29, ../sass/main.scss */
+html {
+  font-size: 18px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+  /* line 36, ../sass/main.scss */
+  html {
+    font-size: 21px;
+  }
+}
+@media only screen and (min-width: 1201px) {
+  /* line 42, ../sass/main.scss */
+  html {
+    font-size: 24px;
+  }
+}
+/* line 47, ../sass/main.scss */
+body {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1;
+  background-color: #ccc;
+}
+
+/* line 54, ../sass/main.scss */
+a {
+  text-decoration: none;
+  color: #333;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 5px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 5px;
+}
+/* line 60, ../sass/main.scss */
+a:link {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #f9f9f9));
+  background-image: -webkit-linear-gradient(#ffffff, #f9f9f9);
+  background-image: -moz-linear-gradient(#ffffff, #f9f9f9);
+  background-image: -o-linear-gradient(#ffffff, #f9f9f9);
+  background-image: linear-gradient(#ffffff, #f9f9f9);
+}
+/* line 64, ../sass/main.scss */
+a:visited {
+  color: #999;
+}
+/* line 68, ../sass/main.scss */
+a:focus {
+  outline: thin dotted;
+}
+/* line 73, ../sass/main.scss */
+a:active, a:hover {
+  background-color: rgba(51, 180, 228, 0.2);
+  outline: 0;
+  color: #000;
+  background-image: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* line 84, ../sass/main.scss */
+p,
+h1,
+h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* line 89, ../sass/main.scss */
+img {
+  border: 0;
+  /* 1 */
+}
+
+/* line 93, ../sass/main.scss */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 99, ../sass/main.scss */
+textarea {
+  resize: vertical;
+}
+
+/* line 106, ../sass/main.scss */
+button,
+input,
+select,
+textarea {
+  font-size: 1rem;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  vertical-align: baseline;
+  /* 3 */
+  *vertical-align: middle;
+  /* 3 */
+}
+
+/* line 114, ../sass/main.scss */
+button,
+input {
+  line-height: normal;
+}
+
+/* line 119, ../sass/main.scss */
+button,
+select {
+  text-transform: none;
+}
+
+/* line 126, ../sass/main.scss */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/* line 132, ../sass/main.scss */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/* line 136, ../sass/main.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+
+/* line 144, ../sass/main.scss */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/* line 149, ../sass/main.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* line 154, ../sass/main.scss */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */
+}
+
+/* line 160, ../sass/main.scss */
+::-moz-selection,
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/* custom selectors */
+/* main sections in the page */
+/* line 173, ../sass/main.scss */
+#geolocation,
+#legislator,
+#quote,
+#contact,
+#credit {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  overflow: hidden;
+  *zoom: 1;
+}
+
+/* first section: geolcation */
+/* line 182, ../sass/main.scss */
+#geolocation {
+  background-color: #fff;
+  border-bottom: 3px solid #33B4E4;
+  position: relative;
+  -webkit-box-shadow: black 0 0 12px;
+  -moz-box-shadow: black 0 0 12px;
+  box-shadow: black 0 0 12px;
+}
+/* line 188, ../sass/main.scss */
+#geolocation p {
+  display: block;
+  margin: 0 2rem 0 1.5rem;
+  padding-right: 0.5rem;
+  border-right: 1px #ccc solid;
+}
+/* line 195, ../sass/main.scss */
+#geolocation .manual {
+  padding: 1rem;
+  width: 1rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-image: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+/* line 205, ../sass/main.scss */
+#geolocation .screen-reader-text {
+  color: transparent;
+  white-space: nowrap;
+}
+
+/* second section: legislator */
+/* line 213, ../sass/main.scss */
+#legislator {
+  font-weight: bold;
+  position: relative;
+}
+/* line 217, ../sass/main.scss */
+#legislator.kmt {
+  color: #fff;
+  background-color: #0D2393;
+}
+/* line 222, ../sass/main.scss */
+#legislator.dpp {
+  color: #fff;
+  background-color: #009B00;
+}
+/* line 227, ../sass/main.scss */
+#legislator.gp {
+  color: #333;
+  background-color: #FFE401;
+}
+
+/* line 233, ../sass/main.scss */
+.photo {
+  width: 5.4rem;
+  height: auto;
+  float: left;
+  margin-right: 1rem;
+  border: 1px solid #fff;
+}
+
+/* line 241, ../sass/main.scss */
+.legislator {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 244, ../sass/main.scss */
+.legislator h1 {
+  font-size: 1.2rem;
+}
+/* line 248, ../sass/main.scss */
+.legislator .party {
+  position: absolute;
+  right: 1rem;
+  top: 0.9rem;
+  width: 24px;
+  height: 24px;
+  color: transparent;
+  white-space: nowrap;
+}
+
+/* line 259, ../sass/main.scss */
+.standpoint {
+  margin: 1rem 0 0 6.4rem;
+  padding: .6rem 0;
+  border: 1px solid #fff;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 265, ../sass/main.scss */
+.standpoint.nuke {
+  color: red;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #000000), color-stop(100%, #660000));
+  background-image: -webkit-linear-gradient(#000000, #660000);
+  background-image: -moz-linear-gradient(#000000, #660000);
+  background-image: -o-linear-gradient(#000000, #660000);
+  background-image: linear-gradient(#000000, #660000);
+}
+/* line 270, ../sass/main.scss */
+.standpoint.no-nuke {
+  color: white;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ddff99), color-stop(100%, #006600));
+  background-image: -webkit-linear-gradient(#ddff99, #006600);
+  background-image: -moz-linear-gradient(#ddff99, #006600);
+  background-image: -o-linear-gradient(#ddff99, #006600);
+  background-image: linear-gradient(#ddff99, #006600);
+}
+/* line 275, ../sass/main.scss */
+.standpoint p {
+  font-size: 2rem;
+  width: 100%;
+  letter-spacing: 1rem;
+  text-align: center;
+  text-indent: 1rem;
+}
+
+/* third section: quote */
+/* line 286, ../sass/main.scss */
+#quote {
+  position: relative;
+  overflow: visible;
+  background-color: #FFF;
+}
+/* line 291, ../sass/main.scss */
+#quote::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 3.2rem;
+  width: 0;
+  height: 0;
+  border-right: 0.5rem solid transparent;
+  border-bottom: 0.5rem solid #FFF;
+  border-left: 0.5rem solid transparent;
+}
+/* line 303, ../sass/main.scss */
+#quote .stamp {
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: .2rem;
+  display: inline-block;
+  position: absolute;
+  right: 1rem;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transform: rotate(5deg);
+  -moz-transform: rotate(5deg);
+  -ms-transform: rotate(5deg);
+  -o-transform: rotate(5deg);
+  transform: rotate(5deg);
+}
+/* line 314, ../sass/main.scss */
+#quote .unfavorable {
+  color: #B20000;
+  border: 3px #B20000 solid;
+}
+/* line 319, ../sass/main.scss */
+#quote .friendly {
+  color: #00B200;
+  border: 3px #00B200 solid;
+}
+/* line 324, ../sass/main.scss */
+#quote p:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+
+/* fourth section: contact info */
+/* line 331, ../sass/main.scss */
+#contact {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e9e9e9), color-stop(100%, #f9f9f9));
+  background-image: -webkit-linear-gradient(#e9e9e9, #f9f9f9);
+  background-image: -moz-linear-gradient(#e9e9e9, #f9f9f9);
+  background-image: -o-linear-gradient(#e9e9e9, #f9f9f9);
+  background-image: linear-gradient(#e9e9e9, #f9f9f9);
+}
+/* line 333, ../sass/main.scss */
+#contact h2 {
+  padding: 0.5rem 0 .5rem 0;
+  border-bottom: 1px #999 solid;
+}
+/* line 336, ../sass/main.scss */
+#contact h2:not(:first-child) {
+  padding-top: 1rem;
+}
+
+/* line 342, ../sass/main.scss */
+ul {
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+/* line 347, ../sass/main.scss */
+li {
+  overflow: hidden;
+  *zoom: 1;
+  list-style: none;
+}
+/* line 351, ../sass/main.scss */
+li .contact {
+  padding: 0.5rem 0;
+  display: block;
+  width: 2.5rem;
+  float: left;
+}
+/* line 358, ../sass/main.scss */
+li .data {
+  display: block;
+  margin-left: 2.5rem;
+}
+/* line 364, ../sass/main.scss */
+li a,
+li .no-link {
+  display: inline-block;
+  padding: 0.4rem;
+  margin: 0.1rem;
+  position: relative;
+}
+/* line 371, ../sass/main.scss */
+li .address {
+  display: block;
+  margin-right: 1.5rem;
+}
+
+/* last section: g0v.tw support*/
+/* line 379, ../sass/main.scss */
+#credit {
+  background-color: #000;
+  padding: 0 1rem;
+}
+/* line 383, ../sass/main.scss */
+#credit a {
+  padding: 0.5rem;
+  float: right;
+  background: none;
+}
+/* line 389, ../sass/main.scss */
+#credit .credit {
+  max-width: 2rem;
+  max-height: 2rem;
+}
+
+/* responsive layout */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  /* line 402, ../sass/main.scss */
+  #geolocation,
+  #legislator,
+  #quote,
+  #contact,
+  #credit {
+    padding-right: 10%;
+    padding-left: 10%;
+    width: 100%;
+  }
+
+  /* line 409, ../sass/main.scss */
+  #geolocation .manual {
+    right: 10%;
+    margin-right: -1rem;
+  }
+
+  /* line 416, ../sass/main.scss */
+  .legislator .party {
+    right: 10%;
+  }
+
+  /* line 422, ../sass/main.scss */
+  #quote::before {
+    left: 10%;
+  }
+  /* line 425, ../sass/main.scss */
+  #quote .stamp {
+    right: 10%;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+  /* line 436, ../sass/main.scss */
+  #geolocation,
+  #legislator,
+  #quote,
+  #contact,
+  #credit {
+    padding-right: 10%;
+    padding-left: 10%;
+    width: 80%;
+  }
+
+  /* line 443, ../sass/main.scss */
+  #geolocation .manual {
+    right: 12.5%;
+    margin-right: -1rem;
+  }
+
+  /* line 450, ../sass/main.scss */
+  .legislator .party {
+    right: 12.5%;
+  }
+
+  /* line 456, ../sass/main.scss */
+  #quote::before {
+    left: 12.5%;
+  }
+  /* line 459, ../sass/main.scss */
+  #quote .stamp {
+    right: 12.5%;
+  }
+}
+@media only screen and (min-width: 1201px) {
+  /* line 470, ../sass/main.scss */
+  #geolocation,
+  #legislator,
+  #quote,
+  #contact,
+  #credit {
+    width: 100%;
+  }
+
+  /* line 477, ../sass/main.scss */
+  #geolocation .manual {
+    right: 120px;
+    margin-right: -1rem;
+  }
+
+  /* line 484, ../sass/main.scss */
+  .legislator .party {
+    right: 120px;
+  }
+
+  /* line 490, ../sass/main.scss */
+  #quote::before {
+    left: 120px;
+  }
+  /* line 493, ../sass/main.scss */
+  #quote .stamp {
+    right: 120px;
+  }
+}
+/* icon fonts*/
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon.eot");
+  src: url("../fonts/icomoon.eot?#iefix") format("embedded-opentype"), url("../fonts/icomoon.woff") format("woff"), url("../fonts/icomoon.ttf") format("truetype"), url("../fonts/icomoon.svg#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 512, ../sass/main.scss */
+.icon-loop, .icon-loop-2, .icon-spinner, .icon-map, .icon-location, .icon-phone, .icon-search, .icon-target, .icon-checkmark, .icon-pencil {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  font-size: 0.9rem;
+}
+
+/* line 524, ../sass/main.scss */
+.icon-loop:after {
+  content: "\e000";
+}
+
+/* line 527, ../sass/main.scss */
+.icon-loop-2:before {
+  content: "\e001";
+}
+
+/* line 530, ../sass/main.scss */
+.icon-spinner:before {
+  content: "\e002";
+}
+
+/* line 533, ../sass/main.scss */
+.icon-map:before {
+  content: "\e003";
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}
+
+/* line 539, ../sass/main.scss */
+.icon-location:before {
+  content: "\e004";
+}
+
+/* line 542, ../sass/main.scss */
+.icon-phone:before {
+  content: "\e005";
+  margin-left: 0.5rem;
+}
+
+/* line 546, ../sass/main.scss */
+.icon-search:before {
+  content: "\e006";
+}
+
+/* line 549, ../sass/main.scss */
+.icon-target:before {
+  content: "\e007";
+  color: #999;
+  float: left;
+  width: 1rem;
+}
+
+/* line 555, ../sass/main.scss */
+.icon-checkmark:before {
+  content: "\e008";
+}
+
+/* line 558, ../sass/main.scss */
+.icon-pencil:before {
+  content: "\e009";
+}
