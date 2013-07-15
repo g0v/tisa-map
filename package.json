@@ -1,11 +1,15 @@
 {
-  "name": "L.geocoder",
-  "version": "0.1.0",
-  "description": "geocoder",
-  "main": "",
-  "repository": {
-      "connect": "2.8.3"
-  },
-  "author": "chilijung <chilijung@gmail.com> (http://lijung.com/)",
-  "license": "MIT"
+    "name": "L.geocoder",
+    "version": "0.1.0",
+    "description": "geocoder",
+    "main": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/g0v/tisa-map"
+    },
+    "dependencies": {
+        "connect": "2.8.3"
+    },
+    "author": "chilijung <chilijung@gmail.com> (http://lijung.com/)",
+    "license": "MIT"
 }
