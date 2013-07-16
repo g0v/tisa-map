@@ -42,7 +42,6 @@
         ga('send', 'pageview');
    </script>
     <link href="./src/css/l.geosearch.css" rel="stylesheet" />
-    <link href="./main.css" rel="stylesheet" />
     
 </head>
 <body>
@@ -103,7 +102,6 @@
 
     </div>
 
-    <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src="http://code.jquery.com/jquery-1.8.3.min.js"  type="text/javascript"></script>
     <script src="./src/js/l.control.geosearch.js"></script>
@@ -135,6 +133,18 @@
         map.setView(['24', '121'], 7);
 
         map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
+
+        map.on('drag', function(e) {
+            console.log(e.target._animateToCenter[0]);
+            console.log(e.target._animateToCenter[1]); // e is an event object 
+
+            mapServiceProvider(e.target._animateToCenter[0], e.target._animateToCenter[1]);
+        });
+
+        map.on('dragend', function(e) {
+            console.log(e.target._animateToCenter[0]);
+            console.log(e.target._animateToCenter[1]); 
+        });
     }
 
     function startLocate() {
@@ -196,6 +206,8 @@
     }
 
     function mapServiceProvider(latitude, longitude) {
+        console.log(latitude);
+        console.log(longitude);
         lat = latitude;
         longti = longitude;
         finding();
@@ -204,8 +216,10 @@
     function mapServiceProvider_done(latitude, longitude) {
         $.ajax({
             type:"GET",
-            data:{'latlng' : latitude+','+longitude, sensor: false, language: 'zh_TW'},
-            url:"https://maps.googleapis.com/maps/api/geocode/json", //傳出資料網址
+            data:{'latlng' : latitude+','+longitude, sensor: true, language: 'zh_TW'},
+            url:"https://maps.googleapis.com/maps/api/geocode/json", 
+
+            //傳出資料網址
             //curl 'http://maps.googleapis.com/maps/api/geocode/json?address=台北市研究院路二段,TW&sensor=false&language=zh_TW' > gc.json
 
             dataType: "json",
@@ -278,7 +292,7 @@
 
 
         L.marker(setplace).addTo(map)
-        .bindPopup("<b>你現在在這裡！</b>").openPopup();
+        .bindPopup("<b>你現在在這！</b>").openPopup();
 
         
     }
