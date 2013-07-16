@@ -19,16 +19,16 @@
     #map { 
         width: 100%;
         height: 100%;
+        position: relative;
         }
 
     #gov-area {
         width: 100%;
-        height: 100%;
         color: #000;
         position: relative;
     }
 
-    #scroll-down {
+    #scroll-down, #scroll-top {
         z-index: 1000;
         width: 400px;
         height: 50px;
@@ -66,8 +66,10 @@
         <div id="scroll-down">我們台灣人的救星！</div>
     </div> <!-- /container -->
 
-    <div id="g0v-area">
-        
+    <div id="gov-area">
+
+
+        <div id="scroll-top">回到災難圖 </div>
     </div>
     
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
@@ -100,7 +102,7 @@
         var template = Handlebars.compile(source);
         for (var i = ly_arr.length - 1; i >= 0; i--) {
             var html    = template(ly_arr[i]);
-            $('#g0v-area').append(html)
+            $('#gov-area').append(html)
         };
         
     });
@@ -109,6 +111,8 @@
     function initialize () {
 
         $('#scroll-down').css('left', ($(window).width() / 2) - 200 + 'px')
+
+        $('#scroll-top').css('left', ($(window).width() / 2) - 200 + 'px')
 
         map = L.map('map', {
             zoomControl: false,
@@ -246,9 +250,14 @@
     }
 
     initialize();
-    startLocate()
+    startLocate();
+
     $('#scroll-down').click(function() {
       $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+    });
+
+    $('#scroll-top').click(function() {
+      $("html, body").animate({ scrollTop: 0 }, 1000);
     });
 
     </script>
