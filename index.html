@@ -19,15 +19,28 @@
     #map { 
         width: 100%;
         height: 100%;
-        float: left;
         }
 
- /*   #gov {
-        width: 30%;
+    #gov-area {
+        width: 100%;
         height: 100%;
-        float: right;
+        color: #000;
+        position: relative;
+    }
+
+    #scroll-down {
+        z-index: 1000;
+        width: 400px;
+        height: 50px;
+        background-color: red;
+        position: absolute;
+        cursor: pointer;
+        text-align: center;
+        line-height: 50px;
         color: #FFF;
-    }*/
+        font-size: 25px;
+        bottom: 0px;
+    }
 
 
     </style>
@@ -47,19 +60,55 @@
 <body>
 
     <div id="map" >
+
+
+
+        <div id="scroll-down">我們台灣人的救星！</div>
     </div> <!-- /container -->
+
+    <div id="g0v-area">
+        
+    </div>
     
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src="http://code.jquery.com/jquery-1.8.3.min.js"  type="text/javascript"></script>
     <script src="./src/js/l.control.geosearch.js"></script>
     <script src="./src/js/l.geosearch.provider.openstreetmap.js"></script>
     <script src="src/topojson.js"></script>
+    <script src="src/person_data.js"></script>
+    <script src="src/handlebars.js"></script>
+
+    <script id="entry-template" type="text/x-handlebars-template">
+        <div class="entry">
+            <li>{{assume}}</li>
+            <li>{{avatar}}</li>
+            <li>{{name}}</li>
+            <li>{{constituency}}</li>
+            <li>{{contact}}</li>
+            <li>{{party}}</li>
+            <li>{{caucus}}</li>
+        </div>
+    </script>
 
     <script type="text/javascript">
     var geocoder;
     var field = new Field();
 
+    get_person(function() {
+
+        var source   = $("#entry-template").html();
+        var template = Handlebars.compile(source);
+        for (var i = ly_arr.length - 1; i >= 0; i--) {
+            var html    = template(ly_arr[i]);
+            $('#g0v-area').append(html)
+        };
+        
+    });
+    
+
     function initialize () {
+
+        $('#scroll-down').css('left', ($(window).width() / 2) - 200 + 'px')
 
         map = L.map('map', {
             zoomControl: false,
@@ -79,7 +128,7 @@
             style: {
                 color: 'red',
                 weight: 5,
-                fillColor: 'red',
+                fill: 'red',
                 opacity: 1,
                 fillOpacity: 0.3
             }
@@ -198,6 +247,9 @@
 
     initialize();
     startLocate()
+    $('#scroll-down').click(function() {
+      $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+    });
 
     </script>
 
