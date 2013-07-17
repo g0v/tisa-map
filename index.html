@@ -103,33 +103,38 @@
         
 
         <div class="ly-person">
-            <div id="{{name}}">
-            <div class="ly-person-left">
-                <img src="{{avatar}}?size=large" width="200"/>
-            </div>
-            <div class="ly-person-right">
-            
-                <li>{{name}}</li>
-                <li>{{party}}</li>
-                <div class="ly-contact">
-                    {{#each contact}}
-                        <ul> {{@key}}
-                        {{#if this.phone}}
-                            <li>電話：{{this.phone}}</li>
-                        {{/if}}
-                        {{#if this.address}}
-                            <li>地址：{{this.address}}</li>
-                        {{/if}}
-                        {{#if this.fax}}
-                            <li>傳真：{{this.fax}}</li>
-                        {{/if}}
-                        </ul>
-                    {{/each}}
+            <div class="unit" id="{{name}}">
+
+                <p class="{{party}} kmt name">{{name}}</p>
+
+                <div class="ly-person-left">
+                    <img src="{{avatar}}?size=large" width="200"/>
                 </div>
-            
-            </div>
-            <div class="ly-person-clear">
-            </div>
+
+                <div class="ly-person-right">
+                
+                    <div class="ly-contact">
+                        {{#each contact}}
+                        <p>{{@key}}</p>
+                            <ul> 
+                            {{#if this.phone}}
+                                <li>電話：{{this.phone}}</li>
+                            {{/if}}
+                            {{#if this.address}}
+                                <li>地址：{{this.address}}</li>
+                            {{/if}}
+                            {{#if this.fax}}
+                                <li>傳真：{{this.fax}}</li>
+                            {{/if}}
+                            </ul>
+                        {{/each}}
+                    </div>
+                
+                </div>
+
+                <div class="ly-person-clear">
+                </div>
+
             </div>
         </div>
 

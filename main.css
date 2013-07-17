@@ -1,3 +1,7 @@
+body {
+  background-color: #f2f2f2;
+}
+
 #counter {
   margin-top: 50px;
   clear: both;
@@ -20,24 +24,81 @@
   color: #000;
 }
 
+#gov-area {
+  padding: 10px;
+}
 
 .ly-person {
+  font-size: 18px;
   width: 300px;
   display: inline-table;
-  padding: 10px;
-  border: 1px solid #CCC;
-  margin-top: 20px;
+  padding: 0;
+  background-color: #f2f2f2;
+  margin: 10px;
+  text-align: center;
+  line-height: 32px;
+  color: #444;
+}
+
+.unit {
+    border: 1px solid #CCC;
+  }
+
+.unit p {
+  margin: 0;
+  padding: 0;
+  background-color: #e6e6e6;
+  line-height: 48px;
+  font-weight: bold;
+}
+
+.name {
+  font-size: 24px;.
+}
+
+.kmt {
+  background: url(img/party-kmt.png) no-repeat 60px center;
 }
 
 .ly-person-right {
   width: 100%;
 }
 
-.ly-person-left: {
-  width: 100%;
-  float: left;
+.ly-person-left {
+  padding-top: 10px;
 }
 
-div:target {
-    background-color: rgba(256, 0, 0, 0.2);
+.ly-person-left img{
+  width: 200px;
+  border: 8px #fff solid;
+  margin: 0 auto;
+  opacity: 0.7;
+}
+
+.ly-contact ul {
+  margin: 0;
+  padding: 10px 20px;
+}
+
+.ly-contact li {
+  text-align: left;
+  list-style: none;
+}
+
+div.unit:target {
+    background-color: #fff;
+    color: #000;
+    border: 1px #c1272d solid;
+}
+
+div.unit:target .ly-person-left {
+  background-color: #d96d6d;
+}
+
+div.unit:target p {
+  background-color: #f6d1d1;
+}
+
+div.unit:target .ly-person-left img{
+  opacity: 1;
 }
