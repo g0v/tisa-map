@@ -37,3 +37,7 @@
   width: 100%;
   float: left;
 }
+
+div:target {
+    background-color: rgba(256, 0, 0, 0.2);
+}
