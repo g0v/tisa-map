@@ -6,6 +6,7 @@
     <title>兩岸服務貿易協定災難圖</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
     <![endif]-->
@@ -28,7 +29,7 @@
         padding-bottom: 100px;
     }
 
-    #scroll-down, #scroll-top {
+    #scroll-down {
         z-index: 1000;
         width: 400px;
         height: 50px;
@@ -63,9 +64,11 @@
    </script>
     <link href="./src/css/l.geosearch.css" rel="stylesheet" />
     <link href="./main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/css/scroll-top.css" />
     
 </head>
 <body>
+    <a id="top"></a>
 
     <div id="map" >
 
@@ -82,9 +85,7 @@
     </div> <!-- /container -->
 
     <div id="gov-area">
-
-        
-        <div id="scroll-top">回到災難圖 </div>
+        <div id="message"><a href="#top">回到災難圖</a></div>
     </div>
     
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
@@ -95,6 +96,7 @@
     <script src="src/person_data.js"></script>
     <script src="src/handlebars.js"></script>
     <script src="src/jquery.countdown.js"></script>
+    <script src="src/js/scroll-top.js"></script>
 
     <script id="entry-template" type="text/x-handlebars-template">
         <div class="ly-person">
@@ -299,7 +301,7 @@
     startLocate();
 
     $('#scroll-down').click(function() {
-      $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+      $("html, body").animate({ scrollTop: $(window).height() }, 1000);
     });
 
     $('#scroll-top').click(function() {
