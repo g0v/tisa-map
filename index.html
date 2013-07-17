@@ -137,9 +137,9 @@
                 fillOpacity: 0.3
             }
         });
-        
+
         $.getJSON('./json_data/tisa-ly-map.json', function (data) {
-            var town_geojson = topojson.mesh(data, data.objects["twVote1982.geo"]);
+            var town_geojson = topojson.feature(data, data.objects["twVote1982.geo"]);
             town_layer.addData(town_geojson);
         });
 
