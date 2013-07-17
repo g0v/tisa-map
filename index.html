@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>L.Geocoder</title>
+    <title>兩岸服務貿易協定災難圖</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
     <!--[if lte IE 8]>
@@ -24,8 +24,8 @@
 
     #gov-area {
         width: 100%;
-        color: #000;
         position: relative;
+        padding-bottom: 100px;
     }
 
     #scroll-down, #scroll-top {
@@ -55,6 +55,7 @@
         ga('send', 'pageview');
    </script>
     <link href="./src/css/l.geosearch.css" rel="stylesheet" />
+    <link href="./main.css" rel="stylesheet" />
     
 </head>
 <body>
@@ -81,14 +82,32 @@
     <script src="src/handlebars.js"></script>
 
     <script id="entry-template" type="text/x-handlebars-template">
-        <div class="entry">
-            <li>{{assume}}</li>
-            <li>{{avatar}}</li>
-            <li>{{name}}</li>
-            <li>{{constituency}}</li>
-            <li>{{contact}}</li>
-            <li>{{party}}</li>
-            <li>{{caucus}}</li>
+        <div class="ly-person">
+            <div class="ly-person-left">
+                <img src="{{avatar}}?size=medium" width="100"/>
+            </div>
+            <div class="ly-person-right">
+                <li>{{name}}</li>
+                <li>{{party}}</li>
+                <div class="ly-contact">
+                    {{#each contact}}
+                        <ul> {{@key}}
+                        {{#if this.phone}}
+                            <li>電話：{{this.phone}}</li>
+                        {{/if}}
+                        {{#if this.address}}
+                            <li>地址：{{this.address}}</li>
+                        {{/if}}
+                        {{#if this.fax}}
+                            <li>傳真：{{this.fax}}</li>
+                        {{/if}}
+                        </ul>
+                    {{/each}}
+                </div>
+
+            </div>
+            <div class="ly-person-clear">
+            </div>
         </div>
     </script>
 
@@ -101,6 +120,10 @@
         var source   = $("#entry-template").html();
         var template = Handlebars.compile(source);
         for (var i = ly_arr.length - 1; i >= 0; i--) {
+            if(ly_arr[i].party  === 'KMT') {
+                ly_arr[i].party = '國民黨';
+            }
+
             var html    = template(ly_arr[i]);
             $('#gov-area').append(html)
         };
@@ -125,7 +148,6 @@
 
         L.tileLayer('http://{s}.tile.cloudmade.com/f59941c17eda4947ae395e907fe531a3/997/256/{z}/{x}/{y}.png', {
         maxZoom: 18,
-        styleId: 22677,
         }).addTo(map);
 
         var town_layer = L.geoJson(null, {
