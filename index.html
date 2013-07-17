@@ -81,7 +81,7 @@
                 <div>秒</div>
             </div>
         </div>
-        <div id="scroll-down">我們台灣人的救星！</div>
+        <div id="scroll-down">召喚我們台灣人的救星！</div>
     </div> <!-- /container -->
 
     <div id="gov-area">
@@ -104,6 +104,7 @@
                 <img src="{{avatar}}?size=large" width="200"/>
             </div>
             <div class="ly-person-right">
+            <a id="{{name}}">
                 <li>{{name}}</li>
                 <li>{{party}}</li>
                 <div class="ly-contact">
@@ -121,7 +122,7 @@
                         </ul>
                     {{/each}}
                 </div>
-
+            </a>
             </div>
             <div class="ly-person-clear">
             </div>
@@ -183,6 +184,9 @@
                 fill: 'red',
                 opacity: 1,
                 fillOpacity: 0.3
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup("<img src='" + feature.properties.avatar + "'/><br/>" + feature.properties.name);
             }
         });
 
