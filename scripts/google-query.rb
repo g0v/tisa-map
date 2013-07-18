@@ -9,7 +9,12 @@ def location(address)
     response = Oj.load(RestClient.get(
         "http://maps.googleapis.com/maps/api/geocode/json",
         :params => { :address => address, :sensor => "false" }
-    ))["results"][0]["geometry"]["location"]
+    ))
+    if response["status"] == "OK"
+        return response["results"][0]["geometry"]["location"]
+    else
+        return {}
+    end
 end
 
 source = File.open(ARGV[0], "r")
