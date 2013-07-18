@@ -22,7 +22,7 @@ output = File.open("#{source.path}.location", "w")
 
 source.each_with_index do |line, index|
     json = Oj.load(line)
-    location = location(json["公司所在地"]).merge({number: json["統編"]})
+    location = location(json["公司所在地"]).merge({"number" => json["統編"]})
     puts Oj.dump(location)
     output.write(Oj.dump(location))
     output.write("\n")
