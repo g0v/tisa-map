@@ -49,6 +49,12 @@
         bottom: 50px;
     }
 
+    #join-reject {
+        z-index: 10000;
+        position: absolute;
+        left: 0px;
+    }
+
 
     </style>
 
@@ -99,6 +105,9 @@
 
         </div>
 
+        <div id="login_list">
+        </div>
+
         <div>
             <img src="./img/login-with-facebook.png" id="facebook_login"/>
             
@@ -143,6 +152,26 @@
               } else if (user) {
                 // user authenticated with Firebase
                 $('#login_img').html('<img src="http://avatars.io/' + user.provider + '/' + user.username + '"/>' )
+                var userRef = tisadb.child('users');
+
+                peopleRef = userRef.child(user.id + '(' +  user.provider + ')');
+
+                var email = user.email || ''
+                    , provider = user.provider || ''
+                    , id = user.id || ''
+                    , displayName = user.displayName || ''
+                    , username = user.username || ''
+
+                peopleRef.set({
+                    username: username,
+                    displayName: displayName,
+                    id: id,
+                    provider: provider,
+                    email: email,
+                    avatar: "http://avatars.io/" + provider + '/' + username + "?size=medium"
+                })
+
+                console.log(user);
                 
                 $('#facebook_login').hide();
                 $('#twitter_login').hide();
@@ -156,6 +185,13 @@
                 $('#logout').hide();
                 $('#login_area').hide();
               }
+        });
+
+        var userRef = new Firebase('https://tisa.firebaseIO.com/users');
+
+        userRef.on('child_added', function(snapshot) {
+          var personData = snapshot.val();
+          $('#login_list').append('<img src="' + personData.avatar + '" width="50"/>');
         });
 
     </script>   
