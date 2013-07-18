@@ -1,7 +1,7 @@
 {
-    "name": "L.geocoder",
+    "name": "tisa-map",
     "version": "0.1.0",
-    "description": "geocoder",
+    "description": "taiwan service in contract map",
     "main": "",
     "repository": {
         "type": "git",
