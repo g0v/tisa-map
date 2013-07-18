@@ -16,3 +16,13 @@ https://github.com/chilijung/twcompany-parser
 http://company.g0v.ronny.tw/
 
 data folder is from ronnywang's data https://github.com/ronnywang/twcompany , remake is after parser https://github.com/chilijung/twcompany-parser
+
+## Authors
+
+@chilijung
+@shelling
+@clkao
+@ETblue
+
+## Thanks to
+@ronnywang
