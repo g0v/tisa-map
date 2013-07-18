@@ -17,15 +17,18 @@ $(document).ready(function() {
 			    console.log(error);
 			  } else if (user) {
 			    // user authenticated with Firebase
-			    $('#facebook_img').append('<img src="http://avatars.io/' + user.provider + '/' + user.id + '"/>' )
+			    console.log(user)
+			    $('#login_img').append('<img src="http://avatars.io/' + user.provider + '/' + user.username + '"/>' )
 			    console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
 				$('#facebook_login').hide();
-				$('#facebook_logout').show();
+				$('#twitter_login').hide();
+				$('#logout').show();
 
 			  } else {
 			    // user is logged out
 			    $('#facebook_login').show();
-				$('#facebook_logout').hide();
+			    $('#twitter_login').show();
+				$('#logout').hide();
 			  }
 		});
 
@@ -35,14 +38,24 @@ $(document).ready(function() {
 
 			console.log('facebook login onclick')
 			auth.login('facebook', {
-			  rememberMe: true,
-			  scope: 'email,user_likes'
+				rememberMe: true,
+				scope: 'email,user_likes'
 			});
 			
 		})
 
-		$('#facebook_logout').click(function() {
-			console.log('facebook is logout');
+		
+
+		$('#twitter_login').click(function() {
+
+			console.log('twitter login onclick')
+			auth.login('twitter', {
+				rememberMe: true
+			});
+		})
+
+		$('#logout').click(function() {
+			console.log('logout');
 			auth.logout();
 		})
 
