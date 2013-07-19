@@ -10,6 +10,17 @@ $(function(){
 
 	uploader.on('complete', function(url){
 		$('#upload_process').html('<img src="' + url + '?size=medium" width="150px"/>感謝你的參與！！')
+		
+		var upload_img_db = new FirebaseSimpleLogin(tisadb, function(error, user){
+			if (error) {
+	            // an error occurred while attempting login
+            	console.log(error);
+	        } else if (user) {
+                // user authenticated with Firebase
+                var uploadRef = tisadb.child('users').child(user.id + '(' +  user.provider + ')');
+				uploadRef.update({upload_img: url + '?size=medium'})
+			}
+		})
 		$('#avatar').hide();
 	});
 });

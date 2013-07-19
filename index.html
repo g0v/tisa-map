@@ -151,7 +151,7 @@
                 console.log(error);
               } else if (user) {
                 // user authenticated with Firebase
-                $('#login_img').html('<img src="http://avatars.io/' + user.provider + '/' + user.username + '"/>' )
+                $('#login_img').html('<img src="http://avatars.io/' + user.provider + '/' + user.username + '?size=medium"/>' )
                 var userRef = tisadb.child('users');
 
                 peopleRef = userRef.child(user.id + '(' +  user.provider + ')');
@@ -162,7 +162,7 @@
                     , displayName = user.displayName || ''
                     , username = user.username || ''
 
-                peopleRef.set({
+                peopleRef.update({
                     username: username,
                     displayName: displayName,
                     id: id,
@@ -170,8 +170,6 @@
                     email: email,
                     avatar: "http://avatars.io/" + provider + '/' + username + "?size=medium"
                 })
-
-                console.log(user);
                 
                 $('#facebook_login').hide();
                 $('#twitter_login').hide();

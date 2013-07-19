@@ -1,5 +1,4 @@
 $(document).ready(function() {
-		
 
 		$('#facebook_login').click(function() {
 
@@ -8,7 +7,7 @@ $(document).ready(function() {
 				rememberMe: true,
 				scope: 'email,user_likes'
 			});
-			
+			console.log(auth);
 		})
 
 		$('#twitter_login').click(function() {
