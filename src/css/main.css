@@ -1,5 +1,46 @@
-body {
-  background-color: #f2f2f2;
+
+html, body { height: 100% }
+    body {
+        padding: 0;
+        margin: 0;
+    }
+#map { 
+    width: 100%;
+    height: 100%;
+    position: relative;
+    }
+
+#gov-area {
+    width: 100%;
+    position: relative;
+    padding-bottom: 100px;
+}
+
+#scroll-down {
+    z-index: 1000;
+    width: 400px;
+    height: 50px;
+    background-color: red;
+    position: absolute;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+    color: #FFF;
+    font-size: 25px;
+    bottom: 0px;
+}
+
+#count-down {
+    z-index: 10000;
+    position: absolute;
+    right: 0px;
+    bottom: 50px;
+}
+
+#join-reject {
+    z-index: 10000;
+    position: absolute;
+    left: 0px;
 }
 
 #counter {
