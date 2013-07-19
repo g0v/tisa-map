@@ -18,7 +18,7 @@ $(function(){
 	        } else if (user) {
                 // user authenticated with Firebase
                 var uploadRef = tisadb.child('users').child(user.id + '(' +  user.provider + ')');
-				uploadRef.update({upload_img: url + '?size=medium'})
+				uploadRef.update({upload_img: url + '?size=large'})
 			}
 		})
 		$('#avatar').hide();

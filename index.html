@@ -99,7 +99,7 @@
             </button>
             <div id="upload_process">
             </div>
-            <div> <!-- surround it with some container element -->
+            <div id="avatar_uploader"> <!-- surround it with some container element -->
                 <input type="file" id="avatar">
             </div>
 
@@ -170,6 +170,14 @@
                     email: email,
                     avatar: "http://avatars.io/" + provider + '/' + username + "?size=medium"
                 })
+
+                if(peopleRef.child('upload_img')) {
+
+                    peopleRef.child('upload_img').on('value', function(snapshot){
+                        $('#upload_process').html('<img src="' + snapshot.val() + '" width=100px/> 感謝你的參與～～你可以再重新上傳，我們只會使用你最新上傳的照片' )
+                    })
+
+                }
                 
                 $('#facebook_login').hide();
                 $('#twitter_login').hide();
