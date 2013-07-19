@@ -62,6 +62,8 @@ sudo 和 -g for global
 
 ## distributed location querying
 
+1. [53 fragments of company list, 2500 per file](140.112.20.144/fragments.tar.gz)
+
 1. [job list on ethercalc](https://ethercalc.org/azjnmueldd)
 
 once you take one job away, please write down your name.
