@@ -169,10 +169,10 @@ function Field(){
     this.setValue = function(lat_val, long_val){
         latitude = lat_val;
         longitude = long_val;
-        $('#usr_lat').val() = lat_val;
-        $('#usr_lng').val() = long_val;
-        console.log($('#usr_lat'));
-        console.log($('#usr_lng'));
+        $('#usr_lat').val(lat_val)
+        $('#usr_lng').val(long_val)
+        console.log($('#usr_lat').val());
+        console.log($('#usr_lng').val());
         createMap (this.getValue())
     };
 }
