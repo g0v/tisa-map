@@ -1,3 +1,5 @@
+// filter data from the origin.
+
 var ly_arr = [];
 
 function get_person(callback) {

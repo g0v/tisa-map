@@ -1,3 +1,5 @@
+// a piece of code for topojson usage
+
 topojson = (function() {
 
   function merge(topology, arcs) {

@@ -1,7 +1,10 @@
 var geocoder;
 var field = new Field();
 
+// count down javascript code
+
 $(function(){
+
     // 第一個倒數計時, 圖片來源為 images/digits.png
     // 倒數時間為 1 天 12 小時又 12 分 0 秒
     $('#counter').countdown({
@@ -9,6 +12,8 @@ $(function(){
         startTime: '01:12:12:00'
     });
 });
+
+// get person from json and convert to html
 
 get_person(function() {
 
@@ -26,9 +31,15 @@ get_person(function() {
 });
 
 
+// some initialize code for the map, scroll, geocode...
+
 function initialize () {
 
+    // scroll down position
+
     $('#scroll-down').css('left', ($(window).width() / 2) - 200 + 'px')
+
+    // scroll top position
 
     $('#scroll-top').css('left', ($(window).width() / 2) - 200 + 'px')
 
@@ -63,27 +74,16 @@ function initialize () {
         town_layer.addData(town_geojson);
     });
 
+    // set initial map view
+
     map.setView(['24', '121'], 7).addLayer(town_layer);
 
     map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
 
-    // map.on('drag', function(e) {
-    //     console.log(e.target._animateToCenter[0]);
-    //     console.log(e.target._animateToCenter[1]); // e is an event object 
-
-    //     mapServiceProvider(e.target._animateToCenter[0], e.target._animateToCenter[1]);
-    // });
-
-    // map.on('dragend', function(e) {
-    //     console.log(e.target._animateToCenter[0]);
-    //     console.log(e.target._animateToCenter[1]); 
-    // });
-    // 
-    // 
-    
-
 
 }
+
+// locating user's location
 
 function startLocate() {
     if (navigator.geolocation) {
@@ -142,6 +142,8 @@ function startLocate() {
 }
 
 
+// create mark to the map, pointing out where the user is.
+
 function createMap (setplace) {
     map.setView(setplace, 13);
 
@@ -151,6 +153,8 @@ function createMap (setplace) {
 
     
 }
+
+
 
 function Field(){
     var latitude 
@@ -165,12 +169,18 @@ function Field(){
     this.setValue = function(lat_val, long_val){
         latitude = lat_val;
         longitude = long_val;
+        $('#usr_lat').val() = lat_val;
+        $('#usr_lng').val() = long_val;
+        console.log($('#usr_lat'));
+        console.log($('#usr_lng'));
         createMap (this.getValue())
     };
 }
 
 initialize();
 startLocate();
+
+// scroll down click button
 
 $('#scroll-down').click(function() {
     $("html, body").animate({ scrollTop: $(window).height() }, 1000);

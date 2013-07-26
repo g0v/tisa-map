@@ -1,3 +1,5 @@
+// setting up login button with firebase functions
+
 $(document).ready(function() {
 
 		$('#facebook_login').click(function() {

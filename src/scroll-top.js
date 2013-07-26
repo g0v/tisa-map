@@ -1,3 +1,5 @@
+// scroll to top 
+
 $(function () {
 
     /* set variables locally for increased performance */
