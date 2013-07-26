@@ -179,6 +179,7 @@ head
                 personArr.push(personData.latlng[0]);
                 personArr.push(personData.latlng[1]);
                 personArr.push(personData.avatar);
+                personArr.push(personData.displayName);
 
                 // push person data to people array
 
@@ -191,8 +192,9 @@ head
                 for (var i = 0; i < peopleArr.length; i++) {
                     var a = peopleArr[i];
                     var title = a[2];
+                    var name = a[3];
                     var marker = L.marker(L.latLng(a[0], a[1]), { title: title });
-                    marker.bindPopup('<img src="' + title + '" width="50"/>');
+                    marker.bindPopup('<img src="' + title + '" width="50"><br>' + name);
                     markers.addLayer(marker);
                 }
 
