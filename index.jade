@@ -10,6 +10,8 @@ head
         link(href='./src/css/l.geosearch.css', rel='stylesheet')
         link(href='./src/css/main.css', rel='stylesheet')
         link(rel='stylesheet', href='./src/css/scroll-top.css')
+        link(rel="stylesheet", href="./src/markercluster/MarkerCluster.Default.css")
+        link(rel="stylesheet", href="./src/markercluster/MarkerCluster.css")
     body
         a#top
 
@@ -63,6 +65,8 @@ head
         script(src='./src/jquery.countdown.js')
         script(src='./src/scroll-top.js')
         script(type='text/javascript', src='./src/init.js')
+        script(src="./src/markercluster/leaflet.markercluster-src.js")
+        script(src="./src/markercluster/leaflet.markercluster.js")
         script.
 
             // create firebase reference
@@ -160,10 +164,40 @@ head
                 
             var userRef = new Firebase('https://tisa.firebaseIO.com/users');
 
+            // all person's data to an array
+            var peopleArr = [];
+            console.log(L)
+
             // show up the people that have already login.
             userRef.on('child_added', function(snapshot) {
-                var personData = snapshot.val();
+
+                // fetch personal data from firebase
+                var personData = snapshot.val()
+                , personArr = [];
+
                 $('#login_list').append('<img src="' + personData.avatar + '" width="50"/>');
+
+                personArr.push(personData.latlng[0]);
+                personArr.push(personData.latlng[1]);
+                personArr.push(personData.avatar);
+
+                // push person data to people array
+
+                peopleArr.push(personArr)
+
+                // marker cluster for users
+
+                var markers = L.markerClusterGroup({ disableClusteringAtZoom: 17 });
+
+                for (var i = 0; i < peopleArr.length; i++) {
+                    var a = peopleArr[i];
+                    var title = a[2];
+                    var marker = L.marker(L.latLng(a[0], a[1]), { title: title });
+                    marker.bindPopup('<img src="' + title + '" width="50"/>');
+                    markers.addLayer(marker);
+                }
+
+                map.addLayer(markers);
             });
         script(src='./src/avatar-user.js')
         script(src='./src/auth.js')
