@@ -189,12 +189,19 @@ head
 
                 var markers = L.markerClusterGroup({ disableClusteringAtZoom: 17 });
 
+                // loop through users
                 for (var i = 0; i < peopleArr.length; i++) {
                     var a = peopleArr[i];
                     var title = a[2];
                     var name = a[3];
-                    var marker = L.marker(L.latLng(a[0], a[1]), { title: title });
+                    var lat_val = a[0] || 24;
+                    var lng_val = a[1] || 121;
+                    var marker = L.marker(L.latLng(lat_val, lng_val), { title: title });
+
+                    // add popup
                     marker.bindPopup('<img src="' + title + '" width="50"><br>' + name);
+
+                    // add new layer to map
                     markers.addLayer(marker);
                 }
 
