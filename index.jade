@@ -1,6 +1,6 @@
 !!! 5
-html(xmlns='http://www.w3.org/1999/xhtml')
-head
+html
+    head
         meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
         title 兩岸服務貿易協定災難圖
         meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
@@ -50,6 +50,8 @@ head
                 img#twitter_login(src='./img/login-with-twitter.png')
             #message
                 a(href='#top') 回到災難圖
+        
+        script(data-main = "./src/main/index", src='http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js');
 
 
         script(src='http://code.jquery.com/jquery-1.8.3.min.js', type='text/javascript')
