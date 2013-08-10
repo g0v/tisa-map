@@ -17,6 +17,15 @@ https://github.com/ronnywang/twcompany
 
 https://github.com/chilijung/twcompany-parser
 
+## API
+
+1. 以中心點和半徑搜尋 Point
+1. 以所營事業項目搜尋 Point
+1. 以公司名稱搜尋 Point
+1. 以統一編號搜尋 Point
+
+* 返回值都是 GeoJSON
+
 ## data
 
 [data from dropbox](https://www.dropbox.com/sh/o8uu84oskzcsxnp/Do-TEZcra1)
