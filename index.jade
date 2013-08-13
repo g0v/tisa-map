@@ -10,8 +10,8 @@ html
         link(href='./src/css/l.geosearch.css', rel='stylesheet')
         link(href='./src/css/main.css', rel='stylesheet')
         link(rel='stylesheet', href='./src/css/scroll-top.css')
-        link(rel="stylesheet", href="./src/markercluster/MarkerCluster.Default.css")
-        link(rel="stylesheet", href="./src/markercluster/MarkerCluster.css")
+        link(rel="stylesheet", href="./src/script/markercluster/MarkerCluster.Default.css")
+        link(rel="stylesheet", href="./src/script/markercluster/MarkerCluster.css")
     body
         a#top
 
@@ -50,8 +50,7 @@ html
                 img#twitter_login(src='./img/login-with-twitter.png')
             #message
                 a(href='#top') 回到災難圖
-        
-        script(data-main = "./src/index", src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js');
+        script(data-main = "/src/index", src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js');
 
 
         // script(src='http://code.jquery.com/jquery-1.8.3.min.js', type='text/javascript')
@@ -62,11 +61,11 @@ html
         // script(src='./src/geosearch_js/l.control.geosearch.js')
         // script(src='./src/geosearch_js/l.geosearch.provider.openstreetmap.js')
         // script(src='./src/topojson.js')
-        script(src='./src/person_data.js')
+        // script(src='./src/person_data.js')
         // script(src='./src/handlebars.js')
         // script(src='./src/jquery.countdown.js')
-        script(src='./src/scroll-top.js')
-        script(type='text/javascript', src='./src/init.js')
+        // script(src='./src/scroll-top.js')
+        // script(type='text/javascript', src='./src/init.js')
         // script(src="./src/markercluster/leaflet.markercluster.js")
         script.
 
@@ -209,8 +208,8 @@ html
 
                 map.addLayer(markers);
             });
-        script(src='./src/avatar-user.js')
-        script(src='./src/auth.js')
+        //- // script(src='./src/avatar-user.js')
+        //- // script(src='./src/auth.js')
 
         // using handlebars to show up ly's info
         script#entry-template(type='text/x-handlebars-template').
