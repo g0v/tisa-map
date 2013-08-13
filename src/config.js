@@ -15,7 +15,8 @@ require.config({
       'jquery.countdown': 'script/vendor/jquery.countdown',
       'topojson'        : 'script/vendor/topojson',
       'geosearch'       : 'script/geosearch_js/l.control.geosearch',
-      'geosearch_provider': 'script/geosearch_js/l.geosearch.provider.openstreetmap'
+      'geosearch_provider': 'script/geosearch_js/l.geosearch.provider.openstreetmap',
+      'text'            : 'script/vendor/text'
 
    },
    shim: {

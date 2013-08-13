@@ -1,16 +1,18 @@
 define([
+
 	'jquery',
 	'underscore',
 	'backbone',
+	'view/ly_view',
 	'firebase',
 	'leaflet',
 	'avatars',
-	'handlebars',
 	'jquery.countdown',
 	'topojson',
 	'geosearch',
 	'geosearch_provider'
-	], function($, _, Backbone) {
+
+	], function($, _, Backbone, lyView) {
 
 		var index = Backbone.View.extend({
 
@@ -23,14 +25,18 @@ define([
 			initialize: function() {
 
 				// scroll down position
-
 			    $('#scroll-down').css('left', ($(window).width() / 2) - 200 + 'px')
 
 			    // scroll top position
-
 			    $('#scroll-top').css('left', ($(window).width() / 2) - 200 + 'px')
 
-			    map = L.map('map', {
+			    this.newMap();
+			    this.startLocate();
+			},
+
+			newMap: function () {
+
+				map = L.map('map', {
 			        zoomControl: false,
 			        attributionControl: false
 			    });
@@ -66,8 +72,6 @@ define([
 			    map.setView(['24', '121'], 7).addLayer(town_layer);
 
 			    map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
-
-			    startLocate();
 			},
 
 			startLocate: function() {
@@ -124,7 +128,7 @@ define([
 
 			    }
 
-			    function Field(){
+			    function field(){
 				    var latitude 
 				    var longitude 
 				   

@@ -1,21 +1,19 @@
 require(["config"], function(config) {
 
-
   require([
   	'jquery',
   	'underscore',
   	'backbone',
     // 'src/script/model/index_model',
+    'view/ly_view',
     'view/index_view',
   	
-  	], function($, _, Backbone, IndexView){
+  	], function($, _, Backbone, LyView, IndexView){
       'use strict';
-      console.log($);
-      console.log(_);
-      console.log(Backbone);
-      console.log(IndexView);
+      
       // render index out view
       // var indexModel = new IndexModel;
+      var lyView = new LyView();
   		var indexView = new IndexView();
   	}
   )
