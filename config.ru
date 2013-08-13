@@ -1,0 +1,2 @@
+require "./environments"
+run App
