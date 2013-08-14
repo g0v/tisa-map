@@ -14,14 +14,7 @@ define([
 				var person = new personModel();
 				person.set(val);
 				personCollection.push(person);
-				//personCollection.set('tisa-person', val)
-				// _.each(val, function(data) {
-				// 	console.log(data);
-				// 	var ly = new personModel();
-				// 	// ly.set(data);
-				// 	personCollection.push(ly)
-				// })
-				// lyCollection.add(val);
+
 			}
 
 		})

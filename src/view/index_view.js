@@ -10,7 +10,8 @@ define([
 	'jquery.countdown',
 	'topojson',
 	'geosearch',
-	'geosearch_provider'
+	'geosearch_provider',
+	'script/scroll-top'
 
 	], function($, _, Backbone, lyView) {
 
@@ -151,9 +152,8 @@ define([
 			},
 
 			scrollDown: function() {
-				    $("html, body").animate({ scrollTop: $(window).height() }, 1000);
+				$("html, body").animate({ scrollTop: $(window).height() }, 1000);
 			}
-
 
 		});
 
