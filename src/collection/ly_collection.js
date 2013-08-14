@@ -11,7 +11,9 @@ define([
 
 			initialize: function () {
 				console.log('collection init');
-			}
+			},
+
+			
 
 
 	});

@@ -17,8 +17,8 @@ define([
 		//template: _.template(lyTemplate),
 
 		initialize: function() {
-			console.log(lysCollection)
-			this.listenTo(lysCollection, 'add', this.render)
+			console.log(personCollection);
+			this.listenTo(personCollection, 'add', this.render)
 		},
 
 		render: function() {

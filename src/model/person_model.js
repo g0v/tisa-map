@@ -7,8 +7,7 @@ define([
 		var lyModel = Backbone.Model.extend({
 
 			defaults: {
-				ly_arr: '',
-				tisa_person: '',
+				tisa_person: [],
 			},
 
 			initialize: function() {

@@ -13,9 +13,6 @@ define([
 				console.log('collection init');
 			},
 
-			
-
-
 	});
 
 	return new lysCollection();
