@@ -1,9 +1,21 @@
 require "bundler/setup"
 Bundler.require :default
 
+DB = Sequel.connect("postgres://localhost/test")
+Sequel::Model.plugin :json_serializer
+Sequel::Plugins::JsonSerializer.configure(Sequel::Model, naked: true)
+
+require_relative "models/stores"
+
 class App < Sinatra::Base
 
-    get "/serial/:serial" do # 統一編號
+    helpers Sinatra::JSON
+    set :json_encoder, :to_json
+    enable :logging
+
+    get "/taxid/:taxid" do # 統一編號
+        @store = Store.fetch("select id, ST_AsGeoJSON(location) as location, name, taxid from stores where taxid = '#{params[:taxid]}';").first
+        json @store
     end
 
     post "/serial/:serial" do
