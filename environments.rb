@@ -18,10 +18,10 @@ class App < Sinatra::Base
         json @store
     end
 
-    post "/serial/:serial" do
+    post "/taxid" do
     end
 
-    put "/serial/:serial" do
+    put "/taxid/:taxid" do
     end
 
     get "/name/:name" do # 公司名稱
