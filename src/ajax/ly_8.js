@@ -2,8 +2,8 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'collection/ly_collection'
-	], function($, _, Backbone, lyCollection) {
+	'model/ly_model'
+	], function($, _, Backbone, lyModel) {
 
 		var lyPerson = Backbone.ajax({
 			dataType: 'json',
@@ -12,7 +12,7 @@ define([
 			success: function(val) {
 				console.log(val);
 				_.each(val, function(data) {
-					console.log(data);
+					var ly = new lyModel(data);
 				})
 				// lyCollection.add(val);
 			}

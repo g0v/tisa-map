@@ -5,9 +5,10 @@ define([
 	'text!template/ly.html',
 	'ajax/ly_8',
 	'ajax/tisa_person',
-	'collection/ly_collection'
+	'collection/ly_collection',
+	'collection/person_collection'
 
-	], function($, _, Backbone, lyTemplate, lyPerson, tisaPerson, lysCollection) {
+	], function($, _, Backbone, lyTemplate, lyPerson, tisaPerson, lysCollection, personCollection) {
 
 	var lyView = Backbone.View.extend({
 
