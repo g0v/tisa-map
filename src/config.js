@@ -29,6 +29,10 @@ require.config({
         exports: 'Backbone'
       },
 
+      'handlebars': {
+        exports: 'Handlebars'
+      },
+
       'firebase_login': {
         deps: ['firebase']
       },
