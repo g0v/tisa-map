@@ -5,16 +5,6 @@ define([
 	], function($, _, Backbone) {
 
 		var lyModel = Backbone.Model.extend({
-
-			defaults: {
-				ly_arr: '',
-				tisa_person: '',
-			},
-
-			initialize: function() {
-				console.log('here in model')
-			}
-
 		});
 
 		return lyModel;

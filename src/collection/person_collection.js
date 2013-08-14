@@ -7,12 +7,7 @@ define([
 
 	var lysCollection = Backbone.Collection.extend({
 
-			model: personModel,
-
-			initialize: function () {
-				console.log('collection init');
-			},
-
+			model: personModel
 	});
 
 	return new lysCollection();

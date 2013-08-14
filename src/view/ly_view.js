@@ -3,12 +3,10 @@ define([
 	'underscore',
 	'backbone',
 	'text!template/ly.html',
-	'ajax/ly_8',
-	'ajax/tisa_person',
 	'collection/ly_collection',
 	'collection/person_collection'
 
-	], function($, _, Backbone, lyTemplate, lyPerson, tisaPerson, lysCollection, personCollection) {
+	], function($, _, Backbone, lyTemplate, lysCollection, personCollection) {
 
 	var lyView = Backbone.View.extend({
 
@@ -17,16 +15,21 @@ define([
 		//template: _.template(lyTemplate),
 
 		initialize: function() {
-			console.log(personCollection);
-			this.listenTo(personCollection, 'add', this.render)
+			this.listenTo(personCollection, 'reset', this.filterPerson())
 		},
 
 		render: function() {
 			// get JSON from model
-			
 			console.log('render')
-			
+		},
+
+		filterPerson: function() {
+			var lyArr = lysCollection.filterPeople(personCollection.pop().attributes);
+
+			console.log(lyArr);
 		}
+
+
 
 	})
 

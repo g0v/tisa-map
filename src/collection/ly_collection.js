@@ -9,12 +9,22 @@ define([
 
 			model: lyModel,
 
-			initialize: function () {
-				console.log('collection init');
-			},
+			filterPeople: function(lyName) {
+				lyArr = [];
 
-			
+				lyName = _.values(lyName);
 
+				for(i = 0; i < this.models.length; i++) {
+					for( j = 0; j < lyName.length; j++) {
+
+						if(this.models[i]['attributes'].name === lyName[j]) {
+							lyArr.push(this.models[i]['attributes']);
+						}
+					}
+				}
+
+				return lyArr;
+			}
 
 	});
 

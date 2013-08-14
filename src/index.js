@@ -5,10 +5,12 @@ require(["config"], function(config) {
   	'underscore',
   	'backbone',
     // 'src/script/model/index_model',
+    'ajax/ly_8',
+    'ajax/tisa_person',
     'view/ly_view',
     'view/index_view',
   	
-  	], function($, _, Backbone, LyView, IndexView){
+  	], function($, _, Backbone, ajaxLy, ajaxTisa, LyView, IndexView){
       'use strict';
       
       // render index out view

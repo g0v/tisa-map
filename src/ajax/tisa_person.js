@@ -11,15 +11,16 @@ define([
 			url: '../json_data/tisa-person.json',
 			data: '',
 			success: function(val) {
-				console.log(val);
-				_.each(val, function(data) {
-					var ly = new personModel();
-					console.log(ly);
-					console.log(data);
-					// ly.set(data);
-
-					personCollection.push(ly)
-				})
+				var person = new personModel();
+				person.set(val);
+				personCollection.push(person);
+				//personCollection.set('tisa-person', val)
+				// _.each(val, function(data) {
+				// 	console.log(data);
+				// 	var ly = new personModel();
+				// 	// ly.set(data);
+				// 	personCollection.push(ly)
+				// })
 				// lyCollection.add(val);
 			}
 
