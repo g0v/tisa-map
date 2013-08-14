@@ -7,21 +7,22 @@ define([
 	'ajax/tisa_person',
 	'collection/ly_collection'
 
-	], function($, _, Backbone, tisaPerson, lyTemplate, lysCollection) {
+	], function($, _, Backbone, lyTemplate, lyPerson, tisaPerson, lysCollection) {
 
 	var lyView = Backbone.View.extend({
 
 		el: '#ly_list_area',
 
-		template: _.template(lyTemplate),
+		//template: _.template(lyTemplate),
 
 		initialize: function() {
-			console.log(tisaPerson);
-			//this.listenTo(lysCollection, 'add', this.render)
+			console.log(lysCollection)
+			this.listenTo(lysCollection, 'add', this.render)
 		},
 
 		render: function() {
 			// get JSON from model
+			
 			console.log('render')
 			
 		}

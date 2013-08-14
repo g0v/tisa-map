@@ -9,9 +9,13 @@ define([
 
 			model: lyModel,
 
+			initialize: function () {
+				console.log('collection init');
+			}
+
 
 	});
 
-	return lysCollection;
+	return new lysCollection();
 
 });

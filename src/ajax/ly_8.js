@@ -11,8 +11,10 @@ define([
 			data: '',
 			success: function(val) {
 				console.log(val);
-				lyCollection.add(val);
-				console.log(val);
+				_.each(val, function(data) {
+					console.log(data);
+				})
+				// lyCollection.add(val);
 			}
 
 		})
