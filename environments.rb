@@ -30,7 +30,10 @@ class App < Sinatra::Base
     get "/business/:business" do # 所營事業項目
     end
 
-    get "/center/:center/radius/:radius" do # 中心點 + 半徑
+    get "/lng/:lng/lat/:lat/radius/:radius" do # 中心點(longitude and latitude) + 半徑(meters)
+        center = Oj.dump({"type" => "Point", "coordinates" => [params[:lng].to_f, params[:lat].to_f]})
+        @stores = Store.fetch("select id, ST_AsGeoJSON(location) as location, name, taxid from stores where ST_DWithin(location, ST_GeomFromGeoJSON('#{center}'), #{params[:radius]}, true);").all
+        json @stores
     end
 
 end
