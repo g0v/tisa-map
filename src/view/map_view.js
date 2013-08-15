@@ -13,7 +13,11 @@ define([
 		var mapView = Backbone.View.extend({
 
 			initialize: function  () {
-				this.newMap();
+				var map = this.newMap();
+				this.addGeocode(map);
+				this.tailLayer(map);
+				this.addTown(map);
+				this.addmapControl(map);
 			},
 
 			newMap: function () {
@@ -23,14 +27,24 @@ define([
 			        attributionControl: false
 			    });
 
-			    geocoder = new L.Control.GeoSearch({
+			    return map;
+ 
+			},
+
+			addGeocode: function (map) {
+				geocoder = new L.Control.GeoSearch({
 			        provider: new L.GeoSearch.Provider.OpenStreetMap()
 			    }).addTo(map);
+			},
 
-			    L.tileLayer('http://{s}.tile.cloudmade.com/f59941c17eda4947ae395e907fe531a3/997/256/{z}/{x}/{y}.png', {
+			tailLayer: function (map) {
+				L.tileLayer('http://{s}.tile.cloudmade.com/f59941c17eda4947ae395e907fe531a3/997/256/{z}/{x}/{y}.png', {
 			    maxZoom: 18,
 			    }).addTo(map);
+			},
 
+			addTown: function (map) {
+				
 			    var town_layer = L.geoJson(null, {
 			        style: {
 			            color: 'red',
@@ -52,8 +66,10 @@ define([
 			    // set initial map view
 
 			    map.setView(['24', '121'], 7).addLayer(town_layer);
+			},
 
-			    map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
+			addmapControl: function (map) {
+				map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
 			}
 
 
