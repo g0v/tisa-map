@@ -37,6 +37,7 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
     name     | character varying(128) |
     business | text                   |
     taxid    | character(8)           |
+    address  | text                   |
 
 ## API
 
