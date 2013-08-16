@@ -80,20 +80,3 @@ sudo 和 -g for global
 `-w` for watching files
 `-c` for compressing files
 
-## distributed location querying
-
-1. [53 fragments of company list, 2500 per file](140.112.20.144/fragments.tar.gz)
-
-1. [job list on ethercalc](https://ethercalc.org/azjnmueldd)
-
-once you take one job away, please write down your name.
-
-1. how to execute
-
-the script for querying is included in tisa-map, requiring `$ gem install oj rest-client`
-
-    $ ruby scripts/google-query.rb fragment10.json
-
-this script will write results into `fragment10.json.location`, one json per line.
-
-please send *.location to shelling <navyblueshellingford@gmail.com>
