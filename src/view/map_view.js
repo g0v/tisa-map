@@ -89,10 +89,6 @@ define([
 				this.setplace = setplace;
 				map.setView(setplace, 13);
 				L.marker(setplace).addTo(map).bindPopup("<b>你現在在這！</b>").openPopup();
-			},
-
-			setLocation: function() {
-				return this.setplace;
 			}
 
 
