@@ -79,7 +79,7 @@ L.Control.GeoSearch = L.Control.extend({
     geosearch: function (qry) {
       var provider = this._config.provider;
       var url = provider.GetServiceUrl(qry);
-      if (!($.browser.msie && window.XDomainRequest)) {
+      if (!('XDomainRequest' in window && window.XDomainRequest)) {
 
         try {
           $.getJSON(url, function (data) {
