@@ -29,49 +29,49 @@ define([
 			newMap: function () {
 
 				map = L.map('map', {
-			        zoomControl: false,
-			        attributionControl: false
-			    });
+					zoomControl: false,
+					attributionControl: false
+				});
 
-			    return map;
+				return map;
  
 			},
 
 			addGeocode: function (map) {
 				geocoder = new L.Control.GeoSearch({
-			        provider: new L.GeoSearch.Provider.OpenStreetMap()
-			    }).addTo(map);
+					provider: new L.GeoSearch.Provider.OpenStreetMap()
+				}).addTo(map);
 			},
 
 			tailLayer: function (map) {
 				L.tileLayer('http://{s}.tile.cloudmade.com/f59941c17eda4947ae395e907fe531a3/997/256/{z}/{x}/{y}.png', {
-			    maxZoom: 18,
-			    }).addTo(map);
+				maxZoom: 18,
+				}).addTo(map);
 			},
 
 			addTown: function (map) {
 				
-			    var town_layer = L.geoJson(null, {
-			        style: {
-			            color: 'red',
-			            weight: 5,
-			            fill: 'red',
-			            opacity: 1,
-			            fillOpacity: 0.3
-			        },
-			        onEachFeature: function (feature, layer) {
-			            layer.bindPopup("<img src='" + feature.properties.avatar + "'/><br/>" + feature.properties.name + "<br/><a href='#" + feature.properties.name + "'>我要找他求救！</a>");
-			        }
-			    });
+				var town_layer = L.geoJson(null, {
+					style: {
+						color: 'red',
+						weight: 5,
+						fill: 'red',
+						opacity: 1,
+						fillOpacity: 0.3
+					},
+					onEachFeature: function (feature, layer) {
+						layer.bindPopup("<img src='" + feature.properties.avatar + "'/><br/>" + feature.properties.name + "<br/><a href='#" + feature.properties.name + "'>我要找他求救！</a>");
+					}
+				});
 
-			    $.getJSON('./json_data/tisa-ly-map.json', function (data) {
-			        var town_geojson = topojson.feature(data, data.objects["twVote1982.geo"]);
-			        town_layer.addData(town_geojson);
-			    });
+				$.getJSON('./json_data/tisa-ly-map.json', function (data) {
+					var town_geojson = topojson.feature(data, data.objects["twVote1982.geo"]);
+					town_layer.addData(town_geojson);
+				});
 
-			    // set initial map view
+				// set initial map view
 
-			    map.setView(['24', '121'], 7).addLayer(town_layer);
+				map.setView(['24', '121'], 7).addLayer(town_layer);
 			},
 
 			addmapControl: function (map) {
@@ -86,8 +86,13 @@ define([
 				
 				setplace.push(option.coords.latitude);
 				setplace.push(option.coords.longitude);
+				this.setplace = setplace;
 				map.setView(setplace, 13);
 				L.marker(setplace).addTo(map).bindPopup("<b>你現在在這！</b>").openPopup();
+			},
+
+			setLocation: function() {
+				return this.setplace;
 			}
 
 
