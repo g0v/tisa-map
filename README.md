@@ -28,6 +28,26 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
 
 # Develop
 
+## Database schema
+
+    Column   |          Type          |                     Modifiers
+    ---------+------------------------+----------------------------------------------------
+    id       | integer                | not null default nextval('store_id_seq'::regclass)
+    location | geometry(Point,4326)   |
+    name     | character varying(128) |
+    business | text                   |
+    taxid    | character(8)           |
+    address  | text                   |
+
+## API
+
+1. 以中心點和半徑搜尋 Point
+1. 以所營事業項目搜尋 Point
+1. 以公司名稱搜尋 Point
+1. 以統一編號搜尋 Point
+
+* 返回值都是 GeoJSON
+
 ### Jade
 
 現在要改動 html 請更動 index.jade 然後把 jade render 回 html。
@@ -60,20 +80,3 @@ sudo 和 -g for global
 `-w` for watching files
 `-c` for compressing files
 
-## distributed location querying
-
-1. [53 fragments of company list, 2500 per file](140.112.20.144/fragments.tar.gz)
-
-1. [job list on ethercalc](https://ethercalc.org/azjnmueldd)
-
-once you take one job away, please write down your name.
-
-1. how to execute
-
-the script for querying is included in tisa-map, requiring `$ gem install oj rest-client`
-
-    $ ruby scripts/google-query.rb fragment10.json
-
-this script will write results into `fragment10.json.location`, one json per line.
-
-please send *.location to shelling <navyblueshellingford@gmail.com>
