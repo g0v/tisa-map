@@ -4,12 +4,14 @@ define([
 	'underscore',
 	'backbone',
 	'model/locate_model',
+	'model/member_model',
 	'topojson',
 	'geosearch',
 	'geosearch_provider',
-	'leaflet'
+	'leaflet',
+	'leaflet_cluster'
 
-	], function($, _, Backbone, LocateModel) {
+	], function($, _, Backbone, LocateModel, MemberModel) {
 
 		var mapView = Backbone.View.extend({
 
@@ -89,6 +91,31 @@ define([
 				this.setplace = setplace;
 				map.setView(setplace, 13);
 				L.marker(setplace).addTo(map).bindPopup("<b>你現在在這！</b>").openPopup();
+			},
+
+			listMember: function () {
+				var memberModel = new MemeberModel();
+				var peopleArr = memberModel.addMemeber();
+
+				var markers = L.markerClusterGroup({ disableClusteringAtZoom: 17 });
+
+		    // loop through users
+		    for (var i = 0; i < peopleArr.length; i++) {
+		        var a = peopleArr[i];
+		        var title = a[2];
+		        var name = a[3];
+		        var lat_val = a[0] || 24;
+		        var lng_val = a[1] || 121;
+		        var marker = L.marker(L.latLng(lat_val, lng_val), { title: title });
+
+		        // add popup
+		        marker.bindPopup('<img src="' + title + '" width="50"><br>' + name);
+
+		        // add new layer to map
+		        markers.addLayer(marker);
+		    }
+
+		    map.addLayer(markers);
 			}
 
 
