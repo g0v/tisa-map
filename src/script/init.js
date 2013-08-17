@@ -98,9 +98,3 @@ function createMap (setplace) {
 
 // initialize();
 // startLocate();
-
-// scroll down click button
-
-// $('#scroll-down').click(function() {
-//         $("html, body").animate({ scrollTop: $(window).height() }, 1000);
-// });

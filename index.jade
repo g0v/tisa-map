@@ -24,167 +24,19 @@ html
         input#usr_lat(type="hidden")
         input#usr_lng(type="hidden")
 
-        // gov people area
-        #gov-area
-            #login_area
-                #login_img
-                button#logout
-                    | logout
-                #upload_process
-                #avatar_uploader
-                    // surround it with some container element 
-                    input#avatar(type='file')
-            #login_list
-            div
-                img#facebook_login(src='./img/login-with-facebook.png')
-                img#twitter_login(src='./img/login-with-twitter.png')
-            div#ly_list_area
+        #login_area
+            #login_img
+            button#logout
+                | logout
+            #upload_process
+            #avatar_uploader
+                // surround it with some container element 
+                input#avatar(type='file')
+        div#login_list
+            img#facebook_login(src='./img/login-with-facebook.png')
+            img#twitter_login(src='./img/login-with-twitter.png')
+        div#ly_list_area
 
-            #message
-                a(href='#top') 回到災難圖
-        script(data-main = "/src/index", src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js');
-
-        // script(type='text/javascript', src='./src/init.js')
-        script.
-
-            // create firebase reference
-            
-            var tisadb = new Firebase('https://tisa.firebaseIO.com');
-                tisadb.auth('EymO4wmkV7dJBZgZq4sRo8lXAItLAJKHjaOWPShU', function(error, result) {
-                if(error) {
-
-                    // create firebase reference error
-
-                    console.log("Login Failed!", error);
-                } else {
-
-                    // successfully create firebase reference
-
-                    console.log('Authenticated successfully with payload:', result.auth);
-                    console.log('Auth expires at:', new Date(result.expires * 1000));
-                }
-            });
-
-            // user login 
-
-
-            var auth = new FirebaseSimpleLogin(tisadb, function(error, user) {
-
-                if (error) {
-
-                    // an error occurred while attempting login
-                    console.log(error);
-
-                } else if (user) {
-
-                    // user authenticated with Firebase
-                    console.log(user);
-
-                    // display social network thumb while user login successfully
-                    $('#login_img').html('<img src="http://avatars.io/' + user.provider + '/' + user.username + '/?size=medium"/>' );
-
-                    // enter to 'users' child
-                    var userRef = tisadb.child('users');
-
-                    // enter to individual users
-                    var peopleRef = userRef.child(user.id + '(' +  user.provider + ')');
-
-                    // setup some variables before updating to database
-                    var email = user.email || ''
-                    , provider = user.provider || ''
-                    , id = user.id || ''
-                    , displayName = user.displayName || ''
-                    , username = user.username || ''
-                    , latlng = []
-
-                    // make latitude, longtitude array
-
-                    latlng.push($('#usr_lat').val());
-                    latlng.push($('#usr_lng').val());
-
-                    // update data to database
-                    peopleRef.update({
-                        username: username,
-                        displayName: displayName,
-                        id: id,
-                        provider: provider,
-                        email: email,
-                        avatar: "http://avatars.io/" + provider + '/' + username + "?size=medium",
-                        latlng: latlng
-                    })
-
-                    // upload participate image, if the image exist then update.
-                    if(peopleRef.child('upload_img')) {
-                        peopleRef.child('upload_img').on('value', function(snapshot){
-
-                            $('#upload_process').html('<img src="' + snapshot.val() + '" width=100px/> 感謝你的參與～～你可以再重新上傳，我們只會使用你最新上傳的照片' );
-
-                        })
-                    }
-
-                    // hide login button, show social images. If success.
-
-                    $('#facebook_login').hide();
-                    $('#twitter_login').hide();
-                    $('#logout').show();
-                    $('#login_area').show();
-
-                } else {
-
-                    // user is logged out
-
-                    $('#facebook_login').show();
-                    $('#twitter_login').show();
-                    $('#logout').hide();
-                    $('#login_area').hide();
-                }
-            });
-                
-            var userRef = new Firebase('https://tisa.firebaseIO.com/users');
-
-            // all person's data to an array
-            var peopleArr = [];
-            console.log(L)
-
-            // show up the people that have already login.
-            userRef.on('child_added', function(snapshot) {
-
-                // fetch personal data from firebase
-                var personData = snapshot.val()
-                , personArr = [];
-
-                $('#login_list').append('<img src="' + personData.avatar + '" width="50"/>');
-
-                personArr.push(personData.latlng[0]);
-                personArr.push(personData.latlng[1]);
-                personArr.push(personData.avatar);
-                personArr.push(personData.displayName);
-
-                // push person data to people array
-
-                peopleArr.push(personArr)
-
-                // marker cluster for users
-
-                var markers = L.markerClusterGroup({ disableClusteringAtZoom: 17 });
-
-                // loop through users
-                for (var i = 0; i < peopleArr.length; i++) {
-                    var a = peopleArr[i];
-                    var title = a[2];
-                    var name = a[3];
-                    var lat_val = a[0] || 24;
-                    var lng_val = a[1] || 121;
-                    var marker = L.marker(L.latLng(lat_val, lng_val), { title: title });
-
-                    // add popup
-                    marker.bindPopup('<img src="' + title + '" width="50"><br>' + name);
-
-                    // add new layer to map
-                    markers.addLayer(marker);
-                }
-
-                map.addLayer(markers);
-            });
-        // script(src='./src/avatar-user.js')
-        // script(src='./src/auth.js')
+        #message
+            a(href='#top') 回到災難圖
+        script(data-main = "/src/index", src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js')

@@ -3,12 +3,13 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
+	'model/locate_model',
 	'topojson',
 	'geosearch',
 	'geosearch_provider',
 	'leaflet'
 
-	], function($, _, Backbone) {
+	], function($, _, Backbone, LocateModel) {
 
 		var mapView = Backbone.View.extend({
 
