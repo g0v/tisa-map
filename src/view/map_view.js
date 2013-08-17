@@ -15,10 +15,15 @@ define([
 
 			initialize: function  () {
 				var map = this.newMap();
+				var locateModel = new LocateModel();
+				locateModel.startLocate();
+				this.map = map;
+				this.locateModel = locateModel;
 				this.addGeocode(map);
 				this.tailLayer(map);
 				this.addTown(map);
 				this.addmapControl(map);
+				this.listenTo(locateModel, 'change:latlng', this.userLocation);
 			},
 
 			newMap: function () {
@@ -71,6 +76,18 @@ define([
 
 			addmapControl: function (map) {
 				map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
+			},
+
+			userLocation: function () {
+
+				var map = this.map;
+				var option = this.locateModel.get('latlng');
+				var setplace = [];
+				
+				setplace.push(option.coords.latitude);
+				setplace.push(option.coords.longitude);
+				map.setView(setplace, 13);
+				L.marker(setplace).addTo(map).bindPopup("<b>你現在在這！</b>").openPopup();
 			}
 
 
