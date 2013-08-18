@@ -3,7 +3,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'model/firebase_db',
+	'collection/firebase_db',
 	'avatars',
 	'firebase',
 	'firebase_login'

@@ -2,9 +2,12 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
+	'model/fire_model',
 	'firebase'
-	], function($, _, Backbone) {
-		var firebaseDB = Backbone.Model.extend({
+	], function($, _, Backbone, fireModel) {
+		var firebaseDB = Backbone.Collection.extend({
+
+			model: fireModel,
 
 			login: function () {
 				var tisadb = new Firebase('https://tisa.firebaseIO.com');

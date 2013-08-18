@@ -3,11 +3,11 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'model/firebase_db',
+	'collection/firebase_db',
 	'firebase',
 	'firebase_login',
 
-	], function($, _, Backbone, firebaseModel) {
+	], function($, _, Backbone, firebaseCollection) {
 
 		var authDB = Backbone.Model.extend({
 
@@ -18,7 +18,7 @@ define([
 			},
 
 			authUser: function () {
-				var firebase = new firebaseModel();
+				var firebase = new firebaseCollection();
 				var tisadb = firebase.login();
 				var _this = this;
 

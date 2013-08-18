@@ -3,10 +3,10 @@ define([
 	'underscore',
 	'backbone'
 	], function($, _, Backbone) {
-
-		var lyModel = Backbone.Model.extend({
+		var firebaseModel = Backbone.Model.extend({
 
 		});
 
-		return lyModel;
-})
+		return firebaseModel;
+		
+	})
