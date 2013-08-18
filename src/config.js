@@ -16,7 +16,8 @@ require.config({
       'topojson'        : 'script/vendor/topojson',
       'geosearch'       : 'script/geosearch_js/l.control.geosearch',
       'geosearch_provider': 'script/geosearch_js/l.geosearch.provider.openstreetmap',
-      'text'            : 'script/vendor/text'
+      'text'            : 'script/vendor/text',
+      'scrollTop'       : 'script/vendor/scroll-top'
 
    },
    shim: {
@@ -55,6 +56,10 @@ require.config({
 
       'geosearch_provider': {
         deps: ['jquery', 'leaflet', 'geosearch']
+      },
+
+      'scrollTop': {
+        deps: ['jquery']
       }
 
    }

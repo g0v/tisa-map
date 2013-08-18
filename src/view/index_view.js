@@ -3,7 +3,7 @@ define([
 	'underscore',
 	'backbone',
 	'jquery.countdown',
-	'script/vendor/scroll-top'
+	'scrollTop'
 
 	], function($, _, Backbone) {
 
