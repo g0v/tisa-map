@@ -41,6 +41,10 @@ require.config({
         deps: ['jquery']
       },
 
+      'leaflet_cluster': {
+        deps: ['jquery', 'leaflet']
+      },
+
       'jquery.countdown': {
         deps: ['jquery']
       },

@@ -4,14 +4,14 @@ define([
 	'underscore',
 	'backbone',
 	'model/locate_model',
-	'model/member_model',
+	'collection/member_collection',
 	'topojson',
 	'geosearch',
 	'geosearch_provider',
 	'leaflet',
 	'leaflet_cluster'
 
-	], function($, _, Backbone, LocateModel, MemberModel) {
+	], function($, _, Backbone, LocateModel, MemberCollection) {
 
 		var mapView = Backbone.View.extend({
 
@@ -21,11 +21,16 @@ define([
 				locateModel.startLocate();
 				this.map = map;
 				this.locateModel = locateModel;
-				this.addGeocode(map);
-				this.tailLayer(map);
-				this.addTown(map);
-				this.addmapControl(map);
+				this.addGeocode();
+				this.tailLayer();
+				this.addTown();
+				this.addmapControl();
+
+				var members = new MemberCollection();
+				this.members = members;
+				this.addMember();
 				this.listenTo(locateModel, 'change:latlng', this.userLocation);
+				this.listenTo(members, 'add', this.markMember)
 			},
 
 			newMap: function () {
@@ -39,19 +44,19 @@ define([
  
 			},
 
-			addGeocode: function (map) {
+			addGeocode: function () {
 				geocoder = new L.Control.GeoSearch({
 					provider: new L.GeoSearch.Provider.OpenStreetMap()
 				}).addTo(map);
 			},
 
-			tailLayer: function (map) {
+			tailLayer: function () {
 				L.tileLayer('http://{s}.tile.cloudmade.com/f59941c17eda4947ae395e907fe531a3/997/256/{z}/{x}/{y}.png', {
 				maxZoom: 18,
 				}).addTo(map);
 			},
 
-			addTown: function (map) {
+			addTown: function () {
 				
 				var town_layer = L.geoJson(null, {
 					style: {
@@ -76,7 +81,7 @@ define([
 				map.setView(['24', '121'], 7).addLayer(town_layer);
 			},
 
-			addmapControl: function (map) {
+			addmapControl: function () {
 				map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
 			},
 
@@ -93,29 +98,27 @@ define([
 				L.marker(setplace).addTo(map).bindPopup("<b>你現在在這！</b>").openPopup();
 			},
 
-			listMember: function () {
-				var memberModel = new MemeberModel();
-				var peopleArr = memberModel.addMemeber();
+			addMember: function () {
+				this.members.addMember();
+			},
 
+			markMember: function () {
 				var markers = L.markerClusterGroup({ disableClusteringAtZoom: 17 });
+		    var user = this.members.pop().attributes.user;
 
-		    // loop through users
-		    for (var i = 0; i < peopleArr.length; i++) {
-		        var a = peopleArr[i];
-		        var title = a[2];
-		        var name = a[3];
-		        var lat_val = a[0] || 24;
-		        var lng_val = a[1] || 121;
-		        var marker = L.marker(L.latLng(lat_val, lng_val), { title: title });
+		    lat_val  = '121';
+		    lng_val  = '24';
 
-		        // add popup
-		        marker.bindPopup('<img src="' + title + '" width="50"><br>' + name);
+        var marker = L.marker(L.latLng(lat_val, lng_val), { title: user.displayName });
 
-		        // add new layer to map
-		        markers.addLayer(marker);
-		    }
+        // add popup
+        marker.bindPopup('<img src="' + user.avatar + '" width="50"><br>' + user.displayName);
 
-		    map.addLayer(markers);
+        // add new layer to map
+        markers.addLayer(marker);
+		   
+		    this.map.addLayer(markers);
+				
 			}
 
 
