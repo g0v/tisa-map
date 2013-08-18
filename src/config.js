@@ -8,7 +8,7 @@ require.config({
       'backbone'        : '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min',
       'firebase'        : '//cdn.firebase.com/v0/firebase',
       'firebase_login'  : '//cdn.firebase.com/v0/firebase-simple-login',
-      'leaflet'         : '//cdn.leafletjs.com/leaflet-0.5/leaflet',
+      'leaflet'         : '//cdn.leafletjs.com/leaflet-0.6/leaflet',
       'leaflet_cluster' : 'script/markercluster/leaflet.markercluster',
       'avatars'         : 'script/vendor/avatars.io.min',
       'handlebars'      : 'script/vendor/handlebars',

@@ -3,7 +3,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'model/locate_model',
+	'collection/locate_collection',
 	'collection/member_collection',
 	'topojson',
 	'geosearch',
@@ -11,16 +11,18 @@ define([
 	'leaflet',
 	'leaflet_cluster'
 
-	], function($, _, Backbone, LocateModel, MemberCollection) {
+	], function($, _, Backbone, LocateCollection, MemberCollection) {
 
 		var mapView = Backbone.View.extend({
 
 			initialize: function  () {
 				var map = this.newMap();
-				var locateModel = new LocateModel();
-				locateModel.startLocate();
+
+				var location = new LocateCollection();
+				this.location = location;
+				this.startLocate();
+
 				this.map = map;
-				this.locateModel = locateModel;
 				this.addGeocode();
 				this.tailLayer();
 				this.addTown();
@@ -29,7 +31,8 @@ define([
 				var members = new MemberCollection();
 				this.members = members;
 				this.addMember();
-				this.listenTo(locateModel, 'change:latlng', this.userLocation);
+
+				this.listenTo(location, 'add', this.userLocation)
 				this.listenTo(members, 'add', this.markMember)
 			},
 
@@ -85,10 +88,14 @@ define([
 				map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
 			},
 
+			startLocate: function () {
+				this.location.startLocate();	
+			},
+
 			userLocation: function () {
 
 				var map = this.map;
-				var option = this.locateModel.get('latlng');
+				var option = this.location.pop().attributes.latlng;
 				var setplace = [];
 				
 				setplace.push(option.coords.latitude);
@@ -104,20 +111,21 @@ define([
 
 			markMember: function () {
 				var markers = L.markerClusterGroup({ disableClusteringAtZoom: 17 });
-		    var user = this.members.pop().attributes.user;
+			    var user = this.members.pop().attributes.user;
 
-		    lat_val  = '121';
-		    lng_val  = '24';
+			    lat_val  = 121;
+			    lng_val  = 24;
+			    console.log(L.latLng(lat_val, lng_val));
+			    console.log('here');
+		        var marker = L.marker(L.latLng(lat_val, lng_val), { title: user.avatar });
 
-        var marker = L.marker(L.latLng(lat_val, lng_val), { title: user.displayName });
+		        // add popup
+		        marker.bindPopup('<img src="' + user.avatar + '" width="50"><br>' + user.displayName);
 
-        // add popup
-        marker.bindPopup('<img src="' + user.avatar + '" width="50"><br>' + user.displayName);
-
-        // add new layer to map
-        markers.addLayer(marker);
-		   
-		    this.map.addLayer(markers);
+		        // add new layer to map
+		        markers.addLayer(marker);
+			   
+			    this.map.addLayer(markers);
 				
 			}
 
