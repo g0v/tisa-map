@@ -25,6 +25,8 @@ class App < Sinatra::Base
     end
 
     get "/name/:name" do # 公司名稱
+        @store = Store.fetch("select id, ST_AsGeoJSON(location) as location, name, taxid from stores where name = '#{params[:name]}';").first
+        json @store
     end
 
     get "/business/:business" do # 所營事業項目
