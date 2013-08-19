@@ -1,7 +1,7 @@
 require "bundler/setup"
 Bundler.require :default
 
-DB = Sequel.connect("postgres://localhost/test")
+DB = Sequel.connect(YAML.load_file("config/database.yml")["development"])
 Sequel::Model.plugin :json_serializer
 Sequel::Plugins::JsonSerializer.configure(Sequel::Model, naked: true)
 
