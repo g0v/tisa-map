@@ -2,3 +2,4 @@ node_modules
 .DS_Store
 *.TODO
 config/database.yml
+app.js
