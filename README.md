@@ -42,9 +42,15 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
 ## API
 
 1. 以中心點和半徑搜尋 Point
+    example: /lng/121.745957/lat/25.133235/radius/100
+
 1. 以所營事業項目搜尋 Point
+
 1. 以公司名稱搜尋 Point
+    example: /name/三通報關通運有限公司
+
 1. 以統一編號搜尋 Point
+    example: /taxid/00000000
 
 * 返回值都是 GeoJSON
 
