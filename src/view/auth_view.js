@@ -4,12 +4,12 @@ define([
 	'underscore',
 	'backbone',
 	'collection/auth_db',
-	'model/avatar_model',
+	'collection/avatar_collection',
 	'firebase',
 	'firebase_login',
 	'avatars',
 
-	], function($, _, Backbone, AuthDB, AvatarModel) {
+	], function($, _, Backbone, AuthDB, AvatarCollection) {
 		var memberView = Backbone.View.extend({
 
 			el: 'body',
@@ -26,6 +26,7 @@ define([
 
 				this.userAuth = userAuth;
 				this.auth = auth;
+				this.userState();
 				this.listenTo(userAuth, 'change', this.userState);
 				this.listenTo(userAuth, 'change:user_update', this.userPic)
 				this.listenTo(userAuth, 'change:upload_img', this.uploadImg)
@@ -55,8 +56,8 @@ define([
 	                $('#twitter_login').hide();
 	                $('#logout').show();
 	                $('#login_area').show();
-	                var avatarModel = new AvatarModel();
-	                avatarModel.allowPic(this.userAuth.returnDB)
+	                var avatars = new AvatarCollection();
+	                avatars.allowPic(this.userAuth.returnDB)
 				}else {
 					$('#facebook_login').show();
 	                $('#twitter_login').show();

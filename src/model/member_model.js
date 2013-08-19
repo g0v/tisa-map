@@ -3,8 +3,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'firebase',
-	'avatars'
+	'firebase'
 
 	], function($, _, Backbone) {
 		var memberModel = Backbone.Model.extend({
