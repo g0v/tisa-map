@@ -6,3 +6,4 @@ gem 'sinatra-contrib', :require => "sinatra/contrib/all"
 gem 'pg'
 gem 'sequel'
 gem 'oj'
+gem 'haml'

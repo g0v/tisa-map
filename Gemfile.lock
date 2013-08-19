@@ -3,6 +3,8 @@ GEM
   specs:
     backports (3.3.3)
     eventmachine (1.0.3)
+    haml (4.0.3)
+      tilt
     oj (2.0.14)
     pg (0.16.0)
     rack (1.5.2)
@@ -29,6 +31,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  haml
   oj
   pg
   rake

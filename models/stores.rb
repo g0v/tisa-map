@@ -7,7 +7,7 @@ class Store < Sequel::Model
     )
 
     def geography
-        Oj.load(location)
+        location ? Oj.load(location) : ""
     end
 
 end

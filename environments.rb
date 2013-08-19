@@ -1,7 +1,7 @@
 require "bundler/setup"
 Bundler.require :default
 
-DB = Sequel.connect("postgres://localhost/test")
+DB = Sequel.connect(YAML.load_file("config/database.yml")["development"])
 Sequel::Model.plugin :json_serializer
 Sequel::Plugins::JsonSerializer.configure(Sequel::Model, naked: true)
 
@@ -11,7 +11,12 @@ class App < Sinatra::Base
 
     helpers Sinatra::JSON
     set :json_encoder, :to_json
+    set :public_folder, "src"
     enable :logging
+
+    get "/" do
+        haml :index
+    end
 
     get "/taxid/:taxid" do # 統一編號
         @store = Store.fetch("select id, ST_AsGeoJSON(location) as location, name, taxid from stores where taxid = '#{params[:taxid]}';").first
@@ -25,6 +30,8 @@ class App < Sinatra::Base
     end
 
     get "/name/:name" do # 公司名稱
+        @store = Store.fetch("select id, ST_AsGeoJSON(location) as location, name, taxid from stores where name = '#{params[:name]}';").first
+        json @store
     end
 
     get "/business/:business" do # 所營事業項目

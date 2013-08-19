@@ -1,0 +1,40 @@
+!!! 5
+%html
+    %head
+        %meta{:"http-equiv" => 'Content-Type', :content => 'text/html; charset=utf-8'}
+        %title= "兩岸服務貿易協定災難圖"
+        %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'}
+        %link{rel: 'stylesheet', href: 'http://cdn.leafletjs.com/leaflet-0.5/leaflet.css'}
+        /[if lte IE 8]
+            %link{rel:'stylesheet', href:'http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css'}
+        %link{rel:'stylesheet', href:'/css/l.geosearch.css'}
+        %link{rel:'stylesheet', href:'/css/main.css'}
+        %link{rel:'stylesheet', href:'/css/scroll-top.css'}
+        %link{rel:"stylesheet", href:"/script/markercluster/MarkerCluster.Default.css"}
+        %link{rel:"stylesheet", href:"/script/markercluster/MarkerCluster.css"}
+    %body
+        %a#top
+
+        / map container
+        #map
+            #scroll-down 召喚我們台灣人的救星！
+
+        / container 
+        %input#usr_lat{type:"hidden"}
+        %input#usr_lng{type:"hidden"}
+
+        #login_area
+            #login_img
+            %button#logout
+            #upload_process
+            #avatar_uploader
+                / surround it with some container element 
+                %input#avatar{type:'file'}
+        %div#login_list
+            %img#facebook_login{src:'/img/login-with-facebook.png'}
+            %img#twitter_login{src:'/img/login-with-twitter.png'}
+        %div#ly_list_area
+
+        #message
+            %a{href: '#top'}= "回到災難圖"
+        %script{:"data-main" => "index", :src => '//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js'}
