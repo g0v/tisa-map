@@ -11,7 +11,12 @@ class App < Sinatra::Base
 
     helpers Sinatra::JSON
     set :json_encoder, :to_json
+    set :public_folder, "src"
     enable :logging
+
+    get "/" do
+        haml :index
+    end
 
     get "/taxid/:taxid" do # 統一編號
         @store = Store.fetch("select id, ST_AsGeoJSON(location) as location, name, taxid from stores where taxid = '#{params[:taxid]}';").first
