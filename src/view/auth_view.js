@@ -3,7 +3,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'model/auth_db',
+	'collection/auth_db',
 	'model/avatar_model',
 	'firebase',
 	'firebase_login',
@@ -26,7 +26,10 @@ define([
 
 				this.userAuth = userAuth;
 				this.auth = auth;
-				this.listenTo(userAuth, 'change', this.userState)
+				this.listenTo(userAuth, 'change', this.userState);
+				this.listenTo(userAuth, 'change:user_update', this.userPic)
+				this.listenTo(userAuth, 'change:upload_img', this.uploadImg)
+
 			},
 
 			facebookLogin: function () {
@@ -47,13 +50,13 @@ define([
 			},
 
 			userState: function () {
-				if(this.userAuth.get('auth')) {
+				if(this.userAuth.returnAuth()) {
 					$('#facebook_login').hide();
 	                $('#twitter_login').hide();
 	                $('#logout').show();
 	                $('#login_area').show();
 	                var avatarModel = new AvatarModel();
-	                avatarModel.allowPic(this.userAuth.get('db'))
+	                avatarModel.allowPic(this.userAuth.returnDB)
 				}else {
 					$('#facebook_login').show();
 	                $('#twitter_login').show();
@@ -61,6 +64,18 @@ define([
 	                $('#login_area').hide();
 
 				}
+			},
+
+			userPic: function () {
+				var user = this.userAuth.returnUser();
+				$('#login_img').html('<img src="http://avatars.io/' + user.provider + '/' + user.username + '/?size=medium"/>' );
+
+			},
+
+			uploadImg: function () {
+				var path = this.userAuth.returnImgPath();
+				$('#upload_process').html('<img src="' + path + '" width=100px/> 感謝你的參與～～你可以再重新上傳，我們只會使用你最新上傳的照片' );
+
 			}
 
 

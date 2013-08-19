@@ -4,25 +4,27 @@ define([
 	'underscore',
 	'backbone',
 	'collection/firebase_db',
+	'model/auth_model',
+	'view/auth_view',
 	'firebase',
 	'firebase_login',
 
-	], function($, _, Backbone, firebaseCollection) {
+	], function($, _, Backbone, firebaseCollection, AuthModel, AuthView) {
 
-		var authDB = Backbone.Model.extend({
+		var authDB = Backbone.Collection.extend({
 
-			defaults: {
-				db: null,
-				user: null,
-				auth: false
-			},
+			model: AuthModel,
 
 			authUser: function () {
 				var firebase = new firebaseCollection();
 				var tisadb = firebase.login();
-				var _this = this;
+				var authModel = new AuthModel();
 
-				_this.set({ db : tisadb})
+				this.authModel = authModel
+				this.add(authModel);
+				authModel.set({ db : tisadb});
+
+				var _this = this;
 
 				var auth = new FirebaseSimpleLogin(tisadb, function(error, user) {
 
@@ -30,22 +32,37 @@ define([
 						// an error occurred while attempting login
 						console.log(error);
 					} else if (user) {
-						_this.set({user: user});
-						_this.set({auth: true});
-						_this.userLogin();
+						authModel.set({user: user});
+						authModel.set({auth: true});
+						_this.userLogin(authModel);
 					} else {
-						_this.set({auth: false});
+						authModel.set({auth: false});
 					}
 				});
 
 				return auth;
 			},
 
-			userLogin: function () {
+			returnAuth: function () {
+				return this.authModel.get('auth');
+			},
 
-				var _this = this;
-				var tisadb = _this.get('db');
-				var user = _this.get('user');
+			returnDB: function () {
+				return this.authModel.get('db');
+			},
+
+			returnUser: function () {
+				return this.authModel.get('user');
+			},
+
+			returnImgPath: function () {
+				return this.authModel.get('upload_path');
+			},
+
+			userLogin: function (authModel) {
+
+				var tisadb = authModel.get('db');
+				var user = authModel.get('user');
 				// enter to 'users' child
 				var userRef = tisadb.child('users');
 				// enter to individual users
@@ -71,15 +88,15 @@ define([
 					latlng: latlng
 				})
 
-				// display social network thumb while user login successfully
-				$('#login_img').html('<img src="http://avatars.io/' + user.provider + '/' + user.username + '/?size=medium"/>' );
-
+				// appear user picture.
+				
+				authModel.set({ user_update: true});
 
 				// upload participate image, if the image exist then update.
 				if(peopleRef.child('upload_img')) {
 					peopleRef.child('upload_img').on('value', function(snapshot){
 
-						$('#upload_process').html('<img src="' + snapshot.val() + '" width=100px/> 感謝你的參與～～你可以再重新上傳，我們只會使用你最新上傳的照片' );
+						authModel.set({ upload_img: true, upload_path: snapshot.val()})
 
 					})
 				}
