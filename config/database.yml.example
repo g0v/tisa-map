@@ -7,4 +7,3 @@ development:
     password:   tisamap
     encoding:   utf8
     pool:       5
-

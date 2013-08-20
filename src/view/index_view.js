@@ -16,12 +16,11 @@ define([
 			},
 
 			initialize: function() {
-
 				// scroll down position
-			    $('#scroll-down').css('left', ($(window).width() / 2) - 200 + 'px')
+				$('#scroll-down').css('left', ($(window).width() / 2) - 200 + 'px')
 
-			    // scroll top position
-			    $('#scroll-top').css('left', ($(window).width() / 2) - 200 + 'px')
+				// scroll top position
+				$('#scroll-top').css('left', ($(window).width() / 2) - 200 + 'px')
 			},
 
 			scrollDown: function() {

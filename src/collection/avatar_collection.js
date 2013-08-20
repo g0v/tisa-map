@@ -16,6 +16,7 @@ define([
 			model: AvatarModel,
 
 			allowPic: function (tisadb) {
+				console.log('allowPic');
 				var client = new AvatarsIO('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcml2YXRlX3Rva2VuIjoiZjlmMGVmNjgxOWRjNjQ2ODM2ZGQxNzgzZWJhNmJhZTBkOGRkN2ZmMDI4MjkwZGM1NDEyN2ZmNGQ2ODQzMWFjNiJ9.IULO-Hzyzmrns41MV9EDf_mTuzQIx0qSYzDzk62l6zM'); // obtain at http://avatars.io/
 				var uploader = client.create('#avatar'); // selector for input[type="file"] field, here #avatar, for example
 				this.client = client;

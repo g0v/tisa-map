@@ -16,20 +16,20 @@ define([
 				var userRef = new Firebase('https://tisa.firebaseIO.com/users');
 
 				// all person's data to an array
-            	var peopleArr = [];
+				var peopleArr = [];
 
-            	// private
-            	var _this = this;
+				// private
+				var _this = this;
 
 				// show up the people that have already login.
-	            userRef.on('child_added', function(snapshot) {
-	            	var memberModel = new MemberModel();
-	            	memberModel.set({user: snapshot.val()})
-	            	_this.push(memberModel);
-	            });
+				userRef.on('child_added', function(snapshot) {
+					var memberModel = new MemberModel();
+					memberModel.set({user: snapshot.val()})
+					_this.push(memberModel);
+				});
 
 			}
-            
+			
 
 
 		});

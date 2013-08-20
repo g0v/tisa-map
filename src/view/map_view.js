@@ -111,21 +111,19 @@ define([
 
 			markMember: function () {
 				var markers = L.markerClusterGroup({ disableClusteringAtZoom: 17 });
-			    var user = this.members.pop().attributes.user;
+				var user = this.members.pop().attributes.user;
 
-			    lat_val  = 121;
-			    lng_val  = 24;
-			    console.log(L.latLng(lat_val, lng_val));
-			    console.log('here');
-		        var marker = L.marker(L.latLng(lat_val, lng_val), { title: user.avatar });
+				lat_val  = 121;
+				lng_val  = 24;
+				var marker = L.marker(L.latLng(lat_val, lng_val), { title: user.avatar });
 
-		        // add popup
-		        marker.bindPopup('<img src="' + user.avatar + '" width="50"><br>' + user.displayName);
+				// add popup
+				marker.bindPopup('<img src="' + user.avatar + '" width="50"><br>' + user.displayName);
 
-		        // add new layer to map
-		        markers.addLayer(marker);
+				// add new layer to map
+				markers.addLayer(marker);
 			   
-			    this.map.addLayer(markers);
+				this.map.addLayer(markers);
 				
 			}
 
