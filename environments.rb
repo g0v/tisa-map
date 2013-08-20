@@ -15,6 +15,7 @@ class App < Sinatra::Base
     enable :logging
 
     get "/" do
+        cache_control :no_cache, :max_age => 0
         haml :index
     end
 
