@@ -28,6 +28,16 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
 
 # Develop
 
+## Backend Setup
+
+1. install ruby. version 1.9 or later of recommendation
+
+2. `$ gem install bundler`
+
+3. `$ bundle install`
+
+4. `unicorn -p port` to run
+
 ## Database schema
 
     Column   |          Type          |                     Modifiers
