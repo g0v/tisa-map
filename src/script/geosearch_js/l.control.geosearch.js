@@ -38,7 +38,6 @@ L.Control.GeoSearch = L.Control.extend({
     },
 
     onAdd: function (map) {
-        console.log(map)
         var $controlContainer = $(map._controlContainer);
 
         if ($controlContainer.children('.leaflet-top.leaflet-center').length == 0) {
@@ -60,12 +59,22 @@ L.Control.GeoSearch = L.Control.extend({
         msgbox.className = 'leaflet-control-geosearch-msg';
         this._msgbox = msgbox;
 
+        var selectOption = ""
+        selectOption = "<select id='leaflet-control-geosearch-select' class='leaflet-control-geosearch-select'>"
+                    + "<option value='site'>地點搜尋</option>"
+                    + "<option value='company'>公司搜尋</option>"
+                    + "<option value='id'>統編搜尋</option"
+                    + "</select>"
+        this._selectOption = selectOption;
+
+        console.log(selectOption);
+
         var resultslist = document.createElement('ul');
         resultslist.id = 'leaflet-control-geosearch-results';
         this._resultslist = resultslist;
 
         $(this._msgbox).append(this._resultslist);
-        $(this._container).append(this._searchbox, this._msgbox);
+        $(this._container).append(this._searchbox, this._msgbox, this._selectOption);
 
         L.DomEvent
           .addListener(this._container, 'click', L.DomEvent.stop)

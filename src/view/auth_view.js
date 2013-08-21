@@ -23,14 +23,17 @@ define([
 			initialize: function () {
 				var userAuth = new AuthDB();
 				var auth = userAuth.authUser();
+				var avatars = new AvatarCollection();
 				
 				this.userAuth = userAuth;
 				this.auth = auth;
+				this.avatars = avatars;
 				this.userState();
 
 				this.listenTo(userAuth, 'change', this.userState);
 				this.listenTo(userAuth, 'change:user_update', this.userPic)
 				this.listenTo(userAuth, 'change:upload_img', this.uploadImg)
+				this.listenTo(this.avatars, 'change', this.fireAvatar)
 
 			},
 
@@ -58,9 +61,7 @@ define([
 					$('#twitter_login').hide();
 					$('#logout').show();
 					$('#login_area').show();
-
-					var avatars = new AvatarCollection();
-					avatars.allowPic(this.userAuth.returnDB)
+					this.avatars.add({db: this.userAuth.returnDB()});
 				}else {
 					$('#facebook_login').show();
 					$('#twitter_login').show();
@@ -68,6 +69,11 @@ define([
 					$('#login_area').hide();
 
 				}
+			},
+
+			fireAvater: function () {
+				console.log('fire!');
+				this.avatars.allowPic();
 			},
 
 			userPic: function () {

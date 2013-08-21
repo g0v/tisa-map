@@ -38,3 +38,11 @@
 	border-radius: 4px;
 	border: none;
 }
+#leaflet-control-geosearch-select {
+	width: 100px;
+  height: 30px;
+	border: 1px solid #ccc;
+	position: absolute;
+	right: 10px;
+	top: 15px;
+}
