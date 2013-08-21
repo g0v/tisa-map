@@ -66,9 +66,7 @@ L.Control.GeoSearch = L.Control.extend({
                     + "<option value='id'>統編搜尋</option"
                     + "</select>"
         this._selectOption = selectOption;
-
-        console.log(selectOption);
-
+        
         var resultslist = document.createElement('ul');
         resultslist.id = 'leaflet-control-geosearch-results';
         this._resultslist = resultslist;

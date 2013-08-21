@@ -1,5 +1,6 @@
 .leaflet-center {
 	width: 40%;
+	marin-top: 20px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
