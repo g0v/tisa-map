@@ -20,12 +20,15 @@ define([
 
 				var location = new LocateCollection();
 				var members = new MemberCollection();
+				var markers = L.markerClusterGroup();
+
 				this.listenTo(location, 'add', this.userLocation)
 				this.listenTo(members, 'add', this.markMember)
 				this.location = location;
 				this.startLocate();
 
 				this.map = map;
+				this.markers = markers;
 				this.addGeocode();
 				this.tailLayer();
 				this.addTown();
@@ -111,9 +114,7 @@ define([
 			},
 
 			markMember: function () {
-				console.log('add mark');
-
-				var markers = L.markerClusterGroup({ disableClusteringAtZoom: 8 });
+				
 				var user = this.members.pop().attributes.user;
 
 				if(!user.latlng) {
@@ -126,9 +127,8 @@ define([
 				// add popup
 				marker.bindPopup('<img src="' + user.avatar + '" width="50"><br>' + user.displayName);
 				// add new layer to map
-				markers.addLayer(marker);
-			   console.log(markers);
-				this.map.addLayer(markers);
+				this.markers.addLayer(marker);
+				this.map.addLayer(this.markers);
 				
 			}
 
