@@ -19,6 +19,9 @@ define([
 				var map = this.newMap();
 
 				var location = new LocateCollection();
+				var members = new MemberCollection();
+				this.listenTo(location, 'add', this.userLocation)
+				this.listenTo(members, 'add', this.markMember)
 				this.location = location;
 				this.startLocate();
 
@@ -28,12 +31,11 @@ define([
 				this.addTown();
 				this.addmapControl();
 
-				var members = new MemberCollection();
+				
 				this.members = members;
-				this.addMember();
+				this.addMember(members);
 
-				this.listenTo(location, 'add', this.userLocation)
-				this.listenTo(members, 'add', this.markMember)
+				
 			},
 
 			newMap: function () {
@@ -93,7 +95,6 @@ define([
 			},
 
 			userLocation: function () {
-
 				var map = this.map;
 				var option = this.location.pop().attributes.latlng;
 				var setplace = [];
@@ -110,19 +111,23 @@ define([
 			},
 
 			markMember: function () {
-				var markers = L.markerClusterGroup({ disableClusteringAtZoom: 17 });
+				console.log('add mark');
+
+				var markers = L.markerClusterGroup({ disableClusteringAtZoom: 8 });
 				var user = this.members.pop().attributes.user;
 
-				lat_val  = 121;
-				lng_val  = 24;
-				var marker = L.marker(L.latLng(lat_val, lng_val), { title: user.avatar });
+				if(!user.latlng) {
+					user.latlng = []
+				}
 
+				lat_val  = user.latlng[0] || 24;
+				lng_val  = user.latlng[1] || 121;
+				var marker = L.marker(L.latLng(lat_val, lng_val), { title: user.avatar });
 				// add popup
 				marker.bindPopup('<img src="' + user.avatar + '" width="50"><br>' + user.displayName);
-
 				// add new layer to map
 				markers.addLayer(marker);
-			   
+			   console.log(markers);
 				this.map.addLayer(markers);
 				
 			}

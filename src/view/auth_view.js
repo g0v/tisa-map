@@ -23,9 +23,11 @@ define([
 			initialize: function () {
 				var userAuth = new AuthDB();
 				var auth = userAuth.authUser();
+				
 				this.userAuth = userAuth;
 				this.auth = auth;
 				this.userState();
+
 				this.listenTo(userAuth, 'change', this.userState);
 				this.listenTo(userAuth, 'change:user_update', this.userPic)
 				this.listenTo(userAuth, 'change:upload_img', this.uploadImg)
@@ -50,13 +52,13 @@ define([
 			},
 
 			userState: function () {
-				console.log('userState');
+
 				if(this.userAuth.returnAuth()) {
 					$('#facebook_login').hide();
 					$('#twitter_login').hide();
 					$('#logout').show();
 					$('#login_area').show();
-					console.log('login');
+
 					var avatars = new AvatarCollection();
 					avatars.allowPic(this.userAuth.returnDB)
 				}else {

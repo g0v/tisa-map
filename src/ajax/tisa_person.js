@@ -14,7 +14,6 @@ define([
 				var person = new personModel();
 				person.set(val);
 				personCollection.push(person);
-
 			}
 
 		})

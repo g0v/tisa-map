@@ -14,9 +14,7 @@ define([
 					var _this = this;
 
 			        navigator.geolocation.getCurrentPosition(function(option) {
-			            var locateModel = new LocateModel();
-			            locateModel.set({latlng: option})
-			            _this.push(locateModel);
+			            _this.add({latlng: option});
 			        }, function(error) {
 			            switch (error.code) {
 			                case error.TIMEOUT:
