@@ -96,3 +96,4 @@ sudo 和 -g for global
 `-w` for watching files
 `-c` for compressing files
 
+License: MIT http://g0v.mit-license.org/
