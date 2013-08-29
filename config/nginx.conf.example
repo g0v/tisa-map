@@ -1,0 +1,20 @@
+upstream tisa {
+    server ...;
+}
+
+server {
+    listen 80;
+    server_name tisa.g0v.tw;
+
+    root ...;
+
+    location / {
+        try_files $uri $uri/ @tisa;
+    }
+
+    location @tisa {
+        proxy_redirect off;
+        proxy_pass http://tisa;
+    }
+}
+
