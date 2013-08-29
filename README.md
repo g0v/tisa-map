@@ -64,15 +64,6 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
 
 * 返回值都是 GeoJSON
 
-### Jade
-
-現在要改動 html 請更動 index.jade 然後把 jade render 回 html。
-`-w` 用來 watch 檔案他會自動的 render 出 html 如果他有更動的話。
-
-```
-   $ jade -w index.jade
-```
-
 ### Stylus
 
 我們現在換到用 stylus 請更改在 `src/css` 裡面的 `*.styl`
