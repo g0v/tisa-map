@@ -20,8 +20,7 @@ class App < Sinatra::Base
     end
 
     get "/taxid/:taxid" do # 統一編號
-        json Store.select(:name, :taxid)
-                  .select_append { ST_AsGeoJSON(location).as(location) }
+        json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
                   .first(taxid: params[:taxid])
     end
 
@@ -32,8 +31,7 @@ class App < Sinatra::Base
     end
 
     get "/name/:name" do # 公司名稱
-        json Store.select(:name, :taxid)
-                  .select_append { ST_AsGeoJSON(location).as(location) }
+        json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
                   .first(name: params[:name])
     end
 
@@ -43,8 +41,7 @@ class App < Sinatra::Base
     get "/lng/:lng/lat/:lat/radius/:radius" do # 中心點(longitude and latitude) + 半徑(meters)
         center = Oj.dump({"type" => "Point", "coordinates" => [params[:lng].to_f, params[:lat].to_f]})
         radius = params[:radius]
-        json Store.select(:name, :taxid)
-                  .select_append { ST_AsGeoJSON(location).as(location) }
+        json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
                   .where { ST_DWithin(location, ST_GeomFromGeoJSON(center), radius, false) }
                   .all
     end
