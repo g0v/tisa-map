@@ -20,8 +20,9 @@ class App < Sinatra::Base
     end
 
     get "/taxid/:taxid" do # 統一編號
-        @store = Store.fetch("select id, ST_AsGeoJSON(location) as location, name, taxid from stores where taxid = '#{params[:taxid]}';").first
-        json @store
+        json Store.select(:name, :taxid)
+                  .select_append { ST_AsGeoJSON(location).as(location) }
+                  .first(taxid: params[:taxid])
     end
 
     post "/taxid" do
@@ -31,8 +32,9 @@ class App < Sinatra::Base
     end
 
     get "/name/:name" do # 公司名稱
-        @store = Store.fetch("select id, ST_AsGeoJSON(location) as location, name, taxid from stores where name = '#{params[:name]}';").first
-        json @store
+        json Store.select(:name, :taxid)
+                  .select_append { ST_AsGeoJSON(location).as(location) }
+                  .first(name: params[:name])
     end
 
     get "/business/:business" do # 所營事業項目
