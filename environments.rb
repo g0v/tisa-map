@@ -41,8 +41,10 @@ class App < Sinatra::Base
     get "/lng/:lng/lat/:lat/radius/:radius" do # 中心點(longitude and latitude) + 半徑(meters)
         center = Oj.dump({"type" => "Point", "coordinates" => [params[:lng].to_f, params[:lat].to_f]})
         radius = params[:radius]
+        offset = params[:limit].to_i * (params[:page].to_i - 1) if params[:limit] and params[:page]
         json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
                   .where { ST_DWithin(location, ST_GeomFromGeoJSON(center), radius, false) }
+                  .limit(params[:limit], offset)
                   .all
     end
 
