@@ -5,3 +5,4 @@ config/database.yml
 app.js
 .bundle
 vendor
+.sass-cache

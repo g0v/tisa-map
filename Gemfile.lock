@@ -46,6 +46,9 @@ GEM
     sprockets-sass (1.0.1)
       sprockets (~> 2.0)
       tilt (~> 1.1)
+    susy (1.0.9)
+      compass (>= 0.12.2)
+      sass (>= 3.2.0)
     tilt (1.4.1)
     unicorn (4.6.3)
       kgio (~> 2.6)
@@ -68,4 +71,5 @@ DEPENDENCIES
   sinatra-contrib
   sprockets
   sprockets-sass
+  susy
   unicorn
