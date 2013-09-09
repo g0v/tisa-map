@@ -64,27 +64,12 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
 
 * 返回值都是 GeoJSON
 
-### Stylus
+### Asset Pipeline with Sass/Scss/Compass
 
-我們現在換到用 stylus 請更改在 `src/css` 裡面的 `*.styl`
+Now we use [Sprockets](https://github.com/sstephenson/sprockets) to package and compress css and js files.
+No precompilation needed. The config.ru has served all assets from `/assets` on the fly. Currently the major
+css syntax variant in this project is [Scss](http://sass-lang.com/) and we are using Mixins from
+[Compass](http://compass-style.org/).
 
-http://learnboost.github.io/stylus/
-
-先 install stylus 
-
-``` 
-   $ [sudo] npm install [-g] stylus
-```
-
-sudo 和 -g for global
-
-要 compile 成 css 用
-
-```
-   $ stylus -w -c main.styl
-```
-
-`-w` for watching files
-`-c` for compressing files
 
 License: MIT http://g0v.mit-license.org/
