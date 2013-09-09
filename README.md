@@ -2,7 +2,9 @@
 
 這個專案是為了兩岸服務貿易協定所開始的一個專案，目前這個網站會把所有會受到協定衝擊的公司列在這個 map 上，還有會讓一般民眾可以上傳抗議標語，然後把它羅列在這個 map 上面。
 
-
+This project is kicked off to defend the bill of *Trade in Services Agreement* between Taiwan and Mainland China from approval.
+Here we are listing cooperations influented, rolling slogans from folks, and exhibiting photos from ruins.
+If you are concerning these behaviors of selling Taiwan, start to commit today. We need you.
 
 # Tech 
 
