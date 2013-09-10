@@ -10,9 +10,8 @@ require(["config"], function(config) {
     'view/company_view',
     'view/auth_view',
     'view/ly_view',
-    'view/index_view',
-  	
-  	], function($, _, Backbone, ajaxLy, ajaxTisa, MapView, CompanyView, AuthView, LyView, IndexView){
+    '/assets/application.js',
+  ], function($, _, Backbone, ajaxLy, ajaxTisa, MapView, CompanyView, AuthView, LyView){
       'use strict';
       
       // render index out view
@@ -20,7 +19,6 @@ require(["config"], function(config) {
       var companyView = new CompanyView();
       var authView = new AuthView();
       var lyView = new LyView();
-  		var indexView = new IndexView();
   	}
   )
 
