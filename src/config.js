@@ -12,7 +12,6 @@ require.config({
       'leaflet_cluster' : 'script/markercluster/leaflet.markercluster',
       'avatars'         : 'script/vendor/avatars.io.min',
       'handlebars'      : 'script/vendor/handlebars',
-      'jquery.countdown': 'script/vendor/jquery.countdown',
       'topojson'        : 'script/vendor/topojson',
       'geosearch'       : 'script/geosearch_js/l.control.geosearch',
       'geosearch_provider': 'script/geosearch_js/l.geosearch.provider.openstreetmap',
@@ -44,10 +43,6 @@ require.config({
 
       'leaflet_cluster': {
         deps: ['jquery', 'leaflet']
-      },
-
-      'jquery.countdown': {
-        deps: ['jquery']
       },
 
       'geosearch': {
