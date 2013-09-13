@@ -1,0 +1,9 @@
+---
+development:
+    adapter:    mysql2
+    host:       192.168.1.151
+    database:   tisa
+    username:   tisa
+    password:   tisamap
+    encoding:   utf8
+    pool:       5
