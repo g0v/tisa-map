@@ -17,7 +17,7 @@ require(["config"], function(config) {
       // render index out view
       var mapView = new MapView();
       var companyView = new CompanyView();
-      var authView = new AuthView();
+      //var authView = new AuthView();
       var lyView = new LyView();
   	}
   )

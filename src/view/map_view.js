@@ -4,14 +4,14 @@ define([
 	'underscore',
 	'backbone',
 	'collection/locate_collection',
-	'collection/member_collection',
+	// 'collection/member_collection',
 	'topojson',
 	'geosearch',
 	'geosearch_provider',
 	'leaflet',
 	'leaflet_cluster'
 
-	], function($, _, Backbone, LocateCollection, MemberCollection) {
+	], function($, _, Backbone, LocateCollection) {
 
 		var mapView = Backbone.View.extend({
 
@@ -19,11 +19,11 @@ define([
 				var map = this.newMap();
 
 				var location = new LocateCollection();
-				var members = new MemberCollection();
+				// var members = new MemberCollection();
 				var markers = L.markerClusterGroup();
 
 				this.listenTo(location, 'add', this.userLocation)
-				this.listenTo(members, 'add', this.markMember)
+				// this.listenTo(members, 'add', this.markMember)
 				this.location = location;
 				this.startLocate();
 
@@ -35,8 +35,8 @@ define([
 				this.addmapControl();
 
 				
-				this.members = members;
-				this.addMember(members);
+				// this.members = members;
+				// this.addMember(members);
 
 				
 			},
@@ -109,9 +109,9 @@ define([
 				L.marker(setplace).addTo(map).bindPopup("<b>你現在在這！</b>").openPopup();
 			},
 
-			addMember: function () {
-				this.members.addMember();
-			},
+			// addMember: function () {
+			// 	this.members.addMember();
+			// },
 
 			markMember: function () {
 				
