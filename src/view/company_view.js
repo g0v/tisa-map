@@ -33,7 +33,7 @@ define([
 				var lat = data.center.lat;
 				var lng = data.center.lng;
 
-				this._companys.url = '/lng/' + lng + '/lat/' + lat + '/radius/1000';
+				this._companys.url = '/lng/' + lng + '/lat/' + lat + '/radius/500';
 				this._companys.fetch();
 			},
 
