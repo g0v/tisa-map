@@ -2,7 +2,7 @@
 %html
     %head
         %meta{:"http-equiv" => 'Content-Type', :content => 'text/html; charset=utf-8'}
-        %title= "兩岸服務貿易協定災難圖"
+        %title= "兩岸服務貿易協定影響地圖"
         %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'}
         %link{rel: 'stylesheet', href: 'http://cdn.leafletjs.com/leaflet-0.5/leaflet.css'}
         /[if lte IE 8]
@@ -15,7 +15,7 @@
 
         / map container
         #map
-            #scroll-down 召喚我們台灣人的救星！
+            #scroll-down 打電話給本區立委，要求停止服貿
 
         / container 
         %input#usr_lat{type:"hidden"}
@@ -34,5 +34,5 @@
         #ly_list_area
 
         #message
-            %a{href: '#top'}= "回到災難圖"
+            %a{href: '#top'}= "回到服貿影響地圖"
         %script{:"data-main" => "index", :src => '//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js'}

@@ -25,7 +25,7 @@ L.Control.GeoSearch = L.Control.extend({
 			'country': options.country || '',
 			'provider': options.provider,
 			
-			'searchLabel': options.searchLabel || '在這輸入你想要搜尋的地方...',
+			'searchLabel': options.searchLabel || '搜尋...',
 			'notFoundMessage' : options.notFoundMessage || '對不起，此地址查詢不到。',
 			'messageHideDelay': options.messageHideDelay || 3000,
 			'zoomLevel': options.zoomLevel || 18
@@ -43,6 +43,11 @@ L.Control.GeoSearch = L.Control.extend({
 		this._map = map;
 		this._container = L.DomUtil.create('div', 'leaflet-control-geosearch');
 
+		var logoContainer = document.createElement('div');
+		logoContainer.id = 'tisa-map-logo';
+		logoContainer.innerHTML = "服務貿易協定影響地圖"
+		this._logoContainer = logoContainer;
+
 		var searchbox = document.createElement('input');
 		searchbox.id = 'leaflet-control-geosearch-qry';
 		searchbox.type = 'text';
@@ -53,6 +58,11 @@ L.Control.GeoSearch = L.Control.extend({
 		msgbox.id = 'leaflet-control-geosearch-msg';
 		msgbox.className = 'leaflet-control-geosearch-msg';
 		this._msgbox = msgbox;
+
+		var detailContainer = document.createElement('div');
+		detailContainer.id="detail-container";
+		detailContainer.innerHTML = "<a href='#'>使用資料說明</a>";
+		this._detailContainer = detailContainer;
 
 		var selectOption = ""
 		selectOption = "<select id='leaflet-control-geosearch-select' class='leaflet-control-geosearch-select'>"
@@ -67,7 +77,7 @@ L.Control.GeoSearch = L.Control.extend({
 		this._resultslist = resultslist;
 
 		$(this._msgbox).append(this._resultslist);
-		$(this._container).append(this._searchbox, this._msgbox, this._selectOption);
+		$(this._container).append(this._logoContainer, this._searchbox, this._msgbox, this._selectOption, this._detailContainer);
 
 		L.DomEvent
 		  .addListener(this._container, 'click', L.DomEvent.stop)
