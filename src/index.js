@@ -11,6 +11,7 @@ require(["config"], function(config) {
     'view/auth_view',
     'view/ly_view',
     '/assets/application.js',
+    'script/vendor/scroll-top'
   ], function($, _, Backbone, ajaxLy, ajaxTisa, MapView, CompanyView, AuthView, LyView){
       'use strict';
       

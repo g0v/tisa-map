@@ -36,7 +36,7 @@ L.Control.GeoSearch = L.Control.extend({
 		var $controlContainer = $(map._controlContainer);
 
 		if ($controlContainer.children('.leaflet-top.leaflet-center').length == 0) {
-			$controlContainer.append('<div class="leaflet-top leaflet-center"></div>');
+			$controlContainer.append('<div class="leaflet-top leaflet-center" id="leaflet-center"></div>');
 			map._controlCorners.topcenter = $controlContainer.children('.leaflet-top.leaflet-center').first()[0];
 		}
 
