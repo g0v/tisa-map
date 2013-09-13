@@ -26,7 +26,15 @@ define([
 
 				this.listenTo(centers, 'add', this.addCenter);
 				this.listenTo(companys, 'add', this.addCompany);
-				
+
+			},
+
+			addlocateCenter: function (data) {
+				var lat = data.center.lat;
+				var lng = data.center.lng;
+
+				this._companys.url = '/lng/' + lng + '/lat/' + lat + '/radius/1000';
+				this._companys.fetch();
 			},
 
 			addCenter: function () {

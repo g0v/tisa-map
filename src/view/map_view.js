@@ -4,6 +4,7 @@ define([
 	'underscore',
 	'backbone',
 	'collection/locate_collection',
+	'view/company_view',
 	// 'collection/member_collection',
 	'topojson',
 	'geosearch',
@@ -11,7 +12,7 @@ define([
 	'leaflet',
 	'leaflet_cluster'
 
-	], function($, _, Backbone, LocateCollection) {
+	], function($, _, Backbone, LocateCollection, CompanyView) {
 
 		var mapView = Backbone.View.extend({
 
@@ -19,6 +20,8 @@ define([
 				var map = this.newMap();
 
 				var location = new LocateCollection();
+				var company_view = new CompanyView();
+				this._company_view = company_view;
 				// var members = new MemberCollection();
 				var markers = L.markerClusterGroup();
 
@@ -107,6 +110,7 @@ define([
 				this.setplace = setplace;
 				map.setView(setplace, 13);
 				L.marker(setplace).addTo(map).bindPopup("<b>你現在在這！</b>").openPopup();
+				this._company_view.addlocateCenter({center: {lat: option.coords.latitude, lng: option.coords.longitude}})
 			},
 
 			// addMember: function () {
