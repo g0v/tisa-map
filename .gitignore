@@ -6,3 +6,4 @@ app.js
 .bundle
 vendor
 .sass-cache
+*.pid
