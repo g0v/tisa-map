@@ -5,7 +5,6 @@ require([
 'backbone',
 'view/map_view',
 'view/company_view',
-'view/auth_view',
 '/assets/application.js',
 ], function($, _, Backbone, MapView, CompanyView, AuthView){
     'use strict';
