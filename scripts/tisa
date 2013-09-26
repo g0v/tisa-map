@@ -1,0 +1,92 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:		tisa
+# Required-Start:	$remote_fs $syslog
+# Required-Stop:	$remote_fs $syslog
+# Default-Start:	2 3 4 5
+# Default-Stop:		
+# Short-Description:	Trade in Services Agreement Map
+### END INIT INFO
+
+set -e
+
+# /etc/init.d/tisa: start and stop the Application of Trade in Services Agreement Map
+
+umask 022
+
+if test -f /etc/default/tisa; then
+    . /etc/default/tisa
+fi
+
+. /lib/lsb/init-functions
+
+check_for_upstart() {
+    if init_is_upstart; then
+	exit $1
+    fi
+}
+
+tisa_start() {
+    cd $PROJPATH
+    bundle exec unicorn -c config/unicorn.rb -D
+}
+
+tisa_stop() {
+    kill $(cat $PIDFILE)
+}
+
+export PATH="/usr/local/bin:/usr/bin:${PATH:+$PATH:}/usr/sbin:/sbin"
+
+case "$1" in
+  start)
+	check_for_upstart 1
+	if [ ! -e $PIDFILE ]; then
+            log_action_msg starting
+            tisa_start
+	    log_end_msg 0 || true
+	else
+            log_action_msg tisa is running
+	    log_end_msg 1 || true
+	fi
+	;;
+  stop)
+	check_for_upstart 0
+	if [ -e $PIDFILE ]; then
+            log_action_msg stopping
+            tisa_stop
+            log_end_msg 0 || true
+	else
+            log_action_msg tisa is not running
+            log_end_msg 1 || true
+	fi
+	;;
+
+  restart)
+	check_for_upstart 1
+	log_daemon_msg "Restarting Trade in Services Agreement Map" "tisa" || true
+	if [ -e $PIDFILE ]; then
+            tisa_stop
+            tisa_start
+	else
+            tisa_start
+	fi
+	log_end_msg 0 || true
+	;;
+
+  status)
+	check_for_upstart 1
+        if [ -e $PIDFILE ]; then
+            log_action_msg running pid $(cat $PIDFILE) || true
+        else
+            log_action_msg "not running" || true
+        fi
+        log_end_msg 0
+	;;
+
+  *)
+	log_action_msg "Usage: /etc/init.d/tisa {start|stop|restart|status}" || true
+	exit 1
+esac
+
+exit 0
