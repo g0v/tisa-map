@@ -15,11 +15,14 @@ set -e
 
 umask 022
 
+. /lib/lsb/init-functions
+
 if test -f /etc/default/tisa; then
     . /etc/default/tisa
+else
+    log_action_msg must give PROJPATH and PIDFILE in /etc/default/tisa || true
+    exit 1;
 fi
-
-. /lib/lsb/init-functions
 
 check_for_upstart() {
     if init_is_upstart; then
