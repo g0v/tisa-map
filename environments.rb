@@ -48,4 +48,9 @@ class App < Sinatra::Base
                   .all
     end
 
+    post "/github/?" do
+        logger.info Oj.load(params[:payload])
+        system("/etc/init.d/tisa restart")
+    end
+
 end
