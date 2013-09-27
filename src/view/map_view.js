@@ -25,12 +25,11 @@ define([
 
 				this.location = new LocateCollection();
 				this._company_view = new CompanyView();
-				var markers = L.markerClusterGroup();
 
 				this.listenTo(this.location, 'add', this.userLocation)
 				this.startLocate();
 
-				this.markers = markers;
+				this.markers = L.markerClusterGroup();
 				this.addGeocode();
 				this.tailLayer();
 				this.addmapControl();
