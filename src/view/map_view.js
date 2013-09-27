@@ -18,13 +18,13 @@ define([
 			initialize: function  () {
                                 // company view now depends on window.map
                                 // allow it for a while
-                                this.map = window.map = L.map('map', {
+                                this.map = L.map('map', {
                                     zoomControl: false,
                                     attributionControl: false
                                 });
 
 				this.location = new LocateCollection();
-				this._company_view = new CompanyView();
+				this._company_view = new CompanyView({ map: this.map });
 
 				this.listenTo(this.location, 'add', this.userLocation)
 				this.location.startLocate();

@@ -12,16 +12,16 @@ define([
 
 			el: 'body',
 
-			initialize: function () {
-				this._map = map
+			initialize: function (options) {
+				this.map = options.map;
 
 				var centers = new Centers();
 				var companys = new Companys();
 				this._centers = centers;
 				this._companys = companys;
 
-				map.on('drag', function(e) {
-					centers.add({center: map.getCenter()})
+				this.map.on('drag', function(e) {
+					centers.add({center: this.map.getCenter()})
 				})
 
 				this.listenTo(centers, 'add', this.addCenter);
@@ -56,8 +56,7 @@ define([
 				var marker = L.marker(L.latLng(company_lat, company_lng), { title: company_name });
 				// add popup
 				marker.bindPopup(company_name + ' (' + company_taxid + ' )');
-				// add new layer to map
-				this._map.addLayer(marker);
+				this.map.addLayer(marker);
 			}
 
 		});
