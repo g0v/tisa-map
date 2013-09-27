@@ -15,16 +15,15 @@ define([
 			initialize: function (options) {
 				this.map = options.map;
 
-				var companys = new Companys();
 				this.centers = new Centers();
-				this._companys = companys;
+				this.companys = new Companys();
 
 				this.map.on('drag', function(e) {
 					this.centers.add({center: this.map.getCenter()})
 				}, this);
 
 				this.listenTo(this.centers, 'add', this.addCenter);
-				this.listenTo(companys, 'add', this.addCompany);
+				this.listenTo(this.companys, 'add', this.addCompany);
 
 			},
 
@@ -32,8 +31,8 @@ define([
 				var lat = data.center.lat;
 				var lng = data.center.lng;
 
-				this._companys.url = '/lng/' + lng + '/lat/' + lat + '/radius/500';
-				this._companys.fetch();
+				this.companys.url = '/lng/' + lng + '/lat/' + lat + '/radius/500';
+				this.companys.fetch();
 			},
 
 			addCenter: function () {
@@ -41,12 +40,12 @@ define([
 				var lat = center.attributes.center.lat;
 				var lng = center.attributes.center.lng;
 
-				this._companys.url = '/lng/' + lng + '/lat/' + lat + '/radius/100';
-				this._companys.fetch();
+				this.companys.url = '/lng/' + lng + '/lat/' + lat + '/radius/100';
+				this.companys.fetch();
 			},
 
 			addCompany: function () {
-				var company = this._companys.pop().attributes;
+				var company = this.companys.pop().attributes;
 				var company_name = company.name;
 				var company_taxid = company.taxid;
 				var company_lng = company.geography.coordinates[0];
