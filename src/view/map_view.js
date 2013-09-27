@@ -21,13 +21,12 @@ define([
                                     attributionControl: false
                                 });
 
-				var location = new LocateCollection();
+				this.location = new LocateCollection();
 				var company_view = new CompanyView();
 				this._company_view = company_view;
 				var markers = L.markerClusterGroup();
 
-				this.listenTo(location, 'add', this.userLocation)
-				this.location = location;
+				this.listenTo(this.location, 'add', this.userLocation)
 				this.startLocate();
 
 				this.markers = markers;
