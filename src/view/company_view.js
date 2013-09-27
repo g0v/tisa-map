@@ -3,10 +3,15 @@ define([
 	'underscore',
 	'backbone',
 	'collection/center_collection',
-	'collection/cyquery_collection',
 	'leaflet'
 
-	], function($, _, Backbone, Centers, Companys) {
+	], function($, _, Backbone, Centers) {
+
+                var CompanyModel = Backbone.Model.extend({
+                });
+                var CompanyCollection = Backbone.Collection.extend({
+                        model: CompanyModel,
+                });
 
 		var companyView = Backbone.View.extend({
 
@@ -16,7 +21,7 @@ define([
 				this.map = options.map;
 
 				this.centers = new Centers();
-				this.companys = new Companys();
+				this.companys = new CompanyCollection();
 
 				this.map.on('drag', function(e) {
 					this.centers.add({center: this.map.getCenter()})
