@@ -5,7 +5,6 @@ define([
 	'backbone',
 	'collection/locate_collection',
 	'view/company_view',
-	// 'collection/member_collection',
 	'topojson',
 	'geosearch',
 	'geosearch_provider',
@@ -22,11 +21,9 @@ define([
 				var location = new LocateCollection();
 				var company_view = new CompanyView();
 				this._company_view = company_view;
-				// var members = new MemberCollection();
 				var markers = L.markerClusterGroup();
 
 				this.listenTo(location, 'add', this.userLocation)
-				// this.listenTo(members, 'add', this.markMember)
 				this.location = location;
 				this.startLocate();
 
@@ -36,12 +33,6 @@ define([
 				this.tailLayer();
 				this.addTown();
 				this.addmapControl();
-
-				
-				// this.members = members;
-				// this.addMember(members);
-
-				
 			},
 
 			newMap: function () {
@@ -113,12 +104,7 @@ define([
 				this._company_view.addlocateCenter({center: {lat: option.coords.latitude, lng: option.coords.longitude}})
 			},
 
-			// addMember: function () {
-			// 	this.members.addMember();
-			// },
-
 			markMember: function () {
-				
 				var user = this.members.pop().attributes.user;
 
 				if(!user.latlng) {
@@ -133,10 +119,7 @@ define([
 				// add new layer to map
 				this.markers.addLayer(marker);
 				this.map.addLayer(this.markers);
-				
 			}
-
-
 		});
 
 		return mapView;	
