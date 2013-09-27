@@ -27,7 +27,7 @@ define([
 				this._company_view = new CompanyView();
 
 				this.listenTo(this.location, 'add', this.userLocation)
-				this.startLocate();
+				this.location.startLocate();
 
 				this.markers = L.markerClusterGroup();
 
@@ -41,10 +41,6 @@ define([
                                 ).addTo(this.map);
 
 				this.map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
-			},
-
-			startLocate: function () {
-				this.location.startLocate();	
 			},
 
 			userLocation: function () {
