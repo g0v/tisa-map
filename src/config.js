@@ -12,7 +12,6 @@ require.config({
       'leaflet_cluster' : 'script/markercluster/leaflet.markercluster',
       'geosearch'       : 'script/geosearch_js/l.control.geosearch',
       'geosearch_provider': 'script/geosearch_js/l.geosearch.provider.openstreetmap',
-      'text'            : 'script/vendor/text',
 
    },
    shim: {
