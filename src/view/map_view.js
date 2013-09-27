@@ -5,7 +5,6 @@ define([
 	'backbone',
 	'collection/locate_collection',
 	'view/company_view',
-	'topojson',
 	'geosearch',
 	'geosearch_provider',
 	'leaflet',
