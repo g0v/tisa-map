@@ -11,7 +11,6 @@ require.config({
       'leaflet'         : '//cdn.leafletjs.com/leaflet-0.6.2/leaflet',
       'leaflet_cluster' : 'script/markercluster/leaflet.markercluster',
       'avatars'         : 'script/vendor/avatars.io.min',
-      'handlebars'      : 'script/vendor/handlebars',
       'topojson'        : 'script/vendor/topojson',
       'geosearch'       : 'script/geosearch_js/l.control.geosearch',
       'geosearch_provider': 'script/geosearch_js/l.geosearch.provider.openstreetmap',
@@ -26,10 +25,6 @@ require.config({
       'backbone': {
         deps: ['underscore', 'jquery'],
         exports: 'Backbone'
-      },
-
-      'handlebars': {
-        exports: 'Handlebars'
       },
 
       'firebase_login': {
