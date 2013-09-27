@@ -10,7 +10,6 @@ require.config({
       'firebase_login'  : '//cdn.firebase.com/v0/firebase-simple-login',
       'leaflet'         : '//cdn.leafletjs.com/leaflet-0.6.2/leaflet',
       'leaflet_cluster' : 'script/markercluster/leaflet.markercluster',
-      'avatars'         : 'script/vendor/avatars.io.min',
       'geosearch'       : 'script/geosearch_js/l.control.geosearch',
       'geosearch_provider': 'script/geosearch_js/l.geosearch.provider.openstreetmap',
       'text'            : 'script/vendor/text',
