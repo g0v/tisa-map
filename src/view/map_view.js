@@ -8,7 +8,6 @@ define([
 	'geosearch',
 	'geosearch_provider',
 	'leaflet',
-	'leaflet_cluster'
 
 	], function($, _, Backbone, LocateCollection, CompanyView) {
 
@@ -27,8 +26,6 @@ define([
 
 				this.listenTo(this.location, 'add', this.userLocation)
 				this.location.startLocate();
-
-				this.markers = L.markerClusterGroup();
 
                                 new L.Control.GeoSearch({
                                     provider: new L.GeoSearch.Provider.OpenStreetMap()

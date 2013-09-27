@@ -7,7 +7,6 @@ require.config({
         'firebase'          : '//cdn.firebase.com/v0/firebase',
         'firebase_login'    : '//cdn.firebase.com/v0/firebase-simple-login',
         'leaflet'           : '//cdn.leafletjs.com/leaflet-0.6.2/leaflet',
-        'leaflet_cluster'   : 'script/markercluster/leaflet.markercluster',
         'geosearch'         : 'script/geosearch_js/l.control.geosearch',
         'geosearch_provider': 'script/geosearch_js/l.geosearch.provider.openstreetmap',
     },
@@ -27,10 +26,6 @@ require.config({
 
       'leaflet': {
         deps: ['jquery']
-      },
-
-      'leaflet_cluster': {
-        deps: ['jquery', 'leaflet']
       },
 
       'geosearch': {
