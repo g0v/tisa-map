@@ -24,8 +24,7 @@ define([
                                 });
 
 				this.location = new LocateCollection();
-				var company_view = new CompanyView();
-				this._company_view = company_view;
+				this._company_view = new CompanyView();
 				var markers = L.markerClusterGroup();
 
 				this.listenTo(this.location, 'add', this.userLocation)
