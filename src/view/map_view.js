@@ -45,11 +45,7 @@ define([
 
 			userLocation: function () {
 				var option = this.location.pop().attributes.latlng;
-				var setplace = [];
-				
-				setplace.push(option.coords.latitude);
-				setplace.push(option.coords.longitude);
-				this.setplace = setplace;
+				var setplace = [option.coords.latitude, option.coords.longitude];
 				this.map.setView(setplace, 13);
 				L.marker(setplace).addTo(this.map).bindPopup("<b>你現在在這！</b>").openPopup();
 				this._company_view.addlocateCenter({center: {lat: option.coords.latitude, lng: option.coords.longitude}})
