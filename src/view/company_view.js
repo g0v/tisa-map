@@ -15,16 +15,15 @@ define([
 			initialize: function (options) {
 				this.map = options.map;
 
-				var centers = new Centers();
 				var companys = new Companys();
-				this._centers = centers;
+				this.centers = new Centers();
 				this._companys = companys;
 
 				this.map.on('drag', function(e) {
-					centers.add({center: this.map.getCenter()})
-				})
+					this.centers.add({center: this.map.getCenter()})
+				}, this);
 
-				this.listenTo(centers, 'add', this.addCenter);
+				this.listenTo(this.centers, 'add', this.addCenter);
 				this.listenTo(companys, 'add', this.addCompany);
 
 			},
@@ -38,7 +37,7 @@ define([
 			},
 
 			addCenter: function () {
-				var center = this._centers.pop();
+				var center = this.centers.pop();
 				var lat = center.attributes.center.lat;
 				var lng = center.attributes.center.lng;
 
