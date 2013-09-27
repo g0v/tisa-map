@@ -16,7 +16,7 @@ define([
 		var mapView = Backbone.View.extend({
 
 			initialize: function  () {
-                                var map = L.map('map', {
+                                this.map = L.map('map', {
                                     zoomControl: false,
                                     attributionControl: false
                                 });
@@ -30,7 +30,6 @@ define([
 				this.location = location;
 				this.startLocate();
 
-				this.map = map;
 				this.markers = markers;
 				this.addGeocode();
 				this.tailLayer();
