@@ -16,7 +16,10 @@ define([
 		var mapView = Backbone.View.extend({
 
 			initialize: function  () {
-				var map = this.newMap();
+                                var map = L.map('map', {
+                                    zoomControl: false,
+                                    attributionControl: false
+                                });
 
 				var location = new LocateCollection();
 				var company_view = new CompanyView();
@@ -32,17 +35,6 @@ define([
 				this.addGeocode();
 				this.tailLayer();
 				this.addmapControl();
-			},
-
-			newMap: function () {
-
-				map = L.map('map', {
-					zoomControl: false,
-					attributionControl: false
-				});
-
-				return map;
- 
 			},
 
 			addGeocode: function () {
