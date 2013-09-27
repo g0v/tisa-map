@@ -16,7 +16,9 @@ define([
 		var mapView = Backbone.View.extend({
 
 			initialize: function  () {
-                                this.map = L.map('map', {
+                                // company view now depends on window.map
+                                // allow it for a while
+                                this.map = window.map = L.map('map', {
                                     zoomControl: false,
                                     attributionControl: false
                                 });
