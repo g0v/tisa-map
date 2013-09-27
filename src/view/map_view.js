@@ -30,7 +30,10 @@ define([
 				this.startLocate();
 
 				this.markers = L.markerClusterGroup();
-				this.addGeocode();
+
+                                new L.Control.GeoSearch({
+                                    provider: new L.GeoSearch.Provider.OpenStreetMap()
+                                }).addTo(this.map);
 
                                 L.tileLayer(
                                     'http://{s}.tile.cloudmade.com/f59941c17eda4947ae395e907fe531a3/997/256/{z}/{x}/{y}.png',
@@ -38,12 +41,6 @@ define([
                                 ).addTo(this.map);
 
 				this.map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
-			},
-
-			addGeocode: function () {
-				geocoder = new L.Control.GeoSearch({
-					provider: new L.GeoSearch.Provider.OpenStreetMap()
-				}).addTo(map);
 			},
 
 			startLocate: function () {
