@@ -7,8 +7,7 @@ require.config({
         'firebase'          : '//cdn.firebase.com/v0/firebase',
         'firebase_login'    : '//cdn.firebase.com/v0/firebase-simple-login',
         'leaflet'           : '//cdn.leafletjs.com/leaflet-0.6.2/leaflet',
-        'geosearch'         : 'script/geosearch_js/l.control.geosearch',
-        'geosearch_provider': 'script/geosearch_js/l.geosearch.provider.openstreetmap',
+        'application'       : '/assets/application',
     },
    shim: {
       'underscore': {
@@ -28,14 +27,9 @@ require.config({
         deps: ['jquery']
       },
 
-      'geosearch': {
+      'application': {
         deps: ['jquery', 'leaflet']
       },
-
-      'geosearch_provider': {
-        deps: ['jquery', 'leaflet', 'geosearch']
-      },
-
    }
 });
 
@@ -43,10 +37,8 @@ require([
 'jquery',
 'underscore',
 'backbone',
-'geosearch',
-'geosearch_provider',
 'leaflet',
-'/assets/application.js',
+'application',
 ], function($, _, Backbone){
     'use strict';
 var CenterModel = Backbone.Model.extend({
