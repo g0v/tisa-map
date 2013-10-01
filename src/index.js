@@ -52,7 +52,7 @@ App.Collection.Company = Backbone.Collection.extend({
     model: App.Model.Company,
 });
 
-var CompanyView = Backbone.View.extend({
+App.View.Company = Backbone.View.extend({
     el: 'body',
     initialize: function (options) {
         this.map = options.map;
@@ -125,7 +125,7 @@ App.Collection.Location = Backbone.Collection.extend({
     }
 });
 
-var MapView = Backbone.View.extend({
+App.View.Map = Backbone.View.extend({
     initialize: function  () {
         this.map = L.map('map', {
             zoomControl: false,
@@ -133,7 +133,7 @@ var MapView = Backbone.View.extend({
         });
 
         this.location = new App.Collection.Location();
-        this._company_view = new CompanyView({ map: this.map });
+        this._company_view = new App.View.Company({ map: this.map });
 
         this.listenTo(this.location, 'add', this.userLocation)
         this.location.startLocate();
@@ -158,6 +158,6 @@ var MapView = Backbone.View.extend({
     },
 });
 
-new MapView();
+new App.View.Map();
 
 })
