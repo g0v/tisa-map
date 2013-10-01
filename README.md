@@ -20,6 +20,17 @@ http://company.g0v.ronny.tw/
 
 data folder is from ronnywang's data https://github.com/ronnywang/twcompany , remake is after parser https://github.com/chilijung/twcompany-parser
 
+# Mapping for Categorizations
+
+[Mapping on EtherCalc](https://ethercalc.org/kwops3igth)
+
+1. [行政院主計處](http://www.dgbas.gov.tw/public/Attachment/342210594471.pdf)
+
+2. [經濟部商業司]()
+
+3. [服貿開放清單]()
+
+4. [大陸人民來台投資業別項目](http://www.moeaic.gov.tw/system_external/ctlr?PRO=DownloadFile&t=3&id=133)
 
 # Develop
 
