@@ -11,7 +11,6 @@ class App < Sinatra::Base
 
     helpers Sinatra::JSON
     set :json_encoder, :to_json
-    set :public_folder, "src"
     enable :logging
 
     get "/" do
