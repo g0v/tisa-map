@@ -41,23 +41,23 @@ require([
 'application',
 ], function($, _, Backbone){
     'use strict';
-var CenterModel = Backbone.Model.extend({
+App.Model.Center = Backbone.Model.extend({
 });
-var CenterCollection = Backbone.Collection.extend({
-    model: CenterModel,
+App.Collection.Center = Backbone.Collection.extend({
+    model: App.Model.Center,
 });
-var CompanyModel = Backbone.Model.extend({
+App.Model.Company = Backbone.Model.extend({
 });
-var CompanyCollection = Backbone.Collection.extend({
-    model: CompanyModel,
+App.Collection.Company = Backbone.Collection.extend({
+    model: App.Model.Company,
 });
 
 var CompanyView = Backbone.View.extend({
     el: 'body',
     initialize: function (options) {
         this.map = options.map;
-        this.centers = new CenterCollection();
-        this.companys = new CompanyCollection();
+        this.centers = new App.Collection.Center();
+        this.companys = new App.Collection.Company();
         this.map.on('drag', function(e) {
                 this.centers.add({center: this.map.getCenter()})
         }, this);
