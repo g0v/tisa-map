@@ -6,13 +6,6 @@ This project is kicked off to defend the bill of *Trade in Services Agreement* b
 Here we are listing cooperations influented, rolling slogans from folks, and exhibiting photos from ruins.
 If you are concerning these behaviors of selling Taiwan, start to commit today. We need you.
 
-# Tech 
-
-## L.Geocoder
-
-origin from [https://github.com/smeijer/L.GeoSearch](https://github.com/smeijer/L.GeoSearch)
-
-
 ## twcompany parser
 
 https://github.com/ronnywang/twcompany
@@ -29,6 +22,14 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
 
 
 # Develop
+
+## Geograph
+
+* [Leaflet](http://leafletjs.com)
+
+* [Leaflet.GeoSearch](https://github.com/smeijer/L.GeoSearch)
+
+* [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster)
 
 ## Backend Setup
 
