@@ -90,13 +90,13 @@ var CompanyView = Backbone.View.extend({
     }
 });
 
-var LocateModel = Backbone.Model.extend({
+App.Model.Location = Backbone.Model.extend({
     defaults: {
         latlng: null
     }
 });
-var LocateCollection = Backbone.Collection.extend({
-    model: LocateModel,
+App.Collection.Location = Backbone.Collection.extend({
+    model: App.Model.Location,
     startLocate: function() {
         if (navigator.geolocation) {
             var that = this;
@@ -132,7 +132,7 @@ var MapView = Backbone.View.extend({
             attributionControl: false
         });
 
-        this.location = new LocateCollection();
+        this.location = new App.Collection.Location();
         this._company_view = new CompanyView({ map: this.map });
 
         this.listenTo(this.location, 'add', this.userLocation)
