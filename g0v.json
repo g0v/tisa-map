@@ -1,13 +1,11 @@
 {
-"author": [
-"chilijung",
-"shelling"
-],
+"author": "chilijung",
 "contributors": [
+"shelling",
 "nchild",
 "ipa",
 "clkao",
-"ETblue"
+"ETBlue",
 ],
 "status": "pre-alpha",
 "name": "tisa-map",
