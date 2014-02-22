@@ -1,3 +1,5 @@
+//= require 'bootstrap'
+
 (function($){
   "use strict";
 
