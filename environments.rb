@@ -52,4 +52,8 @@ class App < Sinatra::Base
         Oj.dump({status: "ok"})
     end
 
+    get "/com" do
+        haml :com
+    end
+
 end
