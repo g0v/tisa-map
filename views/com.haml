@@ -6,6 +6,17 @@
         %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'}
         %link{rel:"stylesheet", href:"/assets/com.css"}
     %body
-        h1 Test
+        #topbar
+            %img{src: '/img/com/fake-share.png'}
+        %header.banner.text-center
+            %img.triangle{src: '/img/com/triangle.png'}
+        %form.query.text-center.container
+            .row
+                .col-lg-8.col-lg-offset-2
+                    %h1 你被服貿了嗎
+                    %input.form-control.input-lg{type: 'text', placeholder: '請輸入你的職稱, 行業別, 或公司行號名稱'}
+
         %script{src: "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js", type: "text/javascript"}
         %script{src: "/assets/com.js", type: "text/javascript"}
+
+

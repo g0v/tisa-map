@@ -7,6 +7,7 @@ Sequel::Plugins::JsonSerializer.configure(Sequel::Model, naked: true)
 
 # Compass configuration
 Compass.configuration.images_dir = 'public/img'
+Compass.configuration.http_images_path = '/img'
 
 require_relative "models/stores"
 
