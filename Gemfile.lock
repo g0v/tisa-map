@@ -16,8 +16,8 @@ GEM
     hike (1.2.3)
     kgio (2.8.0)
     multi_json (1.7.9)
+    mysql2 (0.3.15)
     oj (2.0.14)
-    pg (0.16.0)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -62,8 +62,8 @@ DEPENDENCIES
   bootstrap-sass
   compass
   haml
+  mysql2
   oj
-  pg
   rake
   sass
   sequel

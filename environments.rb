@@ -6,6 +6,10 @@ Sequel::Model.plugin :json_serializer
 Sequel::Plugins::JsonSerializer.configure(Sequel::Model, naked: true)
 
 require_relative "models/stores"
+require_relative "models/companies"
+require_relative "models/categories"
+require_relative "models/announced_categories"
+
 
 class App < Sinatra::Base
 
@@ -14,20 +18,38 @@ class App < Sinatra::Base
     enable :logging
 
     get "/" do
-        cache_control :no_cache, :max_age => 0
-        haml :index
     end
 
-    get "/taxid/:taxid" do # 統一編號
-        json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
-                  .first(taxid: params[:taxid])
+    get "/company/:taxid" do # 統一編號
+        model = Company[params[:taxid]]
+        halt 404 unless model
+        erb :company, :locals => {model: model}
     end
 
-    post "/taxid" do
+    get "/category/:id" do
+        models = AnnouncedCategory.filter({category_id: params[:id]})
+        rows = {}
+        models.each do |model|
+            rows[model.announced_id] = model
+        end
+        # halt 404 unless model
+        erb :category, :locals => {rows: rows}
     end
+    # get "/" do
+    #     cache_control :no_cache, :max_age => 0
+    #     haml :index
+    # end
 
-    put "/taxid/:taxid" do
-    end
+    # get "/taxid/:taxid" do # 統一編號
+    #     json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
+    #               .first(taxid: params[:taxid])
+    # end
+
+    # post "/taxid" do
+    # end
+
+    # put "/taxid/:taxid" do
+    # end
 
     get "/name/:name" do # 公司名稱
         json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
