@@ -9,6 +9,9 @@ require_relative "models/stores"
 require_relative "models/companies"
 require_relative "models/categories"
 require_relative "models/announced_categories"
+require_relative "models/announced_stats"
+require_relative "models/activities"
+require_relative "models/stats"
 
 
 class App < Sinatra::Base
@@ -18,6 +21,41 @@ class App < Sinatra::Base
     enable :logging
 
     get "/" do
+        erb :index
+    end
+
+    def search(token)
+        results = Company.filter("name LIKE ? ", "%#{token}%").order(:name).map do |i|
+            {
+                pos: Regexp.new(Regexp.escape(token)) =~ i.name, 
+                name: i.name, 
+                url: url("company/#{i.id}")
+            }
+        end
+        max = (results.length > 5)? 5: results.length - 1
+        (0..max).each do |i|
+            results.each_with_index do |item, idx|
+                if results[i][:pos].nil? || (!item[:pos].nil? && item[:pos] > results[i][:pos])
+                    results[i], results[idx] = results[idx], results[i] 
+                end
+            end
+        end
+        results[0..max]
+    end
+
+    post "/autocomplete" do
+        token = params[:term]
+        search(token).to_json
+    end
+
+    get "/search/*" do
+        token = params[:keyword]
+        results = search(token)
+        if results.length == 0
+            "not found"
+        else
+            erb :search, :locals => {results: results}
+        end
     end
 
     get "/company/:taxid" do # 統一編號
@@ -29,11 +67,33 @@ class App < Sinatra::Base
     get "/category/:id" do
         models = AnnouncedCategory.filter({category_id: params[:id]})
         rows = {}
+        activities = {}
+        all_activities = []
         models.each do |model|
             rows[model.announced_id] = model
         end
+
+        rows.each do |announced_id, model|
+            activities[announced_id] = AnnouncedStat
+                .filter({announced_id: announced_id})
+                .order(:order)
+
+            activities[announced_id].each do |i|
+                all_activities.push i.stat_id if i.stat_id
+            end
+        end
+
+        reference = {}
+        all_activities.to_set.each do |stat_id|
+
+            reference[stat_id] = {
+                model:  Stat[stat_id],
+                activities: Activity.filter({stat_id: stat_id}).order(:id)
+            }
+        end
+
         # halt 404 unless model
-        erb :category, :locals => {rows: rows}
+        erb :category, :locals => {rows: rows, activities: activities, reference: reference}
     end
     # get "/" do
     #     cache_control :no_cache, :max_age => 0

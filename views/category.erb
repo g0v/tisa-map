@@ -5,10 +5,27 @@
 <body>
 	<% rows.each do |id, i| %>
 		第<%= id %>列<br/>
-		譯文 原文
+		譯文 原文<br/>
 
-		<%= i.category_id %><%= i.name %>
+		<%= i.category_id %><%= i.name %><br/>
+		<% activities[id].each do |activity| %>
+			<%= (activity.stat_id)? activity.stat_id : '' %>
+			<%= activity.description %><br/>
+		<% end %>
 		<br/><br/>
+	<% end %>
+
+	<h2>中華民國行業標準分類參照</h2>
+	<% reference.each do |stat_id, i| %>
+		<% p i %>
+		<h3><a href="http://app1.stat.gov.tw/indu/wform?funcid=I-7-M&rev=9&id=<%= stat_id %>" target="_blank"><%= i[:model].id %> <%= i[:model].name %></a><br/></h3>
+		<%= i[:model].description %>
+		<h4>主要經濟活動</h4>
+		<ul>
+			<% i[:activities].each do |activity| %>
+				<li><%= activity.name %></li>
+			<% end %>
+		</ul>
 	<% end %>
 </body>
 </html>

@@ -1,2 +1,2 @@
-class AnnouncedStats < Sequel::Model
+class AnnouncedStat < Sequel::Model
 end
