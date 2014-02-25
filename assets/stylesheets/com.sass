@@ -1,0 +1,32 @@
+@import compass
+@import com-variables
+@import bootstrap
+
+$base-font-size: $font-size-base
+$base-line-height: $font-size-base * $line-height-base
++establish-baseline
+
+$topbar-height: 67px
+#topbar
+  background: $gray
+  height: $topbar-height
+  text-align: right
+  img
+    margin-top: ($topbar-height - image-height('com/fake-share.png'))/2
+    margin-right: 20px
+
+.banner
+  height: 360px
+  background: image-url('com/labor.png') center 177px no-repeat, image-url('com/stripes.png') center top no-repeat
+  background-color: #ffac02
+
+  img
+    margin-top: $topbar-height * -1
+
+.query
+  +leader(5)
+  +trailer(5)
+
+  h1
+    +trailer(2, $font-size-h1)
+    letter-spacing: 5px

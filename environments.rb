@@ -5,6 +5,10 @@ DB = Sequel.connect(YAML.load_file("config/database.yml")["development"])
 Sequel::Model.plugin :json_serializer
 Sequel::Plugins::JsonSerializer.configure(Sequel::Model, naked: true)
 
+# Compass configuration
+Compass.configuration.images_dir = 'public/img'
+Compass.configuration.http_images_path = '/img'
+
 require_relative "models/stores"
 
 class App < Sinatra::Base
@@ -50,6 +54,10 @@ class App < Sinatra::Base
     post "/github/?" do
         fork { exec("sleep 5; /etc/init.d/tisa restart") }
         Oj.dump({status: "ok"})
+    end
+
+    get "/com" do
+        haml :com
     end
 
 end

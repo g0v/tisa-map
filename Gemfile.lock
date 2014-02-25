@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (3.3.3)
-    bootstrap-sass (2.3.2.2)
+    bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     chunky_png (1.2.8)
     compass (0.12.2)
@@ -25,7 +25,7 @@ GEM
       rack (>= 1.0)
     raindrops (0.11.0)
     rake (10.1.0)
-    sass (3.2.10)
+    sass (3.2.14)
     sequel (3.48.0)
     sinatra (1.4.3)
       rack (~> 1.4)
