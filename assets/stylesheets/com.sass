@@ -216,4 +216,21 @@ $topbar-height: 67px
   background-color: $gray-lighter
 
 #footer
+  position: relative
+  $footer-height: 100px
   background-color: $gray
+  color: #C7C7C7
+  height: $footer-height
+  overflow: hidden
+  
+  .copyright
+    line-height: $footer-height
+    margin: 0
+    span
+      margin-left: 20px
+      font-size: 16px 
+  .g0v
+    display: block
+    +replace-text-with-dimensions("com/g0v.png")
+    height: $footer-height
+
