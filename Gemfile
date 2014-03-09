@@ -7,6 +7,7 @@ gem 'pg'
 gem 'sequel'
 gem 'oj'
 gem 'haml'
+gem 'slim'
 gem 'unicorn'
 
 gem 'sprockets'
