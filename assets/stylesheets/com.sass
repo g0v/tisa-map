@@ -38,15 +38,19 @@ $topbar-height: 67px
     margin-top: ($topbar-height - image-height('com/fake-share.png'))/2
     margin-right: 20px
 
-.banner
-  height: 360px
-  background: image-url('com/labor.png') center 177px no-repeat, image-url('com/stripes.png') center top no-repeat
-  background-color: #ffac02
-
-  img
-    margin-top: $topbar-height * -1
-
 #query
+  .banner
+    background: #ffac02 image-url('com/stripes.png') center top no-repeat
+    height: image-height('com/stripes.png')
+
+    img
+      margin-top: $topbar-height * -1
+
+    @media (min-width: #{$screen-md})
+      height: 360px
+      background: image-url('com/labor.png') center 177px no-repeat, image-url('com/stripes.png') center top no-repeat
+      background-color: #ffac02
+
   .query-form
     +leader(5)
     +trailer(5)
