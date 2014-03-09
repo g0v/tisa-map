@@ -25,10 +25,11 @@ html
       header
         img[src='/img/com/comment.png']
         h2 針對服貿，你服不服？
-      p 請拖曳以下長條或直接點選你的意見
+
+      p.instruction 請在下面點選你的意見
 
       form.poll-form.container
-        div.poll-options.col-lg-10.col-lg-offset-1
+        div.row.poll-options: div.col-lg-10.col-lg-offset-1
           input#poll-0[type="radio" name="poll" value="0"]
           label[for="poll-0"]: span
             img[src="/img/com/fuck.png" alt="der <3"]
@@ -47,8 +48,8 @@ html
           label[for="poll-6"]: span
             | 超服
             img[src="/img/com/der.png" alt="der <3"]
-        div.row: div.col-lg-4.col-lg-offset-4
-          button.form-control[type="submit"] 送出意見看統計
+        div.row.poll-button-wrapper
+          button.col-xs-8.col-xs-offset-2.col-lg-4.col-lg-offset-4.btn.btn-primary[type="submit"] 送出意見看統計
     section#action
       / Use a 12-column grid nested in 10-column centered row
       / so that it does not look too awkward.

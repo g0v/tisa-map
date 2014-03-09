@@ -19,8 +19,15 @@ h3
   @media (min-width: #{$screen-md})
     +adjust-font-size-to($font-size-h3)
 
+// Overriding bootstrap btn font size
+.btn
+  +adjust-font-size-to(20px)
+  padding: 0.5em 1em
+  border: 0
+  letter-spacing: 1px
 
-
+.btn-primary:hover
+  background: lighten($brand-primary, 10%)
 
 $topbar-height: 67px
 #topbar
@@ -79,6 +86,10 @@ $topbar-height: 67px
 
     @media (min-width: #{$screen-md})
       +adjust-font-size-to($font-size-h2)
+
+  .instruction
+    +leader(2)
+    +trailer(2)
 
   .poll-options
     $item-count: 7
@@ -196,6 +207,10 @@ $topbar-height: 67px
 
         img
           opacity: 1
+
+  .poll-button-wrapper
+    +leader(2)
+    +trailer(3)
 
 #action
   background-color: $gray-lighter
