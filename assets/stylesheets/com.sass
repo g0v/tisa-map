@@ -52,4 +52,36 @@ $topbar-height: 67px
       +trailer(2)
 
 #poll
-  
+  header
+    background: $brand-info
+    position: relative // For the triangle
+    +padding-trailer(1)
+
+    // The CSS triangle
+    &:after
+      $size: 10px
+      border: $size solid transparent
+      border-top-color: $brand-info
+      content: ''
+      position: absolute
+      left: 50%
+      margin-left: $size * -1
+      bottom: $size * -2
+
+    // Image in header
+    img
+      margin-top: -65px
+
+  // Title of the poll section
+  h2
+    color: #fff
+    letter-spacing: 2px
+
+    @media (min-width: #{$screen-md})
+      +adjust-font-size-to($font-size-h2)
+
+#action
+  background-color: $gray-lighter
+
+#footer
+  background-color: $gray
