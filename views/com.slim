@@ -28,29 +28,21 @@ html
       p 請拖曳以下長條或直接點選你的意見
 
       form.poll-form.container
-        div.row
-          ul.poll-options.col-lg-10.col-lg-offset-1
-            li: label
-              input[type="radio" name="poll" value="0"]
-              | 不服
-            li: label
-              input[type="radio" name="poll" value="1"]
-              | 不胡啦
-            li: label
-              input[type="radio" name="poll" value="2"]
-              | 不太服
-            li: label
-              input[type="radio" name="poll" value="3"]
-              | 沒感覺
-            li: label
-              input[type="radio" name="poll" value="4"]
-              | 有點服
-            li: label
-              input[type="radio" name="poll" value="5"]
-              | 蠻酥胡
-            li: label
-              input[type="radio" name="poll" value="6"]
-              | 超服
+        div.poll-options.col-lg-10.col-lg-offset-1
+          input#poll-0[type="radio" name="poll" value="0"]
+          label[for="poll-0"]: span 不服
+          input#poll-1[type="radio" name="poll" value="1"]
+          label[for="poll-1"]: span 不胡啦
+          input#poll-2[type="radio" name="poll" value="2"]
+          label[for="poll-2"]: span 不太服
+          input#poll-3[type="radio" name="poll" value="3" checked]
+          label[for="poll-3"]: span 沒感覺
+          input#poll-4[type="radio" name="poll" value="4"]
+          label[for="poll-4"]: span 有點服
+          input#poll-5[type="radio" name="poll" value="5"]
+          label[for="poll-5"]: span 蠻酥胡
+          input#poll-6[type="radio" name="poll" value="6"]
+          label[for="poll-6"]: span 超服
         div.row: div.col-lg-4.col-lg-offset-4
           button.form-control[type="submit"] 送出意見看統計
     section#action

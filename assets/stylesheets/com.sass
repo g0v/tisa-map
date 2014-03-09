@@ -80,6 +80,110 @@ $topbar-height: 67px
     @media (min-width: #{$screen-md})
       +adjust-font-size-to($font-size-h2)
 
+  .poll-options
+    $item-count: 7
+    $segment-thickness: 15px
+    list-style-type: none
+
+    %segment
+      content: ''
+      position: absolute
+      top: 0
+      width: 50%
+      height: $segment-thickness
+      background: $brand-primary
+
+    label
+      width: 100%/$item-count
+      float: left
+      padding-top: 45px // Make room for segment
+      position: relative // For the "segment"s
+
+      // Prevent accedental line break due to percentage-pixel rounding error
+      &:last-child
+        float: right
+
+      // left-half of the segment
+      &:before
+        @extend %segment
+        left: 0
+
+      // right-half of the segment
+      &:after
+        @extend %segment
+        right: 0
+
+      // Hide left-most and right-most halves
+      &:first-of-type:before, &:last-of-type:after
+        display: none
+
+      // Round the segment ends
+      &:first-of-type:after
+        +border-left-radius(100px)
+
+      &:last-of-type:before
+        +border-right-radius(100px)
+
+    span
+      font-size: $font-size-h2-mobile
+      line-height: 1.2
+
+      @media (min-width: #{$screen-md})
+        font-size: $font-size-h2 + 10px // Slightly larger than polling header
+
+      width: 1em // Constraint the width to be 1-word wide.
+
+      // Restore the box-model because we need extra padding outside of 1em width.
+      +box-sizing(content-box)
+      padding: .25em
+
+      display: block
+      margin: 0 auto
+      cursor: pointer
+
+      // Decorative, little dots
+      &:after
+        $dot-size: 5px
+        content: ''
+        position: absolute // Containing block: <label>
+        right: $dot-size / -2
+        top: ($segment-thickness - $dot-size) / 2
+        width: $dot-size
+        height: $dot-size
+        border-radius: $dot-size
+        background: rgba(#000, .2)
+        z-index: 1
+
+    // Hide the decorative dot for last label
+    label:last-child span:after
+      display: none
+
+    // Hide the input
+    input
+      display: none
+
+    // Stated styles
+    input:checked ~ label
+      &:before, &:after
+        background: #ddd
+
+    input:checked + label
+      &:before
+        background: $brand-primary
+      span
+        &:before // The circle
+          $size: 26px
+          content: ''
+          position: absolute // Containing block: <label>
+          top: ($size - $segment-thickness) / -2
+          left: 50%
+          width: $size
+          height: $size
+          margin-left: $size / -2
+          background: darken($brand-primary, 5%)
+          border-radius: 100px
+          z-index: 1
+
 #action
   background-color: $gray-lighter
 
