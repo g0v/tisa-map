@@ -16,3 +16,10 @@ gem 'compass'
 gem 'sprockets-sass'
 gem 'bootstrap-sass'
 gem 'susy'
+
+group :development do
+  gem 'guard'
+  gem 'guard-livereload'
+  gem 'guard-shell'
+  gem 'rb-fsevent'
+end
