@@ -98,6 +98,7 @@ $topbar-height: 67px
       float: left
       padding-top: 45px // Make room for segment
       position: relative // For the "segment"s
+      cursor: pointer
 
       // Prevent accedental line break due to percentage-pixel rounding error
       &:last-child
@@ -127,6 +128,7 @@ $topbar-height: 67px
     span
       font-size: $font-size-h2-mobile
       line-height: 1.2
+      color: lighten(#acafaf, 15%)
 
       @media (min-width: #{$screen-md})
         font-size: $font-size-h2 + 10px // Slightly larger than polling header
@@ -139,7 +141,6 @@ $topbar-height: 67px
 
       display: block
       margin: 0 auto
-      cursor: pointer
 
       // Decorative, little dots
       &:after
@@ -153,6 +154,13 @@ $topbar-height: 67px
         border-radius: $dot-size
         background: rgba(#000, .2)
         z-index: 1
+
+      // Responsive image words
+      img
+        width: 100%
+        opacity: 0.5
+        position: relative
+        top: -.1em // Little hack to keep images and words aligned.
 
     // Hide the decorative dot for last label
     label:last-child span:after
@@ -171,6 +179,8 @@ $topbar-height: 67px
       &:before
         background: $brand-primary
       span
+        color: #acafaf
+
         &:before // The circle
           $size: 26px
           content: ''
@@ -183,6 +193,9 @@ $topbar-height: 67px
           background: darken($brand-primary, 5%)
           border-radius: 100px
           z-index: 1
+
+        img
+          opacity: 1
 
 #action
   background-color: $gray-lighter
