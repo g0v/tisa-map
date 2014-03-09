@@ -94,11 +94,11 @@ $topbar-height: 67px
   .instruction
     +leader(2)
     +trailer(2)
+    color: darken(#acafaf, 5%)
 
   .poll-options
     $item-count: 7
     $segment-thickness: 15px
-    list-style-type: none
 
     %segment
       content: ''
@@ -150,9 +150,11 @@ $topbar-height: 67px
 
       width: 1em // Constraint the width to be 1-word wide.
 
+      //For span selected background color change
       // Restore the box-model because we need extra padding outside of 1em width.
       +box-sizing(content-box)
       padding: .25em
+      +border-radius(8px)
 
       display: block
       margin: 0 auto
@@ -195,7 +197,7 @@ $topbar-height: 67px
         background: $brand-primary
       span
         color: #acafaf
-
+        background: #FEF8ED
         &:before // The circle
           $size: 26px
           content: ''
@@ -250,6 +252,7 @@ $topbar-height: 67px
     span
       margin-left: 20px
       font-size: 16px
+      letter-spacing: 1px
       vertical-align: sub
   .g0v
     +replace-text-with-dimensions("com/g0v.png")
