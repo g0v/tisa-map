@@ -210,10 +210,27 @@ $topbar-height: 67px
 
   .poll-button-wrapper
     +leader(2)
-    +trailer(3)
+    +trailer(2)
 
 #action
-  background-color: $gray-lighter
+  background-color: #AFAEAF
+  +padding-leader(2)
+  +padding-trailer(2)
+  .action-button-wrapper
+    height: 200px
+    &:first-child
+      background: image-url("com/left-worker.png") no-repeat center bottom
+    &:last-child
+      background: image-url("com/right-worker.png") no-repeat center bottom
+  .secondary
+    color: #fff
+    padding: 15px 0
+    border: 2px solid #fff
+
+    &:hover
+      background: lighten( #AFAEAF, 5%)
+
+
 
 #footer
   position: relative
@@ -228,9 +245,9 @@ $topbar-height: 67px
     margin: 0
     span
       margin-left: 20px
-      font-size: 16px 
+      font-size: 16px
+      vertical-align: sub
   .g0v
-    display: block
     +replace-text-with-dimensions("com/g0v.png")
     height: $footer-height
 

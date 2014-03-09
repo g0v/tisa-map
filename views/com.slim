@@ -32,7 +32,7 @@ html
         div.row.poll-options: div.col-lg-10.col-lg-offset-1
           input#poll-0[type="radio" name="poll" value="0"]
           label[for="poll-0"]: span
-            img[src="/img/com/fuck.png" alt="der <3"]
+            img[src="/img/com/fuck.png" alt="幹"]
             | 不服
           input#poll-1[type="radio" name="poll" value="1"]
           label[for="poll-1"]: span 不胡啦
@@ -51,23 +51,20 @@ html
         div.row.poll-button-wrapper
           button.col-xs-8.col-xs-offset-2.col-lg-4.col-lg-offset-4.btn.btn-primary[type="submit"] 送出意見看統計
     section#action
-      / Use a 12-column grid nested in 10-column centered row
-      / so that it does not look too awkward.
-      div.container: div.row.text-center: div.col-lg-10.col-lg-offset-1
-        div.row
-          div.action-button-wrapper.col-xs-6.col-lg-5
-            a.secondary.button 我想要對服貿採取行動
-          div.action-button-wrapper.col-xs-6.col-lg-5.col-lg-offset-2
-            a.secondary.button 我想更了解服貿
+      div.container: div.row.text-center
+        div.action-button-wrapper.col-xs-6.col-lg-4.col-lg-offset-1
+          a.secondary.btn.btn-block 我想要對服貿採取行動
+        div.action-button-wrapper.col-xs-6.col-lg-4.col-lg-offset-2
+            a.secondary.btn.btn-block 我想更了解服貿
 
     footer#footer: div.container
       div.row
         div.col-xs-8
           p.copyright
             img[src="/img/com/cc.png"]
-            span 2014 Creative Commons. Text / Image: CC 4.0 BY.
+            span 2014 Creative Commons. Attribution CC BY 4.0, Open Source in MIT ( X11 )
         div.col-xs-4
-          a.g0v [href="http://g0v.tw"] g0v
+          a.g0v.pull-right [href="http://g0v.tw"] g0v
 
     script[src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"]
     script[src="/assets/com.js" type="text/javascript"]
