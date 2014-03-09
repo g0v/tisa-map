@@ -6,6 +6,22 @@ $base-font-size: $font-size-base
 $base-line-height: $font-size-base * $line-height-base
 +establish-baseline
 
+h1
+  +adjust-font-size-to($font-size-h1-mobile)
+  @media (min-width: #{$screen-md})
+    +adjust-font-size-to($font-size-h1)
+h2
+  +adjust-font-size-to($font-size-h2-mobile)
+  @media (min-width: #{$screen-md})
+    +adjust-font-size-to($font-size-h2)
+h3
+  +adjust-font-size-to($font-size-h3-mobile)
+  @media (min-width: #{$screen-md})
+    +adjust-font-size-to($font-size-h3)
+
+
+
+
 $topbar-height: 67px
 #topbar
   background: $gray
@@ -28,5 +44,9 @@ $topbar-height: 67px
   +trailer(5)
 
   h1
-    +trailer(2, $font-size-h1)
     letter-spacing: 5px
+
+  input
+    +leader(2)
+    +trailer(2)
+
