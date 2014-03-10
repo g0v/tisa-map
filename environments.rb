@@ -1,4 +1,7 @@
+# encoding: utf-8
+
 require "bundler/setup"
+require "sinatra/content_for"
 require "slim"
 Bundler.require :default
 
@@ -23,6 +26,8 @@ require_relative "models/stats"
 class App < Sinatra::Base
 
     helpers Sinatra::JSON
+    helpers Sinatra::ContentFor
+
     set :json_encoder, :to_json
     enable :logging
 
@@ -142,8 +147,92 @@ class App < Sinatra::Base
         Oj.dump({status: "ok"})
     end
 
+    # 「你被服貿了嗎」homepage.
     get "/com" do
-        slim :com
+
+        # Nested templates: _layout > _query > index
+        slim :'com/_query', layout: :'com/_layout' do
+            slim :'com/index'
+        end
     end
 
+    # Display the search result for a specific keyword.
+    get "/com/search" do
+        keyword = params[:keyword]
+
+        # Database mock data
+        companies = [
+            {value: "54151855", text: "佈思股份有限公司"},
+            {value: "55555555", text: "科高股份有限公司"}
+        ]
+        categories = [
+            {value: "I301010", text: "資訊軟體服務業"},
+            {value: "I301011", text: "資訊軟體服務業2"},
+            {value: "I301012", text: "資訊軟體服務業3"}
+        ]
+
+        # Nested templates: _layout > _query > search
+        slim :'com/_query', layout: :'com/_layout' do
+            slim :'com/search', locals: {
+                keyword: keyword,
+                companies: companies,
+                categories: categories
+            }
+        end
+    end
+
+    # Display the company's categories.
+    get "/com/category/:id" do
+
+        # Database mock data
+        company = {
+            id: params[:id],
+            name: '佈思股份有限公司'
+        }
+        categories = [
+            {value: "I301010", text: "資訊軟體服務業"},
+            {value: "I301011", text: "資訊軟體服務業2"},
+            {value: "I301012", text: "資訊軟體服務業3"}
+        ]
+
+        slim :'com/_query', layout: :'com/_layout' do
+            slim :'com/category', locals: {
+                company: company,
+                categories: categories
+            }
+        end
+    end
+
+    # Display the comparison result for a company ID or industry ID
+    get "/com/?" do
+        company_id = params[:id]
+        categorie_ids = params[:cat]
+
+        # The categories that are affected.
+        # Database mock data
+        matched_categories = [
+            {value: "I301010", text: "資訊軟體服務業"},
+            {value: "I301011", text: "資訊軟體服務業2"},
+            {value: "I301012", text: "資訊軟體服務業3"}
+        ]
+
+        # Populate locals
+        locals = {
+            # Database mock data
+            categories: matched_categories
+        }
+        unless company_id.nil?
+            # Database mock data
+            locals[:company] = {
+                id: params[:id],
+                name: '佈思股份有限公司'
+            }
+        end
+
+        if matched_categories.empty?
+            slim :'com/result_not_affected', layout: :'com/_layout', locals: locals
+        else
+            slim :'com/result_affected', layout: :'com/_layout', locals: locals
+        end
+    end
 end

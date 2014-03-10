@@ -1,0 +1,27 @@
+div.query-form.text-center.container
+  .row
+    .col-lg-8.col-lg-offset-2
+      h1 你被服貿了嗎
+
+      - unless companies.empty?
+        p
+          | 您輸入了「
+          span.text-primary= keyword
+          | 」，可能是下列公司：
+        ul
+          - for company in companies
+            li
+              a[href="/com/category/#{ company[:value] }"]
+                = company[:text]
+
+      - unless categories.empty?
+        p
+          | 您輸入的「
+          span.text-primary= keyword
+          | 」可能是指下列行業別：
+        ul
+          - for category in categories
+            li
+              a[href="/com/?cat=#{ category[:value] }"]
+                = category[:text]
+

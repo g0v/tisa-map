@@ -1,0 +1,29 @@
+doctype 5
+html
+  head
+    meta[charset="utf-8"]
+    meta[name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"]
+    link[rel="stylesheet" href="/assets/com.css"]
+
+    meta[property="fb:app_id" content="394052710630453"]
+    meta[property="og:site_name" content="你被服貿了嗎"]
+    meta[property="og:locale" content="zh_TW"]
+    == yield_content :head
+
+  body
+    #topbar
+      img[src="/img/com/fake-share.png"]
+
+    == yield
+
+    footer#footer: div.container
+      div.row
+        div.col-xs-8
+          p.copyright
+            img[src="/img/com/cc.png"]
+            span 2014 Creative Commons. Attribution CC BY 4.0, Open Source in MIT (X11)
+        div.col-xs-4
+          a.g0v.pull-right [href="http://g0v.tw"] g0v
+
+    script[src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"]
+    script[src="/assets/com.js" type="text/javascript"]

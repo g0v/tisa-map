@@ -1,0 +1,20 @@
+form.query-form.text-center.container action="/com/" method="get"
+  .row
+    .col-lg-8.col-lg-offset-2
+      h1 你被服貿了嗎
+
+      input[type="hidden" name="id" value=company[:id]]
+
+      p
+        | 請選擇
+        span.text-primary= company[:name]
+        | 的主要業務類別（可複選）
+
+      ul
+        -for category in categories
+          li: label
+            input type="checkbox" name="cat[]" value=category[:value]
+            = category[:text]
+
+      button type="submit" 看結果
+

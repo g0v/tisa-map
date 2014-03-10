@@ -1,0 +1,9 @@
+- content_for :head
+  title 你被服貿了！
+
+p 你被服貿了~~
+
+- for category in categories
+  p= category[:text]
+
+== slim :'com/_poll'
