@@ -234,4 +234,13 @@ class App < Sinatra::Base
             slim :'com/result_affected', layout: :'com/_layout', locals: locals
         end
     end
+
+    # Satisfaction voting.
+    # Ajax API.
+    post '/com/poll' do
+
+        # Return an array of percentages.
+        # Database mock data
+        json({results: [67, 12, 2, 5, 6, 8, 0]})
+    end
 end

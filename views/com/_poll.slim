@@ -5,7 +5,7 @@ section#poll.text-center
 
   p.instruction 請在下面點選你的意見
 
-  form.poll-form.container
+  form.poll-form.container.fade.in
     div.row.poll-options: div.col-lg-10.col-lg-offset-1
       input#poll-0[type="radio" name="poll" value="0"]
       label[for="poll-0"]: span
@@ -26,7 +26,21 @@ section#poll.text-center
         | 超服
         img[src="/img/com/der.png" alt="der <3"]
     div.row.poll-button-wrapper
-      button.col-xs-8.col-xs-offset-2.col-lg-4.col-lg-offset-4.btn.btn-primary[type="submit"] 送出意見看統計
+      button.col-xs-8.col-xs-offset-2.col-lg-4.col-lg-offset-4.btn.btn-primary[type="submit" data-loading-text="送出中……"] 送出意見看統計
+
+  div.poll-result.fade
+    h3 統計結果
+
+    / The numerical data will be appended to the text if .result-data.
+    / There must be exactly 7 .result-data elements.
+    ul
+      li.result-data
+      li.result-data
+      li.result-data
+      li.result-data
+      li.result-data
+      li.result-data
+      li.result-data
 
 section#action
   div.container: div.row.text-center
@@ -34,3 +48,6 @@ section#action
       a.secondary.btn.btn-block 我想要對服貿採取行動
     div.action-button-wrapper.col-xs-6.col-lg-4.col-lg-offset-2
       a.secondary.btn.btn-block 我想更了解服貿
+
+- content_for :scripts
+  script[type="text/javascript" src="/assets/com_poll.js"]
