@@ -1,4 +1,5 @@
 require "bundler/setup"
+require "slim"
 Bundler.require :default
 
 DB = Sequel.connect(YAML.load_file("config/database.yml")["development"])
@@ -57,7 +58,7 @@ class App < Sinatra::Base
     end
 
     get "/com" do
-        haml :com
+        slim :com
     end
 
 end
