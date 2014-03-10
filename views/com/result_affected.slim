@@ -1,9 +1,23 @@
 - content_for :head
   title 你被服貿了！
 
-p 你被服貿了~~
+h2 服貿對你的影響
 
 - for category in categories
-  p= category[:text]
+  article
+
+    header
+      h3= category[:text]
+
+    section.tab-pane.fade.in.active[id="translated-#{category[:value]}"]
+      div= category[:translated]
+      aside: a[href="#original-#{category[:value]}" data-toggle="tab"] 原始條文
+
+    section.tab-pane.fade[id="original-#{category[:value]}"]
+      aside: a[href="#translated-#{category[:value]}" data-toggle="tab"] 返回
+      div= category[:original]
+
+    footer
+      a 告訴親友我被服貿了
 
 == slim :'com/_poll'

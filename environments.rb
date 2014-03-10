@@ -211,14 +211,13 @@ class App < Sinatra::Base
         # The categories that are affected.
         # Database mock data
         matched_categories = [
-            {value: "I301010", text: "資訊軟體服務業"},
-            {value: "I301011", text: "資訊軟體服務業2"},
-            {value: "I301012", text: "資訊軟體服務業3"}
+            {value: "I301010", text: "資訊軟體服務業", original: "這段目前是假字", translated: "這段是條文原文文言文"},
+            {value: "I301011", text: "資訊軟體服務業2", original: "這段目前是假字", translated: "這段是條文原文文言文"},
+            {value: "I301012", text: "資訊軟體服務業3", original: "這段目前是假字", translated: "這段是條文原文文言文"}
         ]
 
         # Populate locals
         locals = {
-            # Database mock data
             categories: matched_categories
         }
         unless company_id.nil?
