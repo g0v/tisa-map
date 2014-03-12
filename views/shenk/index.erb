@@ -4,7 +4,7 @@
 	<title></title>
 </head>
 <body>
-	<form action="<%= url("/search/") %>">
+	<form action="<%= url("/shenk/search/") %>">
 		<input type="text" name="keyword" class="main" placeholder="搜尋公司名稱"/>
 		<input type="submit">
 	</form>
@@ -13,8 +13,8 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script type="text/javascript">
-		VARS = <%= {ajaxUrl: url("/autocomplete")}.to_json %>
+		VARS = <%= {ajaxUrl: url("/shenk/autocomplete")}.to_json %>
 	</script>
-	<script type="text/javascript" src="/assets/application.js"></script>
+	<script type="text/javascript" src="/assets/shenk/shenk.js"></script>
 </body>
 </html>

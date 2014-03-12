@@ -24,8 +24,9 @@ class App < Sinatra::Base
     set :json_encoder, :to_json
     enable :logging
 
-    get "/" do
-        erb :index
+    # Shenk's query interface
+    get "/shenk" do
+        erb :'shenk/index'
     end
 
     def search(token)
@@ -47,28 +48,28 @@ class App < Sinatra::Base
         results[0..max]
     end
 
-    post "/autocomplete" do
+    post "/shenk/autocomplete" do
         token = params[:term]
         search(token).to_json
     end
 
-    get "/search/*" do
+    get "/shenk/search/*" do
         token = params[:keyword]
         results = search(token)
         if results.length == 0
             "not found"
         else
-            erb :search, :locals => {results: results}
+            erb :'shenk/search', :locals => {results: results}
         end
     end
 
-    get "/company/:taxid" do # 統一編號
+    get "/shenk/company/:taxid" do # 統一編號
         model = Company[params[:taxid]]
         halt 404 unless model
-        erb :company, :locals => {model: model}
+        erb :'shenk/company', :locals => {model: model}
     end
 
-    get "/category/:id" do
+    get "/shenk/category/:id" do
         models = AnnouncedCategory.filter({category_id: params[:id]})
         rows = {}
         activities = {}
@@ -97,23 +98,24 @@ class App < Sinatra::Base
         end
 
         # halt 404 unless model
-        erb :category, :locals => {rows: rows, activities: activities, reference: reference}
+        erb :'shenk/category', :locals => {rows: rows, activities: activities, reference: reference}
     end
-    # get "/" do
-    #     cache_control :no_cache, :max_age => 0
-    #     haml :index
-    # end
 
-    # get "/taxid/:taxid" do # 統一編號
-    #     json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
-    #               .first(taxid: params[:taxid])
-    # end
+    get "/" do
+        cache_control :no_cache, :max_age => 0
+        haml :index
+    end
 
-    # post "/taxid" do
-    # end
+    get "/taxid/:taxid" do # 統一編號
+        json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
+                  .first(taxid: params[:taxid])
+    end
 
-    # put "/taxid/:taxid" do
-    # end
+    post "/taxid" do
+    end
+
+    put "/taxid/:taxid" do
+    end
 
     get "/name/:name" do # 公司名稱
         json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
