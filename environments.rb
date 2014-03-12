@@ -163,7 +163,7 @@ class App < Sinatra::Base
         # Database mock data
         companies = [
             {value: "54151855", text: "佈思股份有限公司"},
-            {value: "55555555", text: "科高股份有限公司"}
+            {value: "55555555", text: "科高股份有限公司"},
         ]
         categories = [
             {value: "I301010", text: "資訊軟體服務業"},
@@ -192,7 +192,8 @@ class App < Sinatra::Base
         categories = [
             {value: "I301010", text: "資訊軟體服務業"},
             {value: "I301011", text: "資訊軟體服務業2"},
-            {value: "I301012", text: "資訊軟體服務業3"}
+            {value: "I301012", text: "資訊軟體服務業3"},
+            {value: "I30012", text: "資訊軟體服務業rrr"}
         ]
 
         slim :'com/_query', layout: :'com/_layout' do
