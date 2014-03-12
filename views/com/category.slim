@@ -1,4 +1,4 @@
-form.query-form.text-center.container action="/com/" method="get"
+form#category.query-form.text-center.container action="/com/" method="get"
   .row
     .col-lg-8.col-lg-offset-2
       h1 你被服貿了嗎
@@ -10,11 +10,12 @@ form.query-form.text-center.container action="/com/" method="get"
         span.text-primary= company[:name]
         | 的主要業務類別（可複選）
 
-      ul
-        -for category in categories
-          li: label
-            input type="checkbox" name="cat[]" value=category[:value]
-            = category[:text]
 
-      button type="submit" 看結果
+  div.row: ul.col-lg-10.col-lg-offset-1
+    -for category in categories
+      li
+        input id="lala-#{category[:value]}" type="checkbox" name="cat[]" value=category[:value]
+        label.btn.secondary for="lala-#{category[:value]}" = category[:text]
+
+  div.row: button.col-lg-3.col-centered.btn.btn-primary type="submit" 看結果
 
