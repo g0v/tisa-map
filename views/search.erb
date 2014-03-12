@@ -1,0 +1,13 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	你要找的是？
+	<ul>
+		<% results.each do |i| %>
+			<li><a href="<%= i[:url] %>"><%= i[:name] %></a></li>
+		<% end %>
+	</ul>
+</body>
+</html>
