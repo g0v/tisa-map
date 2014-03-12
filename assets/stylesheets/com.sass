@@ -6,6 +6,29 @@ $base-font-size: $font-size-base
 $base-line-height: $font-size-base * $line-height-base
 +establish-baseline
 
+h1
+  +adjust-font-size-to($font-size-h1-mobile)
+  @media (min-width: #{$screen-md})
+    +adjust-font-size-to($font-size-h1)
+h2
+  +adjust-font-size-to($font-size-h2-mobile)
+  @media (min-width: #{$screen-md})
+    +adjust-font-size-to($font-size-h2)
+h3
+  +adjust-font-size-to($font-size-h3-mobile)
+  @media (min-width: #{$screen-md})
+    +adjust-font-size-to($font-size-h3)
+
+// Overriding bootstrap btn font size
+.btn
+  +adjust-font-size-to(20px)
+  padding: 0.5em 1em
+  border: 0
+  letter-spacing: 1px
+
+.btn-primary:hover
+  background: lighten($brand-primary, 10%)
+
 $topbar-height: 67px
 #topbar
   background: $gray
@@ -15,18 +38,223 @@ $topbar-height: 67px
     margin-top: ($topbar-height - image-height('com/fake-share.png'))/2
     margin-right: 20px
 
-.banner
-  height: 360px
-  background: image-url('com/labor.png') center 177px no-repeat, image-url('com/stripes.png') center top no-repeat
-  background-color: #ffac02
+#query
+  .banner
+    background: #ffac02 image-url('com/stripes.png') center top no-repeat
+    height: image-height('com/stripes.png')
 
-  img
-    margin-top: $topbar-height * -1
+    img
+      margin-top: $topbar-height * -1
 
-.query
-  +leader(5)
-  +trailer(5)
+    @media (min-width: #{$screen-md})
+      height: 360px
+      background: image-url('com/labor.png') center 177px no-repeat, image-url('com/stripes.png') center top no-repeat
+      background-color: #ffac02
 
-  h1
-    +trailer(2, $font-size-h1)
-    letter-spacing: 5px
+  .query-form
+    +leader(5)
+    +trailer(5)
+
+    h1
+      letter-spacing: 5px
+
+    input
+      +leader(2)
+      +trailer(2)
+
+#poll
+  header
+    background: $brand-info
+    position: relative // For the triangle
+    +padding-trailer(1)
+
+    // The CSS triangle
+    &:after
+      $size: 10px
+      border: $size solid transparent
+      border-top-color: $brand-info
+      content: ''
+      position: absolute
+      left: 50%
+      margin-left: $size * -1
+      bottom: $size * -2
+
+    // Image in header
+    img
+      margin-top: -65px
+
+  // Title of the poll section
+  h2
+    color: #fff
+    letter-spacing: 2px
+
+    @media (min-width: #{$screen-md})
+      +adjust-font-size-to($font-size-h2)
+
+  .instruction
+    +leader(2)
+    +trailer(2)
+    color: darken(#acafaf, 5%)
+
+  .poll-options
+    $item-count: 7
+    $segment-thickness: 15px
+
+    %segment
+      content: ''
+      position: absolute
+      top: 0
+      width: 50%
+      height: $segment-thickness
+      background: $brand-primary
+
+    label
+      width: 100%/$item-count
+      float: left
+      padding-top: 45px // Make room for segment
+      position: relative // For the "segment"s
+      cursor: pointer
+
+      // Prevent accedental line break due to percentage-pixel rounding error
+      &:last-child
+        float: right
+
+      // left-half of the segment
+      &:before
+        @extend %segment
+        left: 0
+
+      // right-half of the segment
+      &:after
+        @extend %segment
+        right: 0
+
+      // Hide left-most and right-most halves
+      &:first-of-type:before, &:last-of-type:after
+        display: none
+
+      // Round the segment ends
+      &:first-of-type:after
+        +border-left-radius(100px)
+
+      &:last-of-type:before
+        +border-right-radius(100px)
+
+    span
+      font-size: $font-size-h2-mobile
+      line-height: 1.2
+      color: lighten(#acafaf, 15%)
+
+      @media (min-width: #{$screen-md})
+        font-size: $font-size-h2 + 10px // Slightly larger than polling header
+
+      width: 1em // Constraint the width to be 1-word wide.
+
+      //For span selected background color change
+      // Restore the box-model because we need extra padding outside of 1em width.
+      +box-sizing(content-box)
+      padding: .25em
+      +border-radius(8px)
+
+      display: block
+      margin: 0 auto
+
+      // Decorative, little dots
+      &:after
+        $dot-size: 5px
+        content: ''
+        position: absolute // Containing block: <label>
+        right: $dot-size / -2
+        top: ($segment-thickness - $dot-size) / 2
+        width: $dot-size
+        height: $dot-size
+        border-radius: $dot-size
+        background: rgba(#000, .2)
+        z-index: 1
+
+      // Responsive image words
+      img
+        width: 100%
+        opacity: 0.5
+        position: relative
+        top: -.1em // Little hack to keep images and words aligned.
+
+    // Hide the decorative dot for last label
+    label:last-child span:after
+      display: none
+
+    // Hide the input
+    input
+      display: none
+
+    // Stated styles
+    input:checked ~ label
+      &:before, &:after
+        background: #ddd
+
+    input:checked + label
+      &:before
+        background: $brand-primary
+      span
+        color: #acafaf
+        background: #FEF8ED
+        &:before // The circle
+          $size: 26px
+          content: ''
+          position: absolute // Containing block: <label>
+          top: ($size - $segment-thickness) / -2
+          left: 50%
+          width: $size
+          height: $size
+          margin-left: $size / -2
+          background: darken($brand-primary, 5%)
+          border-radius: 100px
+          z-index: 1
+
+        img
+          opacity: 1
+
+  .poll-button-wrapper
+    +leader(2)
+    +trailer(2)
+
+#action
+  background-color: #AFAEAF
+  +padding-leader(2)
+  +padding-trailer(2)
+  .action-button-wrapper
+    height: 200px
+    &:first-child
+      background: image-url("com/left-worker.png") no-repeat center bottom
+    &:last-child
+      background: image-url("com/right-worker.png") no-repeat center bottom
+  .secondary
+    color: #fff
+    padding: 15px 0
+    border: 2px solid #fff
+
+    &:hover
+      background: lighten( #AFAEAF, 5%)
+
+
+
+#footer
+  position: relative
+  $footer-height: 100px
+  background-color: $gray
+  color: #C7C7C7
+  height: $footer-height
+  overflow: hidden
+  
+  .copyright
+    line-height: $footer-height
+    margin: 0
+    span
+      margin-left: 20px
+      font-size: 16px
+      letter-spacing: 1px
+      vertical-align: sub
+  .g0v
+    +replace-text-with-dimensions("com/g0v.png")
+    height: $footer-height
+

@@ -1,0 +1,70 @@
+doctype 5
+html
+  head
+    meta[charset="utf-8"]
+    title 你被服貿了嗎？
+    meta[name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"]
+    link[rel="stylesheet" href="/assets/com.css"]
+
+  body
+
+    #topbar
+      img[src="/img/com/fake-share.png"]
+
+    section#query
+      header.banner.text-center
+        img.triangle[src="/img/com/triangle.png"]
+      form.query-form.text-center.container
+        .row
+          .col-lg-8.col-lg-offset-2
+            h1 你被服貿了嗎
+            input.form-control.input-lg[type="text" placeholder="請輸入你的職稱, 行業別, 或公司行號名稱"]
+            button.col-lg-4.col-lg-offset-4.btn.btn-primary 下一步
+
+    section#poll.text-center
+      header
+        img[src='/img/com/comment.png']
+        h2 針對服貿，你服不服？
+
+      p.instruction 請在下面點選你的意見
+
+      form.poll-form.container
+        div.row.poll-options: div.col-lg-10.col-lg-offset-1
+          input#poll-0[type="radio" name="poll" value="0"]
+          label[for="poll-0"]: span
+            img[src="/img/com/fuck.png" alt="幹"]
+            | 不服
+          input#poll-1[type="radio" name="poll" value="1"]
+          label[for="poll-1"]: span 不胡啦
+          input#poll-2[type="radio" name="poll" value="2"]
+          label[for="poll-2"]: span 不太服
+          input#poll-3[type="radio" name="poll" value="3" checked]
+          label[for="poll-3"]: span 沒感覺
+          input#poll-4[type="radio" name="poll" value="4"]
+          label[for="poll-4"]: span 有點服
+          input#poll-5[type="radio" name="poll" value="5"]
+          label[for="poll-5"]: span 蠻酥胡
+          input#poll-6[type="radio" name="poll" value="6"]
+          label[for="poll-6"]: span
+            | 超服
+            img[src="/img/com/der.png" alt="der <3"]
+        div.row.poll-button-wrapper
+          button.col-xs-8.col-xs-offset-2.col-lg-4.col-lg-offset-4.btn.btn-primary[type="submit"] 送出意見看統計
+    section#action
+      div.container: div.row.text-center
+        div.action-button-wrapper.col-xs-6.col-lg-4.col-lg-offset-1
+          a.secondary.btn.btn-block 我想要對服貿採取行動
+        div.action-button-wrapper.col-xs-6.col-lg-4.col-lg-offset-2
+            a.secondary.btn.btn-block 我想更了解服貿
+
+    footer#footer: div.container
+      div.row
+        div.col-xs-8
+          p.copyright
+            img[src="/img/com/cc.png"]
+            span 2014 Creative Commons. Attribution CC BY 4.0, Open Source in MIT (X11)
+        div.col-xs-4
+          a.g0v.pull-right [href="http://g0v.tw"] g0v
+
+    script[src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"]
+    script[src="/assets/com.js" type="text/javascript"]
