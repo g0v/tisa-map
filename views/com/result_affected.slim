@@ -10,12 +10,12 @@ section#affected
   h2.subtitle.text-center 服貿對你的影響
 
   - for category in categories
-    div.row: article.col-lg-10.col-lg-offset-1
+    div.row: article.item.col-lg-8.col-lg-offset-2
 
       header
         h3= category[:text]
 
-      section.tab-pane.fade.in.active[id="translated-#{category[:value]}"]
+      section.content.tab-pane.fade.in.active[id="translated-#{category[:value]}"]
         div= category[:translated]
         aside: a[href="#original-#{category[:value]}" data-toggle="tab"] 原始條文
 

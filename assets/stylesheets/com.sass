@@ -89,7 +89,7 @@ $topbar-height: 67px
   p
     font-size: 18px
     +leader(2)
-    +trailer(2)
+    +trailer()
 
   
 #affected
@@ -105,8 +105,23 @@ $topbar-height: 67px
     margin-top: image-height('com/title.png')/2 + image-height('com/thunder.png')/3
   
   .subtitle
-    margin-top: 100px
+    +leader(2)
+    +trailer(1)
 
+  .item
+    padding: 0
+    overflow: hidden
+    margin-top: 40px
+    border-radius: 6px
+    background: #fff
+
+    header
+      background: #DADADA
+      h3
+        margin: 0
+        padding: 0
+    .content
+      
 
 #poll
   header
