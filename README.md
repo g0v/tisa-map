@@ -59,9 +59,11 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
     id       | integer                | not null default nextval('store_id_seq'::regclass)
     location | geometry(Point,4326)   |
     name     | character varying(128) |
-    business | text                   |
     taxid    | character(8)           |
     address  | text                   |
+    categoies| text[]                 |
+    status   |                        |
+    owner    |                        |
 
 ## API
 
