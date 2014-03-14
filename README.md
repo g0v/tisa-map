@@ -65,6 +65,27 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
     status   |                        |
     owner    |                        |
 
+## Database Setup
+
+    $ brew install postgresql postgis # or run aptitude stuffs
+
+    $ psql postgres
+
+    postgres=# create user <username> with password <password>;
+    CREATE ROLE
+
+    postgres=# create database tisa;
+    CREATE DATABASE
+
+    tisa=# create extension postgis;
+    CREATE EXTENSION
+
+    tisa=# \dx # check postgis has been installed
+    Name   | Version |   Schema   |                             Description
+    ---------+---------+------------+---------------------------------------------------------------------
+    plpgsql | 1.0     | pg_catalog | PL/pgSQL procedural language
+    postgis | 2.1.1   | public     | PostGIS geometry, geography, and raster spatial types and functions
+
 ## API
 
 1. 以中心點和半徑搜尋 Point
