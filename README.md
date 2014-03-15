@@ -67,26 +67,21 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
 
 ## Database Setup
 
+Install postgresql
+
     $ brew install postgresql postgis # or run aptitude stuffs
 
     $ brew services start postgresql  # run postgresql on booting
 
-    $ psql postgres
+Setup postgresql
 
-    postgres=# create user <username> with password <password>;
-    CREATE ROLE
+    $ createuser tisa --superuser --encrypted --pwprompt
 
-    postgres=# create database tisa;
-    CREATE DATABASE
+    $ createdb tisa
 
-    tisa=# create extension postgis;
-    CREATE EXTENSION
+Run migration
 
-    tisa=# \dx # check postgis has been installed
-    Name   | Version |   Schema   |                             Description
-    ---------+---------+------------+---------------------------------------------------------------------
-    plpgsql | 1.0     | pg_catalog | PL/pgSQL procedural language
-    postgis | 2.1.1   | public     | PostGIS geometry, geography, and raster spatial types and functions
+    $ sequel config/database.yml -m migrations
 
 ## API
 
