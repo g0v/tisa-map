@@ -69,6 +69,8 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
 
     $ brew install postgresql postgis # or run aptitude stuffs
 
+    $ brew services start postgresql  # run postgresql on booting
+
     $ psql postgres
 
     postgres=# create user <username> with password <password>;
