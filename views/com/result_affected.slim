@@ -9,21 +9,31 @@ section#affected
 
   h2.subtitle.text-center 服貿對你的影響
 
-  - for category in categories
-    div.row: article.item.col-lg-8.col-lg-offset-2
+  div.container
+    - for category in categories
+      div.row: article.item.col-lg-10.col-lg-offset-1
 
-      header
-        h3= category[:text]
+        header
+          h3= category[:text]
 
-      section.content.tab-pane.fade.in.active[id="translated-#{category[:value]}"]
-        div= category[:translated]
-        aside: a[href="#original-#{category[:value]}" data-toggle="tab"] 原始條文
+        section.content.translate.active[id="translated-#{category[:value]}"]
+          div= category[:translated]
+          aside.text-center: a.btn-arrow-right[href="#original-#{category[:value]}" data-toggle="slide"] 原始條文
 
-      section.tab-pane.fade[id="original-#{category[:value]}"]
-        aside: a[href="#translated-#{category[:value]}" data-toggle="tab"] 返回
-        div= category[:original]
+        section.content.oringin[id="original-#{category[:value]}"]
+          aside.text-center: a.btn-arrow-left[href="#translated-#{category[:value]}" data-toggle="slide"] 返回
+          div= category[:original]
 
-      footer
-        a 告訴親友我被服貿了
+        footer
+          a 告訴親友我被服貿了
 
 == slim :'com/_poll'
+
+- content_for :scripts
+  | <script>
+      $(".item").on('click','a[data-toggle="slide"]',function(e) {
+        var prev = $( e.target.offsetParent );
+        var next = prev.prev('section') ? prev.next('section'):prev.prev('section') 
+        console.log(next);
+      })
+    </script>

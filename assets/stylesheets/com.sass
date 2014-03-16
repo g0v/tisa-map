@@ -89,10 +89,11 @@ $topbar-height: 67px
   p
     font-size: 18px
     +leader(2)
-    +trailer()
+    +trailer(2)
 
   
 #affected
+  $lighter-border: #EFEFEF
   .banner
     background: #AA3C3D image-url('com/clouds.png') center 30px no-repeat
     height: image-height('com/clouds.png') +60px
@@ -107,20 +108,113 @@ $topbar-height: 67px
   .subtitle
     +leader(2)
     +trailer(1)
-
+  .row:last-of-type .item
+    +trailer(6)
   .item
-    padding: 0
+    position: relative
     overflow: hidden
+    padding: 0
     margin-top: 40px
     border-radius: 4px
     background: #fff
 
     header
       background: #DADADA
+      padding-left: 3em
       h3
         margin: 0
-        padding: 0
+        padding: 1.12em 0
+        font-size: 18px
+
     .content
+      display: none
+      position: relative
+      left: -100%
+      &:last-of-type
+        left: 100%
+      padding: 2.8em 3em 1em
+      +transition(.6s ease-in-out left)
+      div
+        display: inline-block
+        width: 80%
+        padding-bottom: 2.4em
+        
+      aside
+        display: inline-block
+        width: 20%
+        vertical-align: top
+
+      &.active
+        display: block
+        left: 0
+    
+    .translate div
+      border-right: 1px solid $lighter-border
+      padding-right: 4%
+    .oringin div
+      border-left: 1px solid $lighter-border
+      padding-left: 4%
+    
+    
+
+    %arrow-btn
+      display: inline-block
+      position: relative
+      padding: 12px 15px
+      width: 75%
+      line-height: 16px
+      background: $brand-primary
+      color: #fff
+      &:hover
+        text-decoration: none
+        background: lighten($brand-primary, 10%)
+      
+      
+    @each $direction in left, right
+      .btn-arrow-#{$direction}
+        @extend %arrow-btn
+        &:after
+          content: ''
+          display: inline-block
+          position: absolute
+          top: 0
+          #{$direction}: -(16+24)+px 
+          border: ((16+24)/2)+px solid transparent
+          @if $direction == left
+            border-right: ((16+24)/2)+px solid $brand-primary
+          @else if $direction == right
+            border-left: ((16+24)/2)+px solid $brand-primary
+        
+        &:hover:after
+          @if $direction == left
+            border-right: ((16+24)/2)+px solid lighten($brand-primary, 10%)
+          @else if $direction == right
+            border-left: ((16+24)/2)+px solid lighten($brand-primary, 10%)
+
+    footer 
+      margin: 0 2.4em
+      padding: 1em
+      padding-left: 2em
+      border-top: 1px solid $lighter-border
+      a
+        $share-width: image-width("com/share.png")
+        $share-height:  image-height("com/share.png")
+        line-height: $share-height
+        position: relative
+        cursor: pointer
+        color: $gray-light
+
+        &:before
+          content: ''
+          display: block
+          position: absolute
+          left: -($share-width + 10)
+          vertical-align: middle
+          top: 50%
+          margin-top: -($share-height/2 + 1 )
+          background: image-url("com/share.png") no-repeat
+          width: $share-width
+          height: $share-height
       
 
 #poll
