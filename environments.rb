@@ -3,6 +3,7 @@ require "slim"
 Bundler.require :default
 
 DB = Sequel.connect(YAML.load_file("config/database.yml")["development"])
+DB.extension :pg_array
 Sequel::Model.plugin :json_serializer
 Sequel::Plugins::JsonSerializer.configure(Sequel::Model, naked: true)
 
@@ -33,8 +34,8 @@ class App < Sinatra::Base
     def search(token)
         results = Company.filter("name LIKE ? ", "%#{token}%").order(:name).map do |i|
             {
-                pos: Regexp.new(Regexp.escape(token)) =~ i.name, 
-                name: i.name, 
+                pos: Regexp.new(Regexp.escape(token)) =~ i.name,
+                name: i.name,
                 url: url("company/#{i.id}")
             }
         end
@@ -42,7 +43,7 @@ class App < Sinatra::Base
         (0..max).each do |i|
             results.each_with_index do |item, idx|
                 if results[i][:pos].nil? || (!item[:pos].nil? && item[:pos] > results[i][:pos])
-                    results[i], results[idx] = results[idx], results[i] 
+                    results[i], results[idx] = results[idx], results[i]
                 end
             end
         end
