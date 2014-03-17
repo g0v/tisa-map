@@ -3,6 +3,7 @@
 require "bundler/setup"
 require "sinatra/content_for"
 require "slim"
+require 'cgi'
 Bundler.require :default
 
 DB = Sequel.connect(YAML.load_file("config/database.yml")["development"])
@@ -27,6 +28,11 @@ class App < Sinatra::Base
 
     helpers Sinatra::JSON
     helpers Sinatra::ContentFor
+    helpers do
+        def com_like_url
+            CGI.unescape url("/com")
+        end
+    end
 
     set :json_encoder, :to_json
     enable :logging
@@ -207,7 +213,7 @@ class App < Sinatra::Base
     # Display the comparison result for a company ID or industry ID
     get "/com/?" do
         company_id = params[:id]
-        categorie_ids = params[:cat]
+        category_ids = params[:cat]
 
         # The categories that are affected.
         # Database mock data
@@ -218,9 +224,12 @@ class App < Sinatra::Base
             {value: "I301012", text: "資訊軟體服務業3", original: "這段目前是假字這段目前是假字", translated: "這段是條文原文文言文"}
         ]
 
+        share_url = url("/com/?id=#{company_id}&#{category_ids.map{|c| 'cat[]='+c}.join('&')}")
+
         # Populate locals
         locals = {
-            categories: matched_categories
+            categories: matched_categories,
+            share_url: CGI.escape(share_url)
         }
         unless company_id.nil?
             # Database mock data

@@ -40,9 +40,17 @@ $topbar-height: 67px
   background: $gray
   height: $topbar-height
   text-align: right
-  img
-    margin-top: ($topbar-height - image-height('com/fake-share.png'))/2
-    margin-right: 20px
+
+  .like-button
+    $iframe-height: 21px
+    float: right
+    border: none
+    overflow: hidden
+    height: 21px
+    width: 150px
+    margin-top: ($topbar-height - $iframe-height)/2
+
+    +filter(grayscale(100%) contrast(60%))
 
 #query
   .banner
