@@ -18,10 +18,10 @@ section#affected
 
         section.content.translate.active[id="translated-#{category[:value]}"]
           div= category[:translated]
-          aside.text-center: a.btn-arrow-right[href="#original-#{category[:value]}" data-toggle="slide"] 原始條文
+          aside.text-center: a.btn-arrow-right[href="#original-#{category[:value]}" data-toggle="tab"] 原始條文
 
         section.content.oringin[id="original-#{category[:value]}"]
-          aside.text-center: a.btn-arrow-left[href="#translated-#{category[:value]}" data-toggle="slide"] 返回
+          aside.text-center: a.btn-arrow-left[href="#translated-#{category[:value]}" data-toggle="tab"] 返回
           div= category[:original]
 
         footer
@@ -31,9 +31,9 @@ section#affected
 
 - content_for :scripts
   | <script>
-      $(".item").on('click','a[data-toggle="slide"]',function(e) {
-        var prev = $( e.target.offsetParent );
-        var next = prev.prev('section') ? prev.next('section'):prev.prev('section') 
-        console.log(next);
-      })
+      // $(".item").on('click','a[data-toggle="slide"]',function(e) {
+      //   var prev = $( e.target.offsetParent );
+      //   var next = prev.prev('section') ? prev.next('section'):prev.prev('section') 
+      //   console.log(next);
+      // })
     </script>

@@ -109,7 +109,7 @@ $topbar-height: 67px
     +leader(2)
     +trailer(1)
   .row:last-of-type .item
-    +trailer(6)
+    +trailer(7)
   .item
     position: relative
     overflow: hidden
@@ -147,6 +147,10 @@ $topbar-height: 67px
       &.active
         display: block
         left: 0
+
+      &.next
+        position: absolute
+        display: block
     
     .translate div
       border-right: 1px solid $lighter-border
@@ -251,6 +255,32 @@ $topbar-height: 67px
     +trailer(2)
     color: darken(#acafaf, 5%)
 
+  
+  %vertical-line
+    font-size: $font-size-h2-mobile
+    line-height: 1.2
+    color: lighten(#acafaf, 15%)
+
+    @media (min-width: #{$screen-md})
+      font-size: $font-size-h2 + 10px // Slightly larger than polling header
+
+    width: 1em // Constraint the width to be 1-word wide.
+
+    //For span selected background color change
+    // Restore the box-model because we need extra padding outside of 1em width.
+    +box-sizing(content-box)
+    padding: .25em
+    +border-radius(8px)
+
+    display: block
+    margin: 0 auto
+    // Responsive image words
+    img
+      width: 100%
+      opacity: 0.5
+      position: relative
+      top: -.1em // Little hack to keep images and words aligned.
+
   .poll-options
     $item-count: 7
     $segment-thickness: 15px
@@ -294,25 +324,9 @@ $topbar-height: 67px
 
       &:last-of-type:before
         +border-right-radius(100px)
-
+    
     span
-      font-size: $font-size-h2-mobile
-      line-height: 1.2
-      color: lighten(#acafaf, 15%)
-
-      @media (min-width: #{$screen-md})
-        font-size: $font-size-h2 + 10px // Slightly larger than polling header
-
-      width: 1em // Constraint the width to be 1-word wide.
-
-      //For span selected background color change
-      // Restore the box-model because we need extra padding outside of 1em width.
-      +box-sizing(content-box)
-      padding: .25em
-      +border-radius(8px)
-
-      display: block
-      margin: 0 auto
+      @extend %vertical-line
 
       // Decorative, little dots
       &:after
@@ -327,12 +341,7 @@ $topbar-height: 67px
         background: rgba(#000, .2)
         z-index: 1
 
-      // Responsive image words
-      img
-        width: 100%
-        opacity: 0.5
-        position: relative
-        top: -.1em // Little hack to keep images and words aligned.
+      
 
     // Hide the decorative dot for last label
     label:last-child span:after
@@ -372,6 +381,19 @@ $topbar-height: 67px
   .poll-button-wrapper
     +leader(2)
     +trailer(2)
+  
+  .result-set
+    
+
+  .result-data
+    $item-count: 7
+    list-style: none
+    width: 100%/$item-count
+    float: left
+    padding-top: 45px // Make room for segment
+    position: relative // For the "segment"s
+    span
+      @extend %vertical-line
 
 #action
   background-color: #AFAEAF
