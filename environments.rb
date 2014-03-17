@@ -36,7 +36,7 @@ class App < Sinatra::Base
             {
                 pos: Regexp.new(Regexp.escape(token)) =~ i.name,
                 name: i.name,
-                url: url("company/#{i.id}")
+                url: url("shenk/company/#{i.id}")
             }
         end
         max = (results.length > 5)? 5: results.length - 1
