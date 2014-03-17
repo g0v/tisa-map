@@ -231,17 +231,28 @@ class App < Sinatra::Base
             categories: matched_categories,
             share_url: CGI.escape(share_url)
         }
-        unless company_id.nil?
-            # Database mock data
-            locals[:company] = {
-                id: params[:id],
-                name: '佈思股份有限公司'
-            }
-        end
 
         if matched_categories.empty?
+            locals[:og] = {
+                title: "我沒有被服貿！",
+                desc: "那你有沒有被服貿呢？快來看看吧！"
+            }
             slim :'com/result_not_affected', layout: :'com/_layout', locals: locals
         else
+            category_names = matched_categories.map{|c| c[:text]}.join '、'
+            if company_id.nil?
+                locals[:og] = {
+                    title: "我被服貿了！",
+                    desc: "服貿將會影響到#{category_names}，快來看看實際影響內容！"
+                }
+            else # Have company
+                # Database mock data
+                company_name = '佈思股份有限公司'
+                locals[:og] = {
+                    title: "#{company_name}被服貿了！",
+                    desc: "#{company_name}會被服貿影響的營業項目為#{category_names}，快來看看實際影響內容！"
+                }
+            end
             slim :'com/result_affected', layout: :'com/_layout', locals: locals
         end
     end

@@ -1,9 +1,12 @@
 - content_for :head
   title 你被服貿了！
+  meta[property="og:image" content=url("/img/com/og-affected.png")]
+  meta[property="og:title" content=og[:title]]
+  meta[property="og:description" content=og[:desc]]
 
 section#affected
   header.banner.text-center: div.container: div.row
-    
+
     span.warning.col-lg-8.col-lg-offset-2: img[src="/img/com/title.png"] 你被服貿了
     span.thunder.col-lg-2: img[src="/img/com/thunder.png"]
 
