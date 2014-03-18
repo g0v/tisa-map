@@ -69,9 +69,13 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
 
 Install postgresql
 
-    $ brew install postgresql postgis # or run aptitude stuffs
+    $ brew install postgresql postgis
 
     $ brew services start postgresql  # run postgresql on booting
+
+Or
+
+    $ sudo aptitude install postgresql-9.3 postgresql-9.3-postgis-2.1
 
 Setup postgresql
 
@@ -82,6 +86,14 @@ Setup postgresql
 Run migration
 
     $ sequel config/database.yml -m migrations
+
+Allow external access
+
+    # /etc/postgresql/9.3/main/pg_hba.conf
+    host    all   all   0.0.0.0/0   md5
+
+    # /etc/postgresql/9.3/main/postgresql.conf
+    listen_addresses = '*'
 
 ## API
 
