@@ -50,6 +50,8 @@ class App < Sinatra::Base
                 url: url("shenk/company/#{i.id}")
             }
         end
+
+        # 5 times per search, sort by position
         max = (results.length > 5)? 5: results.length - 1
         (0..max).each do |i|
             results.each_with_index do |item, idx|
@@ -162,9 +164,32 @@ class App < Sinatra::Base
         end
     end
 
+    def search_company(token)
+        results = Company.filter("name LIKE ? ", "%#{token}%").order(:name).map do |i|
+            {
+                pos: Regexp.new(Regexp.escape(token)) =~ i.name,
+                value: i.name,
+                id: i.id
+            }
+        end
+
+        # 5 response at most
+        max = (results.length > 5)? 5: results.length - 1
+        (0..max).each do |i|
+            results.each_with_index do |item, idx|
+                if results[i][:pos].nil? || (!item[:pos].nil? && item[:pos] > results[i][:pos])
+                    results[i], results[idx] = results[idx], results[i]
+                end
+            end
+        end
+        results[0..max]
+    end
+
     # Display the search result for a specific keyword.
     get "/com/search" do
         keyword = params[:keyword]
+
+        company_results = search_company(keyword)
 
         # Database mock data
         companies = [
@@ -187,8 +212,13 @@ class App < Sinatra::Base
         end
     end
 
+    # Autocomplete
+    get "/com/complete/:term" do
+        search_company(params[:term]).to_json
+    end
+
     # Display the company's categories.
-    get "/com/category/:id" do
+    get "/com/company/:id" do
 
         # Database mock data
         company = {
