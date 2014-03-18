@@ -7,6 +7,7 @@ require "pg"
 require "sequel"
 
 ::DB = Sequel.connect("postgres://tisa:tisamap@localhost/tisa")
+Sequel.extension :core_extensions
 DB.extension :pg_array
 
 class Company < Sequel::Model
@@ -26,7 +27,7 @@ File.open(ARGV[0], "r").each_with_index do |line, index|
                         end
 
     json["address"]   = json["公司所在地"]
-    json["categoies"] = if json["所營事業資料"].is_a?(Array)
+    json["categories"]= if json["所營事業資料"].is_a?(Array)
                           json["所營事業資料"].map { |item|
                             if item.is_a?(Array)
                               item[1]
@@ -41,9 +42,9 @@ File.open(ARGV[0], "r").each_with_index do |line, index|
     json["owner"]     = json["代表人姓名"]
 
     if json["name"]
-      company = Company.new(json.slice("taxid", "name", "address", "categoies", "status", "owner")).save
+      company = Company.new(json.slice("taxid", "name", "address", "categories", "status", "owner")).save
       puts company.taxid
-    # puts Oj.dump(json.slice("taxid", "name", "status", "address", "categoies"))
+    # puts Oj.dump(json.slice("taxid", "name", "status", "address", "categories"))
     end
 
 end

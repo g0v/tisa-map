@@ -7,7 +7,7 @@ Sequel.migration do
       column      :taxid,       String,     null: false,    unique: true,   size: 8,    fixed: true,    index: true
       column      :name,        String,     size: 128
       column      :address,     String,     text: true
-      column      :categoies,   "text[]",   null: false
+      column      :categories,  "text[]",   null: false
       column      :status,      String,     size: 128
       column      :owner,       String,     size: 128
     end
