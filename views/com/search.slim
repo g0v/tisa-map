@@ -11,7 +11,7 @@ div.query-form.text-center.container
         ul
           - for company in companies
             li
-              a[href="/com/company/#{ company[:id] }"]
+              a.btn.secondary[href="/com/company/#{ company[:id] }"]
                 = company[:value]
 
       - unless categories.empty?
@@ -22,6 +22,6 @@ div.query-form.text-center.container
         ul
           - for category in categories
             li
-              a[href="/com/?cat=#{ category[:id] }"]
+              a.btn.secondary[href="/com/?cat[]=#{ category[:id] }"]
                 = "#{category[:id]} #{category[:value]}"
 

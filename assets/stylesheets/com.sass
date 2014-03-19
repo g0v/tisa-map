@@ -52,7 +52,28 @@ $topbar-height: 67px
 
     +filter(grayscale(100%) contrast(60%))
 
+%label-selections
+  p
+    font-size: 18px
+    +leader(2)
+    +trailer(2)
+  ul
+    padding: 0 0 40px
+    text-align: center
+  li
+    list-style: none
+    margin: 6px 10px
+    display: inline-block
+
+  .secondary
+    background: #E6E6E6
+    border: 2px solid transparent
+    color: $text-color
+    +link-colors($text-color, #000)
+
 #query
+  @extend %label-selections
+
   .banner
     background: #ffac02 image-url('com/stripes.png') center top no-repeat
     height: image-height('com/stripes.png')
@@ -76,30 +97,18 @@ $topbar-height: 67px
       +leader(2)
       +trailer(2)
 
+  
+
 #category
-  .secondary
-    background: #E6E6E6
-    border: 2px solid transparent
+  @extend %label-selections
 
   input[type=checkbox]
     display: none
 
   input[type=checkbox]:checked + label
     border: 2px solid $brand-primary
-  ul
-    padding: 0 0 40px
-    text-align: center
-  li
-    list-style: none
-    margin: 6px 10px
-    display: inline-block 
 
-  p
-    font-size: 18px
-    +leader(2)
-    +trailer(2)
 
-  
 #affected
   $lighter-border: #EFEFEF
   .banner
