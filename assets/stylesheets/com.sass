@@ -348,7 +348,7 @@ $topbar-height: 67px
 
       &:last-of-type:before
         +border-right-radius(100px)
-    
+
     span
       @extend %vertical-line
 
@@ -405,19 +405,34 @@ $topbar-height: 67px
   .poll-button-wrapper
     +leader(2)
     +trailer(2)
-  
-  .result-set
-    
 
-  .result-data
+  .poll-result
+    +trailer(3) // The space the "submit" button occupies in .poll-form
+
+  .result-set li
     $item-count: 7
     list-style: none
     width: 100%/$item-count
     float: left
-    padding-top: 45px // Make room for segment
-    position: relative // For the "segment"s
     span
       @extend %vertical-line
+
+  // Where piechart populates
+  .result-data
+    width: 100%
+    position: relative // For :after
+    &:after
+      position: absolute
+      width: 100%
+      left: 0
+      height: 60px
+      line-height: 60px
+      top: 50%
+      margin-top: -30px
+      content: attr(data-percent)
+
+    canvas
+      width: 100%
 
 #action
   background-color: #AFAEAF

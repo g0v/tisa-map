@@ -1,6 +1,10 @@
+//= require jquery.easypiechart
+
 (function($){
   "use strict";
+
   var
+    RESULT_DURATION = 1000, // ms of animation duration
     $section = $('#poll'),
     $form = $('.poll-form'),
     $result = $('.poll-result'),
@@ -10,17 +14,31 @@
   $form.submit(function(e){
     $button.button('loading');
     $.post('/com/poll', $form.serialize(), function(data){
-      // TODO: dealing with results
-      console.log('JSON Response', data);
+      // console.log('JSON Response', data);
+      // Initialize easyPieChart
+      $result.find('.result-data').easyPieChart({
+        animate: RESULT_DURATION
+      });
+
+      // Put percentage data into .result-data one-by-one
       $result.find('.result-data').each(function(idx, elem){
-        $(elem).text(data.results[idx] + '%');
+        var percentage = data.results[idx],
+        $elem = $(elem);
+
+        $({percent: 0}).animate({percent: percentage}, {
+          duration: RESULT_DURATION,
+          step: function(val){
+            $elem.attr('data-percent', val.toFixed(1)+'%')
+          }
+        })
+        $elem.data('easyPieChart').update(percentage);
       });
 
       $button.button('reset');
 
       // Swapping the form and result using bootstrap class.
-      $form.removeClass('in');
-      $result.addClass('in');
+      $form.addClass('hide');
+      $result.removeClass('hide');
     }, 'json');
     e.preventDefault();
   })
