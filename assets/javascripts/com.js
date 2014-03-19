@@ -5,7 +5,9 @@
 (function($){
   "use strict";
 
-  var companyCache = {}, lastXhr;
+  var
+  companyCache = {}, // Autocomplete cache
+  lastXhr; // Autocomplete jqXHR object
 
   $('#autocomplete').autocomplete({
     source: function(query, resp){
@@ -32,8 +34,8 @@
     }
   });
 
+  // Setting up autocomplete style
   var meta = $('#autocomplete').data('uiAutocomplete')
-
   if(meta){
     meta._renderItem = function(ul, item){
       var re = new RegExp("(" + this.term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + ")", "gi"),
