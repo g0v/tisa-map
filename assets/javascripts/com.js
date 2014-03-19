@@ -56,6 +56,9 @@
     }
   }
 
-
+  // Result page slider toggle
+  $('.js-slider-toggle').click(function(){
+    $(this).parents('.js-slider-container').toggleClass('is-toggled');
+  });
 
 }(jQuery));

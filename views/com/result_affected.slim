@@ -26,24 +26,16 @@ section#affected
               a[href="#" title="對照表"]  ⊜ 
               a[href="#"] CPC845+849 其他
 
-        section.content.translate.active[id="translated-#{category[:id]}"]
-          div= category[:translated]
-          aside.text-center: a.btn-arrow-right[href="#original-#{category[:id]}" data-toggle="tab"] 原始條文
+        div.js-slider-container
+          section.content.translate
+            div= category[:translated]
+            aside.text-center: button.btn-arrow-right.js-slider-toggle 原始條文
 
-        section.content.oringin[id="original-#{category[:id]}"]
-          aside.text-center: a.btn-arrow-left[href="#translated-#{category[:id]}" data-toggle="tab"] 返回
-          div= category[:original]
+          section.content.oringin
+            aside.text-center: button.btn-arrow-left.js-slider-toggle 返回
+            div= category[:original]
 
         footer
           a[href="https://www.facebook.com/sharer/sharer.php?u=#{share_url}" target="_blank"] 告訴親友我被服貿了
 
 == slim :'com/_poll'
-
-- content_for :scripts
-  | <script>
-      // $(".item").on('click','a[data-toggle="slide"]',function(e) {
-      //   var prev = $( e.target.offsetParent );
-      //   var next = prev.prev('section') ? prev.next('section'):prev.prev('section') 
-      //   console.log(next);
-      // })
-    </script>

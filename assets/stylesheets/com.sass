@@ -119,6 +119,7 @@ $topbar-height: 67px
   .row:last-of-type .item
     +trailer(7)
   .item
+    +translateZ(0) // Prevent repainting initiated by togging other items
     position: relative
     overflow: hidden
     padding: 0
@@ -135,13 +136,7 @@ $topbar-height: 67px
         font-size: 18px
 
     .content
-      display: none
-      position: relative
-      left: -100%
-      &:last-of-type
-        left: 100%
       padding: 2.8em 3em 1em
-      +transition(.6s ease-in-out left)
       div
         display: inline-block
         width: 80%
@@ -177,6 +172,7 @@ $topbar-height: 67px
       line-height: 16px
       background: $brand-primary
       color: #fff
+      border: 0
       &:hover
         text-decoration: none
         background: lighten($brand-primary, 10%)
@@ -227,7 +223,27 @@ $topbar-height: 67px
           background: image-url("com/share.png") no-repeat
           width: $share-width
           height: $share-height
-      
+
+// Javascript js slider
+.js-slider-container
+  width: 200%
+  +clearfix
+
+  // Animate using 2d transform to get better mobile support
+  +transform(translateZ(0) translate(0,0))
+  // +transform(translate3d(0,0,0))
+  +transition(0.6s ease-in-out transform)
+  +transition(0.6s ease-in-out -webkit-transform)
+
+  // The slider
+  > *
+    float: left
+    width: 50%
+
+  // The class toggled by Javascript
+  &.is-toggled
+    +transform(translateZ(0) translate(-50%,0))
+    // +transform(translate3d(-50%,0,0))
 
 #poll
   header
