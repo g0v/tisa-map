@@ -164,12 +164,13 @@ class App < Sinatra::Base
         end
     end
 
+    # Text-matching companies' name, given token.
     def search_company(token)
         results = Company.filter("name LIKE ? ", "%#{token}%").order(:name).map do |i|
             {
                 pos: Regexp.new(Regexp.escape(token)) =~ i.name,
                 value: i.name,
-                id: i.id
+                id: i.taxid
             }
         end
 
@@ -218,13 +219,11 @@ class App < Sinatra::Base
     end
 
     # Display the company's categories.
-    get "/com/company/:id" do
+    get "/com/company/:tax_id" do
+
+        company = Company.filter(taxid: params[:tax_id]).first
 
         # Database mock data
-        company = {
-            id: params[:id],
-            name: '佈思股份有限公司'
-        }
         categories = [
             {value: "I301010", text: "資訊軟體服務業"},
             {value: "I301011", text: "資訊軟體服務業2"},
