@@ -17,14 +17,15 @@ section#affected
       div.row: article.item.col-lg-10.col-lg-offset-1
 
         header
-          h3= category[:text]
+          h3
+            = "#{category[:id]} #{category[:value]}"
 
-        section.content.translate.active[id="translated-#{category[:value]}"]
+        section.content.translate.active[id="translated-#{category[:id]}"]
           div= category[:translated]
-          aside.text-center: a.btn-arrow-right[href="#original-#{category[:value]}" data-toggle="tab"] 原始條文
+          aside.text-center: a.btn-arrow-right[href="#original-#{category[:id]}" data-toggle="tab"] 原始條文
 
-        section.content.oringin[id="original-#{category[:value]}"]
-          aside.text-center: a.btn-arrow-left[href="#translated-#{category[:value]}" data-toggle="tab"] 返回
+        section.content.oringin[id="original-#{category[:id]}"]
+          aside.text-center: a.btn-arrow-left[href="#translated-#{category[:id]}" data-toggle="tab"] 返回
           div= category[:original]
 
         footer

@@ -14,8 +14,8 @@ form#category.query-form.text-center.container action="/com/" method="get"
   div.row: ul.col-lg-10.col-lg-offset-1
     -for category in categories
       li
-        input id="lala-#{category[:value]}" type="checkbox" name="cat[]" value=category[:value]
-        label.btn.secondary for="lala-#{category[:value]}" = category[:text]
+        input id="lala-#{category[:id]}" type="checkbox" name="cat[]" value=category[:id]
+        label.btn.secondary for="lala-#{category[:id]}" = "#{category[:id]} #{category[:value]}"
 
   div.row: button.col-lg-3.col-centered.btn.btn-primary type="submit" 看結果
 
