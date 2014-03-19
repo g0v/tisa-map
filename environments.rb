@@ -211,7 +211,7 @@ class App < Sinatra::Base
 
     # Autocomplete
     get "/com/complete/:term" do
-        search_company(params[:term]).to_json
+        search_company(params[:term]).map{|c| c[:type]="公司行號"; c}.to_json
     end
 
     # Display the company's categories.

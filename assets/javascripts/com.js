@@ -39,11 +39,11 @@
   if(meta){
     meta._renderItem = function(ul, item){
       var re = new RegExp("(" + this.term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + ")", "gi"),
-        word = item.value.replace(re,"<b>$1</b>");
+        word = item.value.replace(re,"<span class=\"text-info\">$1</span>");
 
-      return $( "<li></li>" )
+      return $( "<li class=\"autocomplete-item\"></li>" )
         .data( "item.autocomplete", item )
-        .append( "<a>" + word + "</a>" )
+        .append( "<a>" + word + "<i class=\"pull-right text-muted\">" + item.type + "</i></a>" )
         .appendTo( ul );
     };
     meta._renderMenu = function(ul, items){
