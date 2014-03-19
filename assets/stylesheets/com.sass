@@ -233,27 +233,6 @@ $topbar-height: 67px
           width: $share-width
           height: $share-height
 
-// Javascript js slider
-.js-slider-container
-  width: 200%
-  +clearfix
-
-  // Animate using 2d transform to get better mobile support
-  +transform(translateZ(0) translate(0,0))
-  // +transform(translate3d(0,0,0))
-  +transition(0.6s ease-in-out transform)
-  +transition(0.6s ease-in-out -webkit-transform)
-
-  // The slider
-  > *
-    float: left
-    width: 50%
-
-  // The class toggled by Javascript
-  &.is-toggled
-    +transform(translateZ(0) translate(-50%,0))
-    // +transform(translate3d(-50%,0,0))
-
 #poll
   header
     background: $brand-info
@@ -482,6 +461,27 @@ $topbar-height: 67px
   .g0v
     +replace-text-with-dimensions("com/g0v.png")
     height: $footer-height
+
+// Javascript js slider
+.js-slider-container
+  width: 200%
+  +clearfix
+
+  // Animate using 2d transform to get better mobile support
+  +transform(translateZ(0) translate(0,0))
+  // +transform(translate3d(0,0,0))
+  +transition(0.6s ease-in-out transform)
+  +transition(0.6s ease-in-out -webkit-transform)
+
+  // The slider
+  > *
+    float: left
+    width: 50%
+
+  // The class toggled by Javascript
+  &.is-toggled
+    +transform(translateZ(0) translate(-50%,0))
+    // +transform(translate3d(-50%,0,0))
 
 .autocomplete-category
   float: right
