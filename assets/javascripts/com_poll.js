@@ -30,10 +30,11 @@
           step: function(val){
             $elem.attr('data-percent', val.toFixed(1)+'%')
           }
-        })
+        });
         $elem.data('easyPieChart').update(percentage);
       });
 
+      // Actually resetting button is invisible.
       $button.button('reset');
 
       // Swapping the form and result using bootstrap class.
