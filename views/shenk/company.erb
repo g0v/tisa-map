@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<%= model.name %><br/>
+
+	<h2>營業項目</h2>
+	<% model.categories.each do |i| %>
+		<% if i.belongs_to == "" %>
+			X <a href="<%= url('/notaffected') %>"><%= i.name %></a>
+		<% else %>
+			O <a href="<%= url("/category/#{i.belongs_to}") %>"><%= i.name %></a>
+		<% end %>
+		<br/>
+	<% end %>
+</body>
+</html>

@@ -1,0 +1,487 @@
+@import compass
+@import com-variables
+@import bootstrap
+
+$base-font-size: $font-size-base
+$base-line-height: $font-size-base * $line-height-base
++establish-baseline
+
+h1
+  +adjust-font-size-to($font-size-h1-mobile)
+  @media (min-width: #{$screen-md})
+    +adjust-font-size-to($font-size-h1)
+h2
+  +adjust-font-size-to($font-size-h2-mobile)
+  @media (min-width: #{$screen-md})
+    +adjust-font-size-to($font-size-h2)
+h3
+  +adjust-font-size-to($font-size-h3-mobile)
+  @media (min-width: #{$screen-md})
+    +adjust-font-size-to($font-size-h3)
+
+// Overriding bootstrap btn font size
+.btn
+  +adjust-font-size-to(20px)
+  padding: 0.5em 1em
+  border: 0
+  letter-spacing: 1px
+
+.btn-primary:hover
+  background: lighten($brand-primary, 10%)
+
+// center column
+.col-centered
+  float: none
+  margin: 0 auto
+
+
+$topbar-height: 67px
+#topbar
+  background: $gray
+  height: $topbar-height
+  text-align: right
+
+  .like-button
+    $iframe-height: 21px
+    float: right
+    border: none
+    overflow: hidden
+    height: 21px
+    width: 150px
+    margin-top: ($topbar-height - $iframe-height)/2
+
+    +filter(grayscale(100%) contrast(60%))
+
+%label-selections
+  p
+    font-size: 18px
+    +leader(2)
+    +trailer(2)
+  ul
+    padding: 0 0 40px
+    text-align: center
+  li
+    list-style: none
+    margin: 6px 10px
+    display: inline-block
+
+  .secondary
+    background: #E6E6E6
+    border: 2px solid transparent
+    color: $text-color
+    +link-colors($text-color, #000)
+
+#query
+  @extend %label-selections
+
+  .banner
+    background: #ffac02 image-url('com/stripes.png') center top no-repeat
+    height: image-height('com/stripes.png')
+
+    img
+      margin-top: $topbar-height * -1
+
+    @media (min-width: #{$screen-md})
+      height: 360px
+      background: image-url('com/labor.png') center 177px no-repeat, image-url('com/stripes.png') center top no-repeat
+      background-color: #ffac02
+
+  .query-form
+    +leader(5)
+    +trailer(5)
+
+    h1
+      letter-spacing: 5px
+
+    input
+      +leader(2)
+      +trailer(2)
+
+  
+
+#category
+  @extend %label-selections
+
+  input[type=checkbox]
+    display: none
+
+  input[type=checkbox]:checked + label
+    border: 2px solid $brand-primary
+
+
+#affected
+  $lighter-border: #EFEFEF
+  .banner
+    background: #AA3C3D image-url('com/clouds.png') center 30px no-repeat
+    height: image-height('com/clouds.png') +60px
+
+  .warning
+    +squish-text
+    margin-top: image-height('com/title.png')/2
+
+  .thunder
+    margin-top: image-height('com/title.png')/2 + image-height('com/thunder.png')/3
+  
+  .subtitle
+    +leader(2)
+    +trailer(1)
+  .row:last-of-type .item
+    +trailer(7)
+  .item
+    +translateZ(0) // Prevent repainting initiated by togging other items
+    position: relative
+    overflow: hidden
+    padding: 0
+    margin-top: 40px
+    border-radius: 4px
+    background: #fff
+
+    header
+      background: #DADADA
+      padding-left: 3em
+      h3
+        margin: 0
+        padding: 1.12em 0
+        font-size: 18px
+
+    .content
+      padding: 2.8em 3em 1em
+      div
+        display: inline-block
+        width: 80%
+        padding-bottom: 2.4em
+        
+      aside
+        display: inline-block
+        width: 20%
+        vertical-align: top
+
+      &.active
+        display: block
+        left: 0
+
+      &.next
+        position: absolute
+        display: block
+    
+    .translate div
+      border-right: 1px solid $lighter-border
+      padding-right: 4%
+    .oringin div
+      border-left: 1px solid $lighter-border
+      padding-left: 4%
+    
+    
+
+    %arrow-btn
+      display: inline-block
+      position: relative
+      padding: 12px 15px
+      width: 75%
+      line-height: 16px
+      background: $brand-primary
+      color: #fff
+      border: 0
+      &:hover
+        text-decoration: none
+        background: lighten($brand-primary, 10%)
+      
+      
+    @each $direction in left, right
+      .btn-arrow-#{$direction}
+        @extend %arrow-btn
+        &:after
+          content: ''
+          display: inline-block
+          position: absolute
+          top: 0
+          #{$direction}: -(16+24)+px 
+          border: ((16+24)/2)+px solid transparent
+          @if $direction == left
+            border-right: ((16+24)/2)+px solid $brand-primary
+          @else if $direction == right
+            border-left: ((16+24)/2)+px solid $brand-primary
+        
+        &:hover:after
+          @if $direction == left
+            border-right: ((16+24)/2)+px solid lighten($brand-primary, 10%)
+          @else if $direction == right
+            border-left: ((16+24)/2)+px solid lighten($brand-primary, 10%)
+
+    footer 
+      margin: 0 2.4em
+      padding: 1em
+      padding-left: 2em
+      border-top: 1px solid $lighter-border
+      a
+        $share-width: image-width("com/share.png")
+        $share-height:  image-height("com/share.png")
+        line-height: $share-height
+        position: relative
+        cursor: pointer
+        color: $gray-light
+
+        &:before
+          content: ''
+          display: block
+          position: absolute
+          left: -($share-width + 10)
+          vertical-align: middle
+          top: 50%
+          margin-top: -($share-height/2 + 1 )
+          background: image-url("com/share.png") no-repeat
+          width: $share-width
+          height: $share-height
+
+#poll
+  header
+    background: $brand-info
+    position: relative // For the triangle
+    +padding-trailer(1)
+
+    // The CSS triangle
+    &:after
+      $size: 10px
+      border: $size solid transparent
+      border-top-color: $brand-info
+      content: ''
+      position: absolute
+      left: 50%
+      margin-left: $size * -1
+      bottom: $size * -2
+
+    // Image in header
+    img
+      margin-top: -65px
+
+  // Title of the poll section
+  h2
+    color: #fff
+    letter-spacing: 2px
+
+    @media (min-width: #{$screen-md})
+      +adjust-font-size-to($font-size-h2)
+
+  .instruction
+    +leader(2)
+    +trailer(2)
+    color: darken(#acafaf, 5%)
+
+  
+  %vertical-line
+    font-size: $font-size-h2-mobile
+    line-height: 1.2
+    color: lighten(#acafaf, 15%)
+
+    @media (min-width: #{$screen-md})
+      font-size: $font-size-h2 + 10px // Slightly larger than polling header
+
+    width: 1em // Constraint the width to be 1-word wide.
+
+    //For span selected background color change
+    // Restore the box-model because we need extra padding outside of 1em width.
+    +box-sizing(content-box)
+    padding: .25em
+    +border-radius(8px)
+
+    display: block
+    margin: 0 auto
+    // Responsive image words
+    img
+      width: 100%
+      opacity: 0.5
+      position: relative
+      top: -.1em // Little hack to keep images and words aligned.
+
+  .poll-options
+    $item-count: 7
+    $segment-thickness: 15px
+
+    %segment
+      content: ''
+      position: absolute
+      top: 0
+      width: 50%
+      height: $segment-thickness
+      background: $brand-primary
+
+    label
+      width: 100%/$item-count
+      float: left
+      padding-top: 45px // Make room for segment
+      position: relative // For the "segment"s
+      cursor: pointer
+
+      // Prevent accedental line break due to percentage-pixel rounding error
+      &:last-child
+        float: right
+
+      // left-half of the segment
+      &:before
+        @extend %segment
+        left: 0
+
+      // right-half of the segment
+      &:after
+        @extend %segment
+        right: 0
+
+      // Hide left-most and right-most halves
+      &:first-of-type:before, &:last-of-type:after
+        display: none
+
+      // Round the segment ends
+      &:first-of-type:after
+        +border-left-radius(100px)
+
+      &:last-of-type:before
+        +border-right-radius(100px)
+
+    span
+      @extend %vertical-line
+
+      // Decorative, little dots
+      &:after
+        $dot-size: 5px
+        content: ''
+        position: absolute // Containing block: <label>
+        right: $dot-size / -2
+        top: ($segment-thickness - $dot-size) / 2
+        width: $dot-size
+        height: $dot-size
+        border-radius: $dot-size
+        background: rgba(#000, .2)
+        z-index: 1
+
+      
+
+    // Hide the decorative dot for last label
+    label:last-child span:after
+      display: none
+
+    // Hide the input
+    input
+      display: none
+
+    // Stated styles
+    input:checked ~ label
+      &:before, &:after
+        background: #ddd
+
+    input:checked + label
+      &:before
+        background: $brand-primary
+      span
+        color: #acafaf
+        background: #FEF8ED
+        &:before // The circle
+          $size: 26px
+          content: ''
+          position: absolute // Containing block: <label>
+          top: ($size - $segment-thickness) / -2
+          left: 50%
+          width: $size
+          height: $size
+          margin-left: $size / -2
+          background: darken($brand-primary, 5%)
+          border-radius: 100px
+          z-index: 1
+
+        img
+          opacity: 1
+
+  .poll-button-wrapper
+    +leader(2)
+    +trailer(2)
+
+  .poll-result
+    +trailer(3) // The space the "submit" button occupies in .poll-form
+
+  .result-set li
+    $item-count: 7
+    list-style: none
+    width: 100%/$item-count
+    float: left
+    span
+      @extend %vertical-line
+
+  // Where piechart populates
+  .result-data
+    width: 100%
+    position: relative // For :after
+    &:after
+      position: absolute
+      width: 100%
+      left: 0
+      height: 60px
+      line-height: 60px
+      top: 50%
+      margin-top: -30px
+      content: attr(data-percent)
+
+    canvas
+      width: 100%
+
+#action
+  background-color: #AFAEAF
+  +padding-leader(2)
+  +padding-trailer(2)
+  .action-button-wrapper
+    height: 200px
+    &:first-child
+      background: image-url("com/left-worker.png") no-repeat center bottom
+    &:last-child
+      background: image-url("com/right-worker.png") no-repeat center bottom
+  .secondary
+    color: #fff
+    padding: 15px 0
+    border: 2px solid #fff
+
+    &:hover
+      background: lighten( #AFAEAF, 5%)
+
+
+
+#footer
+  position: relative
+  $footer-height: 100px
+  background-color: $gray
+  color: #C7C7C7
+  height: $footer-height
+  overflow: hidden
+  
+  .copyright
+    line-height: $footer-height
+    margin: 0
+    span
+      margin-left: 20px
+      font-size: 16px
+      letter-spacing: 1px
+      vertical-align: sub
+  .g0v
+    +replace-text-with-dimensions("com/g0v.png")
+    height: $footer-height
+
+// Javascript js slider
+.js-slider-container
+  width: 200%
+  +clearfix
+
+  // Animate using 2d transform to get better mobile support
+  +transform(translateZ(0) translate(0,0))
+  // +transform(translate3d(0,0,0))
+  +transition(0.6s ease-in-out transform)
+  +transition(0.6s ease-in-out -webkit-transform)
+
+  // The slider
+  > *
+    float: left
+    width: 50%
+
+  // The class toggled by Javascript
+  &.is-toggled
+    +transform(translateZ(0) translate(-50%,0))
+    // +transform(translate3d(-50%,0,0))
+
+.autocomplete-category
+  float: right

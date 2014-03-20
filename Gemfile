@@ -4,9 +4,11 @@ gem 'rake'
 gem 'sinatra', :require => "sinatra/base"
 gem 'sinatra-contrib', :require => "sinatra/contrib/all"
 gem 'pg'
+gem 'mysql2'
 gem 'sequel'
 gem 'oj'
 gem 'haml'
+gem 'slim'
 gem 'unicorn'
 
 gem 'sprockets'
@@ -15,3 +17,10 @@ gem 'compass'
 gem 'sprockets-sass'
 gem 'bootstrap-sass'
 gem 'susy'
+
+group :development do
+  gem 'guard'
+  gem 'guard-livereload'
+  gem 'guard-shell'
+  gem 'rb-fsevent'
+end

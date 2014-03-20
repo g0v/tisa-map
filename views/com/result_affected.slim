@@ -1,0 +1,41 @@
+- content_for :head
+  title 你被服貿了！
+  meta[property="og:image" content=url("/img/com/og-affected.png")]
+  meta[property="og:title" content=og[:title]]
+  meta[property="og:description" content=og[:desc]]
+
+section#affected
+  header.banner.text-center: div.container: div.row
+
+    span.warning.col-lg-8.col-lg-offset-2: img[src="/img/com/title.png"] 你被服貿了
+    span.thunder.col-lg-2: img[src="/img/com/thunder.png"]
+
+  h2.subtitle.text-center 服貿對你的影響
+
+  div.container
+    - for category in categories
+      div.row: article.item.col-lg-10.col-lg-offset-1
+
+        header
+          h3
+            = "#{category[:id]} #{category[:value]}"
+            / 對照表與對照行業別
+            small
+              a[href="#" title="對照表"]  ⊜ 
+              a[href="http://app1.stat.gov.tw/indu/wform?funcid=I-7-M&rev=9&id=6201"] 6201 電腦軟體設計業
+              a[href="#" title="對照表"]  ⊜ 
+              a[href="#"] CPC845+849 其他
+
+        div.js-slider-container
+          section.content.translate
+            div= category[:translated]
+            aside.text-center: button.btn-arrow-right.js-slider-toggle 原始條文
+
+          section.content.oringin
+            aside.text-center: button.btn-arrow-left.js-slider-toggle 返回
+            div= category[:original]
+
+        footer
+          a[href="https://www.facebook.com/sharer/sharer.php?u=#{share_url}" target="_blank"] 告訴親友我被服貿了
+
+== slim :'com/_poll'

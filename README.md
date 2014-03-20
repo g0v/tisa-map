@@ -59,9 +59,41 @@ data folder is from ronnywang's data https://github.com/ronnywang/twcompany , re
     id       | integer                | not null default nextval('store_id_seq'::regclass)
     location | geometry(Point,4326)   |
     name     | character varying(128) |
-    business | text                   |
     taxid    | character(8)           |
     address  | text                   |
+    categoies| text[]                 |
+    status   |                        |
+    owner    |                        |
+
+## Database Setup
+
+Install postgresql
+
+    $ brew install postgresql postgis
+
+    $ brew services start postgresql  # run postgresql on booting
+
+Or
+
+    $ sudo aptitude install postgresql-9.3 postgresql-9.3-postgis-2.1
+
+Setup postgresql
+
+    $ createuser tisa --superuser --encrypted --pwprompt
+
+    $ createdb tisa
+
+Run migration
+
+    $ sequel config/database.yml -m migrations
+
+Allow external access
+
+    # /etc/postgresql/9.3/main/pg_hba.conf
+    host    all   all   0.0.0.0/0   md5
+
+    # /etc/postgresql/9.3/main/postgresql.conf
+    listen_addresses = '*'
 
 ## API
 
