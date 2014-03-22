@@ -93,14 +93,40 @@ body {
 
 .ly-person {
   font-size: 18px;
-  width: 300px;
   display: inline-table;
-  padding: 0;
+  padding: 10px;
   background-color: #f2f2f2;
-  margin: 10px;
   text-align: center;
   line-height: 32px;
   color: #444;
+}
+
+/* Extra small devices (phones, 480px and up) */
+@media (min-width: $screen-xs-min) {
+  .ly-person {
+    width: 100%;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  .ly-person {
+    width: 50%;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+  .ly-person {
+    width: 33%;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
+  .ly-person {
+    width: 25%;
+  }
 }
 
 .unit {
