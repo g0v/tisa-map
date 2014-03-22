@@ -30,7 +30,7 @@ section#affected
 
   div.container.items-section
     - for category in categories
-      div.row: article.item.col-lg-10.col-lg-offset-1
+      div.row: .col-lg-10.col-lg-offset-1: article.item
 
         header
           h3
@@ -43,13 +43,14 @@ section#affected
             /   a[href="#"] CPC845+849 其他
 
         div.js-slider-container
-          section.content.translate
-            div= category[:translated]
-            aside.text-center: button.btn-arrow-right.js-slider-toggle 原始條文
+          section.content= category[:original]
+          / section.content.translate
+          /   div= category[:translated]
+          /   aside.text-center: button.btn-arrow-right.js-slider-toggle 原始條文
 
-          section.content.oringin
-            aside.text-center: button.btn-arrow-left.js-slider-toggle 返回
-            div= category[:original]
+          / section.content.oringin
+          /   aside.text-center: button.btn-arrow-left.js-slider-toggle 返回
+          /   div= category[:original]
 
         footer
           a[href="https://www.facebook.com/sharer/sharer.php?u=#{share_url}" target="_blank"] 告訴親友我被服貿了
