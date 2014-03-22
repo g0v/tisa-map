@@ -145,11 +145,20 @@ $topbar-height: 67px
   .thunder
     margin-top: image-height('com/title.png')/2 + image-height('com/thunder.png')/3
 
+  .items-section
+    +trailer(3)
+
+  .map-section
+    +trailer(7)
+    #map
+      border-radius: 4px
+      border: 1em solid #fff
+      border-top: 0
+
   .subtitle
     +leader(2)
     +trailer(1)
-  .row:last-of-type .item
-    +trailer(7)
+
   .item
     +translateZ(0) // Prevent repainting initiated by togging other items
     position: relative
