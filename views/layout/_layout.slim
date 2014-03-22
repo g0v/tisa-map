@@ -31,13 +31,13 @@ html ng-app="tisa"
         .pull-right.social-btn-group.hidden-xs
 
           .gp-btn
-            .g-plusone data-size="medium" data-annotation="none" data-href="http://tisa.g0v.tw" data-width="250px" data-align="left"
+            .g-plusone data-size="medium" data-annotation="none" data-href=like_url data-width="250px" data-align="left"
 
           .tw-btn
-            a.twitter-share-button href="https://twitter.com/share" data-lang="zh-TW" data-url="http://tisa.g0v.tw" data-text="你被服貿了嗎？" data-via="g0vtw"
+            a.twitter-share-button href="https://twitter.com/share" data-lang="zh-TW" data-url=like_url data-text="你被服貿了嗎？" data-via="g0vtw"
 
           .fb-btn
-            iframe src="//www.facebook.com/plugins/like.php?href=#{com_like_url}&width=150&layout=button_count&action=like&show_faces=false&share=true&height=21&colorscheme=dark&appId=639424269440362" scrolling="no" frameborder="0" allowTransparency="true"
+            iframe src="//www.facebook.com/plugins/like.php?href=#{like_url(true)}&width=150&layout=button_count&action=like&show_faces=false&share=true&height=21&colorscheme=dark&appId=639424269440362" scrolling="no" frameborder="0" allowTransparency="true"
 
     == yield
 

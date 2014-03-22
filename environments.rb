@@ -24,8 +24,12 @@ class App < Sinatra::Base
     helpers Sinatra::JSON
     helpers Sinatra::ContentFor
     helpers do
-        def com_like_url
-            CGI.unescape url("/com")
+        def like_url escape=false
+            if escape
+                CGI.unescape url("/")
+            else
+                url '/'
+            end
         end
     end
 
