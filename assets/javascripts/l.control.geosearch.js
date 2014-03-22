@@ -59,10 +59,16 @@ L.Control.GeoSearch = L.Control.extend({
 		msgbox.className = 'leaflet-control-geosearch-msg';
 		this._msgbox = msgbox;
 
-		var detailContainer = document.createElement('div');
-		detailContainer.id="detail-container";
-		detailContainer.innerHTML = "<a href='#'>使用資料說明</a>";
-		this._detailContainer = detailContainer;
+		// var detailContainer = document.createElement('div');
+		// detailContainer.id="detail-container";
+		// detailContainer.innerHTML = "<a href='#'>使用資料說明</a>";
+		// this._detailContainer = detailContainer;
+		
+		var submitBox = document.createElement('button');
+		submitBox.id = 'leaflet-control-geosearch-submit';
+		submitBox.className = 'btn btn-primary';
+		submitBox.innerHTML = 'Search!'
+		this._submitBox = submitBox
 
 		var selectOption = ""
 		selectOption = "<select id='leaflet-control-geosearch-select' class='leaflet-control-geosearch-select'>"
@@ -77,13 +83,16 @@ L.Control.GeoSearch = L.Control.extend({
 		this._resultslist = resultslist;
 
 		$(this._msgbox).append(this._resultslist);
-		$(this._container).append(this._logoContainer, this._searchbox, this._msgbox, this._selectOption, this._detailContainer);
+		$(this._container).append(this._logoContainer, this._searchbox, this._msgbox, this._submitBox, this._selectOption, this._detailContainer);
 
 		L.DomEvent
 		  .addListener(this._container, 'click', L.DomEvent.stop)
 		  .addListener(this._container, 'keypress', this._onKeyUp, this);
 
+
 		L.DomEvent.disableClickPropagation(this._container);
+
+		console.log($('#leaflet-control-geosearch-submit'));
 
 		return this._container;
 	},
