@@ -117,5 +117,17 @@ No precompilation needed. The config.ru has served all assets from `/assets` on 
 css syntax variant in this project is [Scss](http://sass-lang.com/) and we are using Mixins from
 [Compass](http://compass-style.org/).
 
+## 你被服貿了嗎 controller / view maps
+
+![Imgur](http://i.imgur.com/TnJeMl5.jpg)
+
+UI Flow           | URL endpoint            | Parameters     | Layout File | Template File
+----------------- | ----------------------- | -------------- | ----------- | -------------
+① Index           | `/com`                  | None           | `views/com/_query.slim` | `views/com/index.slim`
+② Search Result   | `/com/search`           | `:keyword`     | `views/com/_query.slim` | `views/com/search.slim`
+③ Category Select | `/com/company/:tax_id`  | `:tax_id`      | `views/com/_query.slim` | `views/com/category.slim`
+④ Result          | `/com/?`                | `:id`,`:cat[]` |                         | `views/com/index.slim`
+
+All templates inherits the main layout `views/com/_layout.slim`.
 
 License: MIT http://g0v.mit-license.org/
