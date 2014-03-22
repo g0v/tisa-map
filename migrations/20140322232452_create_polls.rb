@@ -3,7 +3,7 @@ Sequel.migration do
   up do
     create_table :polls do
       primary_key :id
-      column      :type,        Integer
+      column      :type,        Integer,      index: true
       column      :ip,          String
       column      :created_at,  Time
       column      :updated_at,  Time
