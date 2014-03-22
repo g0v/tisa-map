@@ -257,7 +257,7 @@ class App < Sinatra::Base
             share_url: CGI.escape(share_url)
         }
 
-        if matched_categories.empty?
+        if true
             locals[:og] = {
                 title: "我沒有被服貿！",
                 desc: "那你有沒有被服貿呢？快來看看吧！"
