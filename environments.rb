@@ -287,13 +287,14 @@ class App < Sinatra::Base
         end
     end
 
+    get "/poll" do
+      json(results: DB[:polls].select { [type, sum(1)] }.group(:type).order(:type).map { |row| row[:sum] })
+    end
+
     # Satisfaction voting.
     # Ajax API.
     post '/poll' do
-
-        puts "VOTE: #{params}"
-        # Return an array of percentages.
-        # Database mock data
-        json({results: [67, 12, 2, 5, 6, 8, 0]})
+        Poll.create(type: params[:type], ip: request.ip)
+        json(results: DB[:polls].select { [type, sum(1)] }.group(:type).order(:type).map { |row| row[:sum] })
     end
 end
