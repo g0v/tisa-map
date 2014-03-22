@@ -36,6 +36,10 @@ App.View.Map = Backbone.View.extend({
                 init_geosearch.idsearch(query_val);
             }
         })
+
+        if($('#tax-name').val() !== '') {
+            init_geosearch.companysearch($('#tax-name').val());
+        }
     },
     userLocation: function () {
         var option = this.location.pop().attributes.latlng;

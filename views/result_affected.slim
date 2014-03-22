@@ -8,6 +8,12 @@
   link[rel="stylesheet" href="/assets/application.css"]
   link[rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"]
 
+- if company.nil?
+  input[type="hidden" value="" id="tax-name"]
+- else
+  input[type="hidden" value=company.name id="tax-name"]
+  
+
 section#affected
   header.banner.text-center: div.container: div.row
 

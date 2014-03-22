@@ -50,8 +50,13 @@ L.Control.GeoSearch = L.Control.extend({
 		var searchbox = document.createElement('input');
 		searchbox.id = 'leaflet-control-geosearch-qry';
 		searchbox.type = 'text';
-		searchbox.placeholder = this._config.searchLabel;
-		this._searchbox = searchbox;
+		if($('#tax-name').val() == '') {
+			searchbox.placeholder = this._config.searchLabel;
+			this._searchbox = searchbox;
+		}else {
+			searchbox.placeholder = $('#tax-name').val();
+			this._searchbox = searchbox;
+		}
 
 		var msgbox = document.createElement('div');
 		msgbox.id = 'leaflet-control-geosearch-msg';
@@ -87,7 +92,6 @@ L.Control.GeoSearch = L.Control.extend({
 		L.DomEvent
 		  .addListener(this._container, 'click', L.DomEvent.stop)
 		  .addListener(this._container, 'keypress', this._onKeyUp, this);
-
 
 		L.DomEvent.disableClickPropagation(this._container);
 		return this._container;
@@ -132,14 +136,13 @@ L.Control.GeoSearch = L.Control.extend({
 	},
 
 	companysearch: function (value) {
-
 		var _this = this;
 		$.get('/name/' + value, function(data) {
-		  if(data) {
-		  	_this._apisearchSuccess(data)
-		  } else {
-		  	_this._printError('對不起，沒有此筆公司資料')
-		  }
+			if(data) {
+				_this._apisearchSuccess(data)
+			} else {
+				_this._printError('對不起，沒有此筆公司資料')
+			}
 		});
 		
 	},

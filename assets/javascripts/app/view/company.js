@@ -58,7 +58,6 @@ App.View.Company = Backbone.View.extend({
         var markers = this._addMarkerCluster();
         _.each(this.marker_arr, function(marker) {
             markers.addLayer(marker);
-            console.log(marker);
         })
         this.map.addLayer(markers);
     }
