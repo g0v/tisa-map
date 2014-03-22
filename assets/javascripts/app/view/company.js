@@ -18,7 +18,7 @@ App.View.Company = Backbone.View.extend({
     addlocateCenter: function (data) {
         var lat = data.center.lat;
         var lng = data.center.lng;
-        this.companys.url = '/lng/' + lng + '/lat/' + lat + '/radius/500';
+        this.companys.url = '/lng/' + lng + '/lat/' + lat + '/radius/100';
         this.companys.fetch();
     },
     addCenter: function () {
@@ -35,7 +35,15 @@ App.View.Company = Backbone.View.extend({
         var parse_geo = JSON.parse(company.location)
         var company_lng = parse_geo.coordinates[0];
         var company_lat = parse_geo.coordinates[1];
-        var marker = L.marker(L.latLng(company_lat, company_lng), { title: company_name });
+        var companyIcon = L.icon({
+                iconUrl: '/img/map_company.png',
+
+                iconSize:     [35, 35], // size of the icon
+                iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                shadowAnchor: [4, 62],  // the same for the shadow
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+        var marker = L.marker(L.latLng(company_lat, company_lng), { title: company_name , icon: companyIcon});
         // add popup
         marker.bindPopup(company_name + ' (' + company_taxid + ' )');
         // add markers to map

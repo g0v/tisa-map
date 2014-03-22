@@ -13,13 +13,14 @@ App.View.Map = Backbone.View.extend({
 
         var init_geosearch = new L.Control.GeoSearch({
             provider: new L.GeoSearch.Provider.OpenStreetMap()
+            , zoomLevel: 50
         })
 
         init_geosearch.addTo(this.map);
 
         L.tileLayer(
             'http://{s}.tile.cloudmade.com/f59941c17eda4947ae395e907fe531a3/997/256/{z}/{x}/{y}.png',
-            { maxZoom: 18, }
+            { maxZoom: 50, }
         ).addTo(this.map);
 
         this.map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
