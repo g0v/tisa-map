@@ -103,7 +103,7 @@ $topbar-height: 67px
       +leader(2)
       +trailer(2)
 
-  
+
 
 #category
   @extend %label-selections
@@ -127,7 +127,7 @@ $topbar-height: 67px
 
   .thunder
     margin-top: image-height('com/title.png')/2 + image-height('com/thunder.png')/3
-  
+
   .subtitle
     +leader(2)
     +trailer(1)
@@ -156,7 +156,7 @@ $topbar-height: 67px
         display: inline-block
         width: 80%
         padding-bottom: 2.4em
-        
+
       aside
         display: inline-block
         width: 20%
@@ -169,15 +169,15 @@ $topbar-height: 67px
       &.next
         position: absolute
         display: block
-    
+
     .translate div
       border-right: 1px solid $lighter-border
       padding-right: 4%
     .oringin div
       border-left: 1px solid $lighter-border
       padding-left: 4%
-    
-    
+
+
 
     %arrow-btn
       display: inline-block
@@ -191,8 +191,8 @@ $topbar-height: 67px
       &:hover
         text-decoration: none
         background: lighten($brand-primary, 10%)
-      
-      
+
+
     @each $direction in left, right
       .btn-arrow-#{$direction}
         @extend %arrow-btn
@@ -201,20 +201,20 @@ $topbar-height: 67px
           display: inline-block
           position: absolute
           top: 0
-          #{$direction}: -(16+24)+px 
+          #{$direction}: -(16+24)+px
           border: ((16+24)/2)+px solid transparent
           @if $direction == left
             border-right: ((16+24)/2)+px solid $brand-primary
           @else if $direction == right
             border-left: ((16+24)/2)+px solid $brand-primary
-        
+
         &:hover:after
           @if $direction == left
             border-right: ((16+24)/2)+px solid lighten($brand-primary, 10%)
           @else if $direction == right
             border-left: ((16+24)/2)+px solid lighten($brand-primary, 10%)
 
-    footer 
+    footer
       margin: 0 2.4em
       padding: 1em
       padding-left: 2em
@@ -273,7 +273,7 @@ $topbar-height: 67px
     +trailer(2)
     color: darken(#acafaf, 5%)
 
-  
+
   %vertical-line
     font-size: $font-size-h2-mobile
     line-height: 1.2
@@ -359,7 +359,7 @@ $topbar-height: 67px
         background: rgba(#000, .2)
         z-index: 1
 
-      
+
 
     // Hide the decorative dot for last label
     label:last-child span:after
@@ -455,7 +455,7 @@ $topbar-height: 67px
   color: #C7C7C7
   height: $footer-height
   overflow: hidden
-  
+
   .copyright
     line-height: $footer-height
     margin: 0
