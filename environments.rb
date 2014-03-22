@@ -236,7 +236,9 @@ class App < Sinatra::Base
 
     # Display the comparison result for a company ID or industry ID
     get "/result/?" do
-        company_id = params[:id]
+
+        company = params[:id] ? Company.filter(taxid: params[:id]).first : nil
+
         category_ids = params[:cat]
 
         # The categories that are affected.
@@ -248,12 +250,17 @@ class App < Sinatra::Base
             {id: "I301012", value: "資訊軟體服務業3", translated: "這段目前是假字這段目前是假字", original: "這段是條文原文文言文"}
         ]
 
-        share_url = url("/result?id=#{company_id}&#{category_ids.map{|c| 'cat[]='+c}.join('&')}")
+        if company.nil?
+            share_url = url("/result?#{category_ids.map{|c| 'cat[]='+c}.join('&')}")
+        else
+            share_url = url("/result?id=#{company.taxid}&#{category_ids.map{|c| 'cat[]='+c}.join('&')}")
+        end
 
         # Populate locals
         locals = {
             categories: matched_categories,
-            share_url: CGI.escape(share_url)
+            share_url: CGI.escape(share_url),
+            company: company
         }
 
         if matched_categories.empty?
@@ -265,17 +272,15 @@ class App < Sinatra::Base
             slim :'result_not_affected', layout: :'layout/_layout', locals: locals
         else
             category_names = matched_categories.map{|c| c[:text]}.join '、'
-            if company_id.nil?
+            if company.nil?
                 locals[:og] = {
                     title: "我被服貿了！",
                     desc: "服貿將會影響到#{category_names}，快來看看實際影響內容！"
                 }
             else # Have company
-                # Database mock data
-                company_name = '佈思股份有限公司'
                 locals[:og] = {
-                    title: "#{company_name}被服貿了！",
-                    desc: "#{company_name}會被服貿影響的營業項目為#{category_names}，快來看看實際影響內容！"
+                    title: "#{company.name}被服貿了！",
+                    desc: "#{company.name}會被服貿影響的營業項目為#{category_names}，快來看看實際影響內容！"
                 }
             end
             slim :'result_affected', layout: :'layout/_layout', locals: locals
