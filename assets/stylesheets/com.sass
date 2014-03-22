@@ -47,15 +47,17 @@ $topbar-height: 67px
     font-size: 30px
     text-decoration: none
 
-  .like-button
+  .social-btn-group
+    float:right
     $iframe-height: 21px
-    float: right
-    border: none
     overflow: hidden
-    height: 21px
-    width: 150px
-    margin-top: ($topbar-height - $iframe-height)/2
+    border: none
+    padding: ($topbar-height - $iframe-height)/2
+    z-index: 9999
 
+  .like-button
+    float: right
+    width: 100px
     +filter(grayscale(100%) contrast(60%))
 
 %label-selections
