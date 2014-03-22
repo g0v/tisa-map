@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require "pg"
+require "sequel"
+require "oj"
+
+::DB = Sequel.connect("postgres://tisa:tisamap@localhost/tisa")
+Sequel.extension :core_extensions
+DB.extension :pg_array, :pg_json
+
+source = File.open(ARGV[0], "r")
+
+class Tisa < Sequel::Model
+end
+
+Tisa.unrestrict_primary_key
+
+Oj.load(source).each do |row|
+  tisa = Tisa.new
+  tisa.set(id: row.delete("id"))
+  tisa.articles = row
+  tisa.save
+end
+
