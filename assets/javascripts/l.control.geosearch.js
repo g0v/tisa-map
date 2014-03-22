@@ -24,7 +24,6 @@ L.Control.GeoSearch = L.Control.extend({
 		this._config = {
 			'country': options.country || '',
 			'provider': options.provider,
-			
 			'searchLabel': options.searchLabel || '搜尋...',
 			'notFoundMessage' : options.notFoundMessage || '對不起，此地址查詢不到。',
 			'messageHideDelay': options.messageHideDelay || 3000,
@@ -91,9 +90,6 @@ L.Control.GeoSearch = L.Control.extend({
 
 
 		L.DomEvent.disableClickPropagation(this._container);
-
-		console.log($('#leaflet-control-geosearch-submit'));
-
 		return this._container;
 	},
 	
@@ -162,8 +158,9 @@ L.Control.GeoSearch = L.Control.extend({
 
 	_apisearchSuccess: function (data) {
 		var company = data.name + ' ( 統編：' + data.taxid + ' )';
-		var geolat = data.geography.coordinates[0];
-		var geolng = data.geography.coordinates[1];
+		var parse_geo = JSON.parse(data.location)
+		var geolat = parse_geo.coordinates[0];
+		var geolng = parse_geo.coordinates[1];
 
 		this._showLocation(geolat, geolng, company)
 	},

@@ -32,8 +32,9 @@ App.View.Company = Backbone.View.extend({
         var company = this.companys.pop().attributes;
         var company_name = company.name;
         var company_taxid = company.taxid;
-        var company_lng = company.geography.coordinates[0];
-        var company_lat = company.geography.coordinates[1];
+        var parse_geo = JSON.parse(company.location)
+        var company_lng = parse_geo.coordinates[0];
+        var company_lat = parse_geo.coordinates[1];
         var marker = L.marker(L.latLng(company_lat, company_lng), { title: company_name });
         // add popup
         marker.bindPopup(company_name + ' (' + company_taxid + ' )');
