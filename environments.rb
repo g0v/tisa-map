@@ -23,6 +23,9 @@ require_relative "models/announced_stats"
 require_relative "models/activities"
 require_relative "models/stats"
 
+require_relative "models/cpcs"
+require_relative "models/groups"
+
 
 class App < Sinatra::Base
 
@@ -37,7 +40,7 @@ class App < Sinatra::Base
     set :json_encoder, :to_json
     enable :logging
 
-    # Shenk's query interface
+    # Shenk's reference implementation
     get "/shenk" do
         erb :'shenk/index'
     end
@@ -116,9 +119,13 @@ class App < Sinatra::Base
         erb :'shenk/category', :locals => {rows: rows, activities: activities, reference: reference}
     end
 
-    get "/" do
+    get "/map" do
         cache_control :no_cache, :max_age => 0
-        haml :index
+        slim :'map', layout: :'layout/_layout'
+    end
+
+    get "/ly" do
+        slim :'ly', layout: :'layout/_layout'
     end
 
     get "/taxid/:taxid" do # 統一編號
@@ -156,11 +163,11 @@ class App < Sinatra::Base
     end
 
     # 「你被服貿了嗎」homepage.
-    get "/com" do
+    get "/" do
 
         # Nested templates: _layout > _query > index
-        slim :'com/_query', layout: :'com/_layout' do
-            slim :'com/index'
+        slim :'layout/_query', layout: :'layout/_layout' do
+            slim :'index'
         end
     end
 
@@ -187,7 +194,7 @@ class App < Sinatra::Base
     end
 
     # Display the search result for a specific keyword.
-    get "/com/search" do
+    get "/search" do
         keyword = params[:keyword]
 
         companies = search_company(keyword)
@@ -200,8 +207,8 @@ class App < Sinatra::Base
         ]
 
         # Nested templates: _layout > _query > search
-        slim :'com/_query', layout: :'com/_layout' do
-            slim :'com/search', locals: {
+        slim :'layout/_query', layout: :'layout/_layout' do
+            slim :'search', locals: {
                 keyword: keyword,
                 companies: companies,
                 categories: categories
@@ -210,12 +217,12 @@ class App < Sinatra::Base
     end
 
     # Autocomplete
-    get "/com/complete/:term" do
+    get "/complete/:term" do
         search_company(params[:term]).map{|c| c[:type]="公司行號"; c}.to_json
     end
 
     # Display the company's categories.
-    get "/com/company/:tax_id" do
+    get "/company/:tax_id" do
 
         company = Company.filter(taxid: params[:tax_id]).first
 
@@ -227,8 +234,8 @@ class App < Sinatra::Base
            {id: "I30012", value: "資訊軟體服務業rrr"}
         ]
 
-        slim :'com/_query', layout: :'com/_layout' do
-            slim :'com/category', locals: {
+        slim :'layout/_query', layout: :'layout/_layout' do
+            slim :'category', locals: {
                 company: company,
                 categories: categories
             }
@@ -236,7 +243,7 @@ class App < Sinatra::Base
     end
 
     # Display the comparison result for a company ID or industry ID
-    get "/com/?" do
+    get "/result/?" do
         company_id = params[:id]
         category_ids = params[:cat]
 
@@ -249,7 +256,7 @@ class App < Sinatra::Base
             {id: "I301012", value: "資訊軟體服務業3", translated: "這段目前是假字這段目前是假字", original: "這段是條文原文文言文"}
         ]
 
-        share_url = url("/com/?id=#{company_id}&#{category_ids.map{|c| 'cat[]='+c}.join('&')}")
+        share_url = url("/result?id=#{company_id}&#{category_ids.map{|c| 'cat[]='+c}.join('&')}")
 
         # Populate locals
         locals = {
@@ -257,12 +264,16 @@ class App < Sinatra::Base
             share_url: CGI.escape(share_url)
         }
 
+<<<<<<< HEAD
         if matched_categories.empty?
+=======
+        if true #matched_categories.empty?
+>>>>>>> 89ca870bd03996eb82752c74ecca0f7436c210cc
             locals[:og] = {
                 title: "我沒有被服貿！",
                 desc: "那你有沒有被服貿呢？快來看看吧！"
             }
-            slim :'com/result_not_affected', layout: :'com/_layout', locals: locals
+            slim :'result_not_affected', layout: :'layout/_layout', locals: locals
         else
             category_names = matched_categories.map{|c| c[:text]}.join '、'
             if company_id.nil?
@@ -278,13 +289,13 @@ class App < Sinatra::Base
                     desc: "#{company_name}會被服貿影響的營業項目為#{category_names}，快來看看實際影響內容！"
                 }
             end
-            slim :'com/result_affected', layout: :'com/_layout', locals: locals
+            slim :'result_affected', layout: :'layout/_layout', locals: locals
         end
     end
 
     # Satisfaction voting.
     # Ajax API.
-    post '/com/poll' do
+    post '/poll' do
 
         # Return an array of percentages.
         # Database mock data

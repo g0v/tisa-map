@@ -123,11 +123,11 @@ css syntax variant in this project is [Scss](http://sass-lang.com/) and we are u
 
 UI Flow           | URL endpoint            | Parameters     | Layout File | Template File
 ----------------- | ----------------------- | -------------- | ----------- | -------------
-① Index           | `/com`                  | None           | `views/com/_query.slim` | `views/com/index.slim`
-② Search Result   | `/com/search`           | `:keyword`     | `views/com/_query.slim` | `views/com/search.slim`
-③ Category Select | `/com/company/:tax_id`  | `:tax_id`      | `views/com/_query.slim` | `views/com/category.slim`
-④ Result          | `/com/?`                | `:id`,`:cat[]` |                         | `views/com/index.slim`
+① Index           | `/`                 | None           | `views/layout/_query.slim` | `views/index.slim`
+② Search Result   | `/search`           | `:keyword`     | `views/layout/_query.slim` | `views/search.slim`
+③ Category Select | `/company/:tax_id`  | `:tax_id`      | `views/layout/_query.slim` | `views/category.slim`
+④ Result          | `/result/?`         | `:id`,`:cat[]` |                         | `views/result_affected.slim` or `views/result_not_affected`
 
-All templates inherits the main layout `views/com/_layout.slim`.
+All templates inherits the main layout `views/layout/_layout.slim`.
 
 License: MIT http://g0v.mit-license.org/

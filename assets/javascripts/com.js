@@ -19,7 +19,7 @@
       if(companyCache[term]){
         resp(companyCache[term]);
       }
-      lastXhr = $.getJSON('/com/complete/'+term, {}, function(data){
+      lastXhr = $.getJSON('/complete/'+term, {}, function(data){
         companyCache[term] = data;
         resp(data);
       });
@@ -30,7 +30,7 @@
     matchSubset: false,
     maxItems: 6,
     select: function(event, ui) {
-      window.location.href = '/com/company/' + ui.item.id;
+      window.location.href = '/company/' + ui.item.id;
     }
   });
 

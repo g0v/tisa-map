@@ -13,7 +13,7 @@
   // Handling the polling form submission
   $form.submit(function(e){
     $button.button('loading');
-    $.post('/com/poll', $form.serialize(), function(data){
+    $.post('/poll', $form.serialize(), function(data){
       // console.log('JSON Response', data);
       // Initialize easyPieChart
       $result.find('.result-data').easyPieChart({
