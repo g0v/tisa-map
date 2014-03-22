@@ -14,7 +14,13 @@ section#affected
     span.warning.col-lg-8.col-lg-offset-2: img[src="/img/com/title.png"] 你被服貿了
     span.thunder.col-lg-2: img[src="/img/com/thunder.png"]
 
-  h2.subtitle.text-center 服貿對你的影響
+  - if company.nil?
+    h2.subtitle.text-center 服貿對你的影響
+  - else
+    h2.subtitle.text-center
+      |服貿對
+      = company.name
+      |的影響
 
   div.container
     - for category in categories
