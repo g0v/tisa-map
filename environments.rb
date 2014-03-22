@@ -17,14 +17,15 @@ Compass.configuration.http_images_path = '/img'
 
 require_relative "models/stores"
 require_relative "models/companies"
-require_relative "models/categories"
 require_relative "models/announced_categories"
 require_relative "models/announced_stats"
 require_relative "models/activities"
 require_relative "models/stats"
 
+require_relative "models/tisas"
 require_relative "models/cpcs"
 require_relative "models/groups"
+require_relative "models/categories"
 
 
 class App < Sinatra::Base
