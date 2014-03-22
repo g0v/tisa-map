@@ -21,4 +21,12 @@ function get_person(callback) {
   });
 }
 
+window.app = angular.module('tisa', [])
 
+function lyCtrl($scope) {
+  get_person(function (data) {
+    $scope.$apply(function () {
+      $scope.lys = data;
+    });
+  });
+}
