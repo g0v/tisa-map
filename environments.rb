@@ -26,6 +26,7 @@ require_relative "models/tisas"
 require_relative "models/cpcs"
 require_relative "models/groups"
 require_relative "models/categories"
+require_relative "models/standards"
 
 
 class App < Sinatra::Base
