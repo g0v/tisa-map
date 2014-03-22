@@ -121,7 +121,7 @@ class App < Sinatra::Base
     end
 
     get "/taxid/:taxid" do # 統一編號
-        json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
+        json Company.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
                   .first(taxid: params[:taxid])
     end
 
@@ -132,7 +132,7 @@ class App < Sinatra::Base
     end
 
     get "/name/:name" do # 公司名稱
-        json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
+        json Company.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
                   .first(name: params[:name])
     end
 
@@ -143,7 +143,7 @@ class App < Sinatra::Base
         center = Oj.dump({"type" => "Point", "coordinates" => [params[:lng].to_f, params[:lat].to_f]})
         radius = params[:radius]
         offset = params[:limit].to_i * (params[:page].to_i - 1) if params[:limit] and params[:page]
-        json Store.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
+        json Company.select(:name, :taxid) { ST_AsGeoJSON(location).as(location) }
                   .where { ST_DWithin(location, ST_GeomFromGeoJSON(center), radius, false) }
                   .limit(params[:limit], offset)
                   .all
@@ -256,8 +256,8 @@ class App < Sinatra::Base
             share_url: CGI.escape(share_url)
         }
 
-        # if matched_categories.empty?
-        if true #matched_categories.empty?
+        if matched_categories.empty?
+        # if true #matched_categories.empty?
             locals[:og] = {
                 title: "我沒有被服貿！",
                 desc: "那你有沒有被服貿呢？快來看看吧！"

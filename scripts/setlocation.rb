@@ -3,9 +3,8 @@
 require "pg"
 require "sequel"
 require "oj"
-require "rgeo/geo_json"
 
-::DB = Sequel.connect("postgres://tisa:tisa@192.168.1.163/test")
+::DB = Sequel.connect("postgres://tisa:tisamap@localhost/tisa")
 
 source = File.open(ARGV[0], "r")
 
@@ -17,7 +16,7 @@ source.each_with_index do |line, index|
     })
     if (json["lng"] and json["lat"])
         puts json["number"], point
-        DB["update stores set location = ST_SetSRID(ST_GeomFromGeoJSON(?),4326) where taxid = ?;", point, json["number"]].update
+        DB["update companies set location = ST_SetSRID(ST_GeomFromGeoJSON(?),4326) where taxid = ?;", point, json["number"]].update
     end
    #puts DB["select * from stores where taxid = ?;", json["number"]].first[:name]
    #puts Oj.dump RGeo::GeoJSON.encode(RGeo::GeoJSON.decode(point))

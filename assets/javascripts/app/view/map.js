@@ -11,9 +11,11 @@ App.View.Map = Backbone.View.extend({
         this.listenTo(this.location, 'add', this.userLocation)
         this.location.startLocate();
 
-        new L.Control.GeoSearch({
+        var init_geosearch = new L.Control.GeoSearch({
             provider: new L.GeoSearch.Provider.OpenStreetMap()
-        }).addTo(this.map);
+        })
+
+        init_geosearch.addTo(this.map);
 
         L.tileLayer(
             'http://{s}.tile.cloudmade.com/f59941c17eda4947ae395e907fe531a3/997/256/{z}/{x}/{y}.png',
@@ -21,6 +23,18 @@ App.View.Map = Backbone.View.extend({
         ).addTo(this.map);
 
         this.map.addControl(new L.Control.Zoom({ position: 'bottomleft' }));
+
+        $('#leaflet-control-geosearch-submit').click(function() {
+            var selected_val = $('#leaflet-control-geosearch-select').val();
+            var query_val = $('#leaflet-control-geosearch-qry').val();
+            if(selected_val === 'site') {
+                init_geosearch.geosearch(query_val);
+            }else if(selected_val === 'company') {
+                init_geosearch.companysearch(query_val);
+            }else if(selected_val === 'id') {
+                init_geosearch.idsearch(query_val);
+            }
+        })
     },
     userLocation: function () {
         var option = this.location.pop().attributes.latlng;

@@ -24,7 +24,6 @@ L.Control.GeoSearch = L.Control.extend({
 		this._config = {
 			'country': options.country || '',
 			'provider': options.provider,
-			
 			'searchLabel': options.searchLabel || '搜尋...',
 			'notFoundMessage' : options.notFoundMessage || '對不起，此地址查詢不到。',
 			'messageHideDelay': options.messageHideDelay || 3000,
@@ -59,10 +58,16 @@ L.Control.GeoSearch = L.Control.extend({
 		msgbox.className = 'leaflet-control-geosearch-msg';
 		this._msgbox = msgbox;
 
-		var detailContainer = document.createElement('div');
-		detailContainer.id="detail-container";
-		detailContainer.innerHTML = "<a href='#'>使用資料說明</a>";
-		this._detailContainer = detailContainer;
+		// var detailContainer = document.createElement('div');
+		// detailContainer.id="detail-container";
+		// detailContainer.innerHTML = "<a href='#'>使用資料說明</a>";
+		// this._detailContainer = detailContainer;
+		
+		var submitBox = document.createElement('button');
+		submitBox.id = 'leaflet-control-geosearch-submit';
+		submitBox.className = 'btn btn-primary';
+		submitBox.innerHTML = 'Search!'
+		this._submitBox = submitBox
 
 		var selectOption = ""
 		selectOption = "<select id='leaflet-control-geosearch-select' class='leaflet-control-geosearch-select'>"
@@ -77,14 +82,14 @@ L.Control.GeoSearch = L.Control.extend({
 		this._resultslist = resultslist;
 
 		$(this._msgbox).append(this._resultslist);
-		$(this._container).append(this._logoContainer, this._searchbox, this._msgbox, this._selectOption, this._detailContainer);
+		$(this._container).append(this._logoContainer, this._searchbox, this._msgbox, this._submitBox, this._selectOption, this._detailContainer);
 
 		L.DomEvent
 		  .addListener(this._container, 'click', L.DomEvent.stop)
 		  .addListener(this._container, 'keypress', this._onKeyUp, this);
 
-		L.DomEvent.disableClickPropagation(this._container);
 
+		L.DomEvent.disableClickPropagation(this._container);
 		return this._container;
 	},
 	
@@ -153,8 +158,9 @@ L.Control.GeoSearch = L.Control.extend({
 
 	_apisearchSuccess: function (data) {
 		var company = data.name + ' ( 統編：' + data.taxid + ' )';
-		var geolat = data.geography.coordinates[0];
-		var geolng = data.geography.coordinates[1];
+		var parse_geo = JSON.parse(data.location)
+		var geolat = parse_geo.coordinates[0];
+		var geolng = parse_geo.coordinates[1];
 
 		this._showLocation(geolat, geolng, company)
 	},
