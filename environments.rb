@@ -37,7 +37,7 @@ class App < Sinatra::Base
     set :json_encoder, :to_json
     enable :logging
 
-    # Shenk's query interface
+    # Shenk's reference implementation
     get "/shenk" do
         erb :'shenk/index'
     end
@@ -116,9 +116,13 @@ class App < Sinatra::Base
         erb :'shenk/category', :locals => {rows: rows, activities: activities, reference: reference}
     end
 
-    get "/" do
+    get "/map" do
         cache_control :no_cache, :max_age => 0
-        haml :index
+        slim :'map', layout: :'layout/_layout'
+    end
+
+    get "/ly" do
+        slim :'ly', layout: :'layout/_layout'
     end
 
     get "/taxid/:taxid" do # 統一編號
@@ -156,11 +160,11 @@ class App < Sinatra::Base
     end
 
     # 「你被服貿了嗎」homepage.
-    get "/com" do
+    get "/" do
 
         # Nested templates: _layout > _query > index
-        slim :'com/_query', layout: :'com/_layout' do
-            slim :'com/index'
+        slim :'layout/_query', layout: :'layout/_layout' do
+            slim :'index'
         end
     end
 
