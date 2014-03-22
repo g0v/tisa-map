@@ -44,6 +44,7 @@ $topbar-height: 67px
   .logo
     font-size: 21px
     line-height: 1
+    letter-spacing: 1px
     text-decoration: none
     +link-colors($gray-lighter, lighten($gray-lighter, 10%))
     padding-top: ($topbar-height - 21px)/2
@@ -74,6 +75,12 @@ $topbar-height: 67px
     width: 100px
     margin-right: 23px
     +filter(grayscale(100%) contrast(60%))
+
+  .beta-string
+    margin: 16px 0 0 32px
+    padding: 5px 10px
+    border: 1px solid rgba($brand-danger, .4)
+    border-radius: 3px
 
 %label-selections
   p
