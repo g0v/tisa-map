@@ -23,6 +23,8 @@ require_relative "models/announced_stats"
 require_relative "models/activities"
 require_relative "models/stats"
 
+require_relative "models/cpcs"
+
 
 class App < Sinatra::Base
 
