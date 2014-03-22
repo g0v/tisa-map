@@ -1,28 +1,21 @@
-<div class="ly-person">
-    <div class="unit" id="{{name}}">
-            <p class="{{party}} kmt name">{{name}}</p>
-            <div class="ly-person-left">
-                <img src="{{avatar}}?size=large" width="200"/>
-            </div>
-        <div class="ly-person-right">
-            <div class="ly-contact">
-                {{#each [contact]}}
-                <p>{{@key}}</p>
-                <ul>
-                    {{#if this.phone}}
-                    <li class="phone">{{this.phone}}</li>
-                    {{/if}}
-                    {{#if this.address}}
-                    <li class="address">{{this.address}}</li>
-                    {{/if}}
-                    {{#if this.fax}}
-                    <li class="fax">{{this.fax}}</li>
-                    {{/if}}
-                </ul>
-                {{/each}}
-            </div>
-        </div>
-        <div class="ly-person-clear">
-        </div>
-    </div>
-</div>
+div ng-controller="lyCtrl"
+    .ly-person ng-repeat="ly in lys"
+      .unit id="{{ly.name}}"
+        p.kmt.name class="{{ly.party}}" {{ly.name}}
+        .ly-person-left
+          img src="{{ly.avatar}}?size=large" width="200"
+        .ly-person-right
+          .ly-contact
+            div ng-repeat="(key, c) in ly.contact"
+              p
+                |{{key}}
+              ul
+                li.phone
+                  |{{c.phone}}
+                li.address
+                  |{{c.address}}
+                li.fax
+                  |{{c.fax}}
+
+- content_for :scripts
+  script[type="text/javascript" src="/assets/ly_person.js"]
