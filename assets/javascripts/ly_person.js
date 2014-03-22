@@ -1,11 +1,11 @@
 var ly_arr = [];
 
 function get_person(callback) {
-  $.getJSON('../json_data/tisa-person.json', function (ly_data) {
+  $.getJSON('/json_data/tisa-person.json', function (ly_data) {
     var ly_data = ly_data;
 
 
-    $.getJSON('../json_data/mly-8.json', function (data) {
+    $.getJSON('/json_data/mly-8.json', function (data) {
 
       for (var i = ly_data.length - 1; i >= 0; i--) {
 
