@@ -21,21 +21,19 @@ html ng-app="tisa"
 
   body
     #topbar
+      .container
+        a.pull-left.hidden-xs.logo[href="/"] 你被服貿了嗎？
 
-      a#logo[href="/"] 你被服貿了嗎？
+        .pull-right.social-btn-group.hidden-xs
 
-      .social-btn-group
+          .gp-btn
+            .g-plusone data-size="medium" data-annotation="none" data-href="http://tisa.g0v.tw" data-width="250px" data-align="left"
 
-        .gp-btn
-          .g-plusone data-size="medium" data-annotation="none" data-href="http://tisa.g0v.tw" data-width="250px" data-align="left"
+          .tw-btn
+            a.twitter-share-button href="https://twitter.com/share" data-lang="zh-TW" data-url="http://tisa.g0v.tw" data-text="你被服貿了嗎？" data-via="g0vtw"
 
-        .tw-btn
-          a.twitter-share-button href="https://twitter.com/share" data-lang="zh-TW" data-url="http://tisa.g0v.tw" data-text="你被服貿了嗎？" data-via="g0vtw"
-
-        .fb-btn
-          iframe src="//www.facebook.com/plugins/like.php?href=#{com_like_url}&width=150&layout=button_count&action=like&show_faces=false&share=true&height=21&colorscheme=dark&appId=639424269440362" scrolling="no" frameborder="0" allowTransparency="true"
-
-
+          .fb-btn
+            iframe src="//www.facebook.com/plugins/like.php?href=#{com_like_url}&width=150&layout=button_count&action=like&show_faces=false&share=true&height=21&colorscheme=dark&appId=639424269440362" scrolling="no" frameborder="0" allowTransparency="true"
 
     == yield
 
@@ -46,10 +44,10 @@ html ng-app="tisa"
             img[src="/img/com/cc.png"]
             span
               | 本服務圖文內容採用
-              a [rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.zh_TW"] 創用 CC 姓名標示 4.0 國際 授權條款
-              | 授權；程式碼部分以
+              a [rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.zh_TW"] 創用 CC 姓名標示 4.0 國際授權條款
+              | 授權；<br>程式碼部分以 
               a [rel="license" href="http://opensource.org/licenses/mit-license.php"] MIT 授權條款
-              |  (X11) 授權
+              | （X11）授權。
         div.col-xs-4
           a.g0v.pull-right [href="http://g0v.tw" target="_blank" title="g0v 零時政府"] g0v
 
