@@ -41,27 +41,28 @@ $topbar-height: 67px
   height: $topbar-height
   text-align: right
 
-  #logo
-    width: 300px
-    float: left
-    font-size: 30px
+  .logo
+    font-size: 21px
+    line-height: 1
     text-decoration: none
+    +link-colors($gray-lighter, lighten($gray-lighter, 10%))
+    padding-top: ($topbar-height - 21px)/2
 
+  $iframe-height: 21px
   .social-btn-group
-    float:right
-    $iframe-height: 21px
     overflow: hidden
     border: none
     padding-top: ($topbar-height - $iframe-height)/2
-    padding-right: 30px
     z-index: 9999
     float: right
     display: inline-flex
     height: inherit
 
+  .fb-btn, .tw-btn, .gp-btn
+    height: $iframe-height
+
   .fb-btn
     width: 130px
-    margin-right: 23px
     +filter(grayscale(100%) contrast(60%))
 
   .tw-btn
@@ -144,11 +145,23 @@ $topbar-height: 67px
   .thunder
     margin-top: image-height('com/title.png')/2 + image-height('com/thunder.png')/3
 
+  .items-section
+    +trailer(3)
+
+  .map-section
+    +trailer(7)
+    h2
+      +trailer(1)
+    #map
+      border-radius: 4px
+      border: 1em solid #fff
+      border-top: 0
+      width: 100%
+
   .subtitle
     +leader(2)
     +trailer(1)
-  .row:last-of-type .item
-    +trailer(7)
+
   .item
     +translateZ(0) // Prevent repainting initiated by togging other items
     position: relative
@@ -167,7 +180,7 @@ $topbar-height: 67px
         font-size: 18px
 
     .content
-      padding: 2.8em 3em 1em
+      padding: 1.8em 3em 1em
       div
         display: inline-block
         width: 80%
@@ -476,10 +489,13 @@ $topbar-height: 67px
     line-height: $footer-height
     margin: 0
     span
+      vertical-align: middle
       margin-left: 20px
-      font-size: 16px
       letter-spacing: 1px
-      vertical-align: sub
+      line-height: 1.5
+      font-size: 12px
+      display: inline-block
+
   .g0v
     +replace-text-with-dimensions("com/g0v.png")
     height: $footer-height

@@ -28,38 +28,39 @@ section#affected
       = company.name
       |的影響
 
-  div.container
+  div.container.items-section
     - for category in categories
-      div.row: article.item.col-lg-10.col-lg-offset-1
+      div.row: .col-lg-10.col-lg-offset-1: article.item
 
         header
           h3
             = "#{category[:id]} #{category[:value]}"
             / 對照表與對照行業別
-            small
-              a[href="#" title="對照表"]  ⊜
-              a[href="http://app1.stat.gov.tw/indu/wform?funcid=I-7-M&rev=9&id=6201"] 6201 電腦軟體設計業
-              a[href="#" title="對照表"]  ⊜
-              a[href="#"] CPC845+849 其他
+            / small
+            /   a[href="#" title="對照表"]  ⊜
+            /   a[href="http://app1.stat.gov.tw/indu/wform?funcid=I-7-M&rev=9&id=6201"] 6201 電腦軟體設計業
+            /   a[href="#" title="對照表"]  ⊜
+            /   a[href="#"] CPC845+849 其他
 
         div.js-slider-container
-          section.content.translate
-            div= category[:translated]
-            aside.text-center: button.btn-arrow-right.js-slider-toggle 原始條文
+          section.content= category[:original]
+          / section.content.translate
+          /   div= category[:translated]
+          /   aside.text-center: button.btn-arrow-right.js-slider-toggle 原始條文
 
-          section.content.oringin
-            aside.text-center: button.btn-arrow-left.js-slider-toggle 返回
-            div= category[:original]
+          / section.content.oringin
+          /   aside.text-center: button.btn-arrow-left.js-slider-toggle 返回
+          /   div= category[:original]
 
         footer
           a[href="https://www.facebook.com/sharer/sharer.php?u=#{share_url}" target="_blank"] 告訴親友我被服貿了
-  - content_for :scripts
-    script[src= "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js" type= "text/javascript"]
-    script[src= "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js" type= "text/javascript"]
-    script[src="//cdn.leafletjs.com/leaflet-0.6.4/leaflet.js" type= "text/javascript"]
 
-== slim :'partials/_map'
+  == slim :'partials/_map'
+
 == slim :'partials/_poll'
 
 - content_for :scripts
+  script[src= "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js" type= "text/javascript"]
+  script[src= "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js" type= "text/javascript"]
+  script[src="//cdn.leafletjs.com/leaflet-0.6.4/leaflet.js" type= "text/javascript"]
   script[src="/assets/application.js" type= "text/javascript"]

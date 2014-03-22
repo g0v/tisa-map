@@ -291,6 +291,7 @@ class App < Sinatra::Base
     # Ajax API.
     post '/poll' do
 
+        puts "VOTE: #{params}"
         # Return an array of percentages.
         # Database mock data
         json({results: [67, 12, 2, 5, 6, 8, 0]})
