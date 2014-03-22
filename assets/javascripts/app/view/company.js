@@ -1,12 +1,17 @@
 App.View.Company = Backbone.View.extend({
     el: 'body',
     initialize: function (options) {
+        this.marker_arr = []
         this.map = options.map;
         this.centers = new App.Collection.Center();
         this.companys = new App.Collection.Company();
+
+        // add center when drag
         this.map.on('drag', function(e) {
                 this.centers.add({center: this.map.getCenter()})
         }, this);
+
+        // listen to center, company add action.
         this.listenTo(this.centers, 'add', this.addCenter);
         this.listenTo(this.companys, 'add', this.addCompany);
     },
@@ -32,7 +37,23 @@ App.View.Company = Backbone.View.extend({
         var marker = L.marker(L.latLng(company_lat, company_lng), { title: company_name });
         // add popup
         marker.bindPopup(company_name + ' (' + company_taxid + ' )');
-        this.map.addLayer(marker);
+        // add markers to map
+        this.marker_arr.push(marker)
+        this._remakeMarkers();
+    },
+    _addMarkerCluster: function() {
+        var markers = L.markerClusterGroup( { disableClusteringAtZoom: 17 } );
+        return markers
+    },
+    _remakeMarkers: function() {
+        var markers = this._addMarkerCluster();
+        console.log(this.marker_arr);
+        _.each(this.marker_arr, function(marker) {
+            markers.addLayer(marker);
+            console.log(marker);
+        })
+        console.log(markers);
+        this.map.addLayer(markers);
     }
 });
 

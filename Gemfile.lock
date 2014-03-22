@@ -43,7 +43,6 @@ GEM
     lumberjack (1.0.4)
     method_source (0.8.2)
     multi_json (1.7.9)
-    mysql2 (0.3.15)
     oj (2.0.14)
     pg (0.17.1)
     pry (0.9.12.2)
@@ -107,7 +106,6 @@ DEPENDENCIES
   guard-livereload
   guard-shell
   haml
-  mysql2
   oj
   pg
   rake

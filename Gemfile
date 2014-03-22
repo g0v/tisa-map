@@ -4,7 +4,6 @@ gem 'rake'
 gem 'sinatra', :require => "sinatra/base"
 gem 'sinatra-contrib', :require => "sinatra/contrib/all"
 gem 'pg'
-gem 'mysql2'
 gem 'sequel'
 gem 'oj'
 gem 'haml'
