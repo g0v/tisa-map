@@ -43,10 +43,10 @@ L.Control.GeoSearch = L.Control.extend({
 		this._map = map;
 		this._container = L.DomUtil.create('div', 'leaflet-control-geosearch');
 
-		var logoContainer = document.createElement('div');
-		logoContainer.id = 'tisa-map-logo';
-		logoContainer.innerHTML = "服務貿易協定影響地圖"
-		this._logoContainer = logoContainer;
+		//var logoContainer = document.createElement('div');
+		//logoContainer.id = 'tisa-map-logo';
+		//logoContainer.innerHTML = "服務貿易協定影響地圖"
+		//this._logoContainer = logoContainer;
 
 		var searchbox = document.createElement('input');
 		searchbox.id = 'leaflet-control-geosearch-qry';

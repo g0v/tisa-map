@@ -4,7 +4,6 @@
 	padding-top: 10px;
 	margin-left: auto;
 	margin-right: auto;
-	position: fixed;
 	top: 0px;
 	left: 0px;
 	background-color: #FFF;
@@ -19,18 +18,15 @@
 .leaflet-control-geosearch {
 	border-radius: 7px;
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.25);
-	margin: 10px 0 0 0;
 	padding: 5px;
-	width: 40%;
+	width: 100%;
 	height: auto;
-	margin-left: 400px;
 }
 
 .leaflet-control-geosearch ul {
 	width: 100%;
 	border-radius: 7px;
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.25);
-	margin: 10px 0 0 0;
 	padding: 5px;
 	height: auto;
 	margin-left: auto;
@@ -46,11 +42,11 @@
 }
 .leaflet-control-geosearch ul li {
 	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.75);
-  border-radius: 4px;
-  margin: 2px 0;
-  padding: 4px;
-  font: 12px arial;
-  text-indent: 4px; 
+	border-radius: 4px;
+	margin: 2px 0;
+	padding: 4px;
+	font: 12px arial;
+	text-indent: 4px; 
 }
 .leaflet-container .leaflet-control-geosearch input {
 	width: 100%;
@@ -65,7 +61,7 @@
 }
 #leaflet-control-geosearch-select {
 	width: 100px;
-  height: 30px;
+ 	height: 30px;
 	border: 1px solid #ccc;
 	position: absolute;
 	right: 10px;
