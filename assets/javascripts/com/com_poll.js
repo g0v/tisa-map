@@ -1,4 +1,4 @@
-//= require jquery.easypiechart
+//= require ../jquery.easypiechart
 
 (function($){
   "use strict";

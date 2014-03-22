@@ -1,6 +1,5 @@
-//= require 'lodash'
-//= require 'bootstrap'
-//= require 'jquery-ui-custom'
+//= require ../bootstrap
+//= require ../jquery-ui-custom
 
 (function($){
   "use strict";
