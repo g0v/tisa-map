@@ -4,7 +4,7 @@ html
     meta[charset="utf-8"]
     meta[name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"]
     link[rel="stylesheet" href="/assets/com.css"]
-
+    link[rel="shortcut icon" href="/img/favicon.ico"]
     meta[property="fb:app_id" content="639424269440362"]
     meta[property="og:site_name" content="你被服貿了嗎"]
     meta[property="og:locale" content="zh_TW"]
@@ -12,6 +12,9 @@ html
 
   body
     #topbar
+
+      a#logo[href="/"] 你被服貿了嗎？
+
       iframe.like-button src="//www.facebook.com/plugins/like.php?href=#{com_like_url}&width=150&layout=button_count&action=like&show_faces=false&share=true&height=21&colorscheme=dark&appId=639424269440362" scrolling="no" frameborder="0" allowTransparency="true"
 
     == yield

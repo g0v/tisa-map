@@ -15,17 +15,9 @@ Sequel::Plugins::JsonSerializer.configure(Sequel::Model, naked: true)
 Compass.configuration.images_dir = 'public/img'
 Compass.configuration.http_images_path = '/img'
 
-require_relative "models/stores"
-require_relative "models/companies"
-require_relative "models/categories"
-require_relative "models/announced_categories"
-require_relative "models/announced_stats"
-require_relative "models/activities"
-require_relative "models/stats"
-
-require_relative "models/cpcs"
-require_relative "models/groups"
-
+Dir["models/*.rb"].each do |file|
+    require_relative file
+end
 
 class App < Sinatra::Base
 
@@ -264,6 +256,7 @@ class App < Sinatra::Base
             share_url: CGI.escape(share_url)
         }
 
+        # if matched_categories.empty?
         if true #matched_categories.empty?
             locals[:og] = {
                 title: "我沒有被服貿！",
