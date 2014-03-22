@@ -37,7 +37,7 @@ App.View.Map = Backbone.View.extend({
             }
         })
 
-        if($('#tax-name').val() !== '') {
+        if($('#tax-name').val() !== undefined) {
             init_geosearch.companysearch($('#tax-name').val());
         }
     },

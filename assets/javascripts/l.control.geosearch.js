@@ -50,7 +50,7 @@ L.Control.GeoSearch = L.Control.extend({
 		var searchbox = document.createElement('input');
 		searchbox.id = 'leaflet-control-geosearch-qry';
 		searchbox.type = 'text';
-		if($('#tax-name').val() == '') {
+		if($('#tax-name').val() == undefined) {
 			searchbox.placeholder = this._config.searchLabel;
 			this._searchbox = searchbox;
 		}else {
