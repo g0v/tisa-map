@@ -6,7 +6,7 @@
   var
     RESULT_DURATION = 1000, // ms of animation duration
     $section = $('#poll'),
-    $form = $('.poll-form'),
+    $form = $('.poll-form form'),
     $result = $('.poll-result'),
     $button = $form.find('[type=submit]');
 
