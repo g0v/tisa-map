@@ -24,6 +24,7 @@ require_relative "models/activities"
 require_relative "models/stats"
 
 require_relative "models/cpcs"
+require_relative "models/groups"
 
 
 class App < Sinatra::Base
