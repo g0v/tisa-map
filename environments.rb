@@ -7,7 +7,7 @@ require 'cgi'
 Bundler.require :default
 
 DB = Sequel.connect(YAML.load_file("config/database.yml")[ENV['RACK_ENV'] || "development"])
-DB.extension :pg_array
+DB.extension :pg_array, :pg_json
 Sequel::Model.plugin :json_serializer
 Sequel::Plugins::JsonSerializer.configure(Sequel::Model, naked: true)
 
