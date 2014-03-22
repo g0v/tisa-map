@@ -287,12 +287,6 @@ class App < Sinatra::Base
         end
     end
 
-    get "/poll" do
-      json(results: DB[:polls].select { [type, sum(1)] }.group(:type).order(:type).map { |row| row[:sum] })
-    end
-
-    # Satisfaction voting.
-    # Ajax API.
     post '/poll' do
         Poll.create(type: params[:type], ip: request.ip)
         json(results: DB[:polls].select { [type, sum(1)] }.group(:type).order(:type).map { |row| row[:sum] })
