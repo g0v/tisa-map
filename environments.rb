@@ -224,8 +224,8 @@ class App < Sinatra::Base
 
     # Autocomplete
     get "/complete/:term" do
-        result = search_company(params[:term]).map{|c| c[:type]="公司行號"; c}
-                 + search_category(params[:term]).map{|c| c[:type]="營業登記項目"; c}
+        result = search_company(params[:term]).map{|c| c[:type]="公司行號"; c} +
+                 search_category(params[:term]).map{|c| c[:type]="營業登記項目"; c}
 
         result.to_json
     end
