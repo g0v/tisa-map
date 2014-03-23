@@ -24,8 +24,12 @@ class App < Sinatra::Base
     helpers Sinatra::JSON
     helpers Sinatra::ContentFor
     helpers do
-        def com_like_url
-            CGI.unescape url("/com")
+        def like_url escape=false
+            if escape
+                CGI.unescape url("/")
+            else
+                url '/'
+            end
         end
     end
 
@@ -164,15 +168,7 @@ class App < Sinatra::Base
     end
 
     # Text-matching companies' name, given token.
-    def search_company(token)
-        results = Company.filter("name LIKE ? ", "%#{token}%").order(:name).map do |i|
-            {
-                pos: Regexp.new(Regexp.escape(token)) =~ i.name,
-                value: i.name,
-                id: i.taxid
-            }
-        end
-
+    def sort_by_position(results)
         # 5 response at most
         max = (results.length > 5)? 5: results.length - 1
         (0..max).each do |i|
@@ -185,18 +181,36 @@ class App < Sinatra::Base
         results[0..max]
     end
 
+    def search_company(token)
+        result = Company.filter("name LIKE ? OR taxid LIKE ?", "%#{token}%", "%#{token}%").order(:name).map do |i|
+            {
+                pos: Regexp.new(Regexp.escape(token)) =~ i.name,
+                value: i.name,
+                id: i.taxid
+            }
+        end
+
+        sort_by_position result
+    end
+
+    def search_category(token)
+        result = Category.filter('name LIKE ?', "%#{token}%").order(:name).map do |i|
+            {
+                pos: Regexp.new(Regexp.escape(token)) =~ i.name,
+                value: i.name,
+                id: i.key
+            }
+        end
+
+        sort_by_position result
+    end
+
     # Display the search result for a specific keyword.
     get "/search" do
         keyword = params[:keyword]
 
         companies = search_company(keyword)
-
-        # Database mock data
-        categories = [
-            {id: "I301010", value: "資訊軟體服務業"},
-            {id: "I301011", value: "資訊軟體服務業2"},
-            {id: "I301012", value: "資訊軟體服務業3"}
-        ]
+        categories = search_category(keyword)
 
         # Nested templates: _layout > _query > search
         slim :'layout/_query', layout: :'layout/_layout' do
@@ -210,7 +224,10 @@ class App < Sinatra::Base
 
     # Autocomplete
     get "/complete/:term" do
-        search_company(params[:term]).map{|c| c[:type]="公司行號"; c}.to_json
+        result = search_company(params[:term]).map{|c| c[:type]="公司行號"; c} +
+                 search_category(params[:term]).map{|c| c[:type]="營業登記項目"; c}
+
+        result.to_json
     end
 
     # Display the company's categories.
@@ -218,13 +235,13 @@ class App < Sinatra::Base
 
         company = Company.filter(taxid: params[:tax_id]).first
 
-        # Database mock data
-        categories = [
-           {id: "I301010", value: "資訊軟體服務業"},
-           {id: "I301011", value: "資訊軟體服務業2"},
-           {id: "I301012", value: "資訊軟體服務業3"},
-           {id: "I30012", value: "資訊軟體服務業rrr"}
-        ]
+        # TODO: Fix category name when categories table is populated
+        categories = company.categories.map do |c|
+            {
+                id: c,
+                value: '' # TODO: put the category name here
+            }
+        end
 
         slim :'layout/_query', layout: :'layout/_layout' do
             slim :'category', locals: {
@@ -239,15 +256,15 @@ class App < Sinatra::Base
 
         company = params[:id] ? Company.filter(taxid: params[:id]).first : nil
 
+        # The category keys the user chosen in previous steps.
         category_ids = params[:cat]
 
         # The categories that are affected.
-        # Database mock data
+        # TODO: Query the matched category
         matched_categories = [
-            {id: "I301010", value: "資訊軟體服務業", translated: "這段目前是假字這段目前是假字這段目前是假字。性後注正來廣電要那個列就……作覺分臺斷產中活情、好為服，這事不可回外油然以成，親背來史裡人和裝體方性，會府利了了藝子因弟在寫一過兒事言常已的排金看到：年的區文人行其，起技南！制生個功有位方見國年何不地學了步定密氣小飛自要得意分個油覺術發故度孩春大班小下他水識裡畫：體起是像可一美靈要個態我印開到……示的市必備雜照無語流老我密，心食中影的羅第！", original: "這段是條文原文文言文這兒願活又總父入不不一有……不年友友景理了大兒學？喜出環內溫打準到旅深轉有人、為了非，看說條就利去麗在。該他那請得後包重火藝，友來同教來林花兒力解，學提流千遊，般科造景樂重眾理……地有成期？那裡決利歡明被開雨同！體卻出光內請裡工度手，著手想、明出媽最。不方願這王不了下從？
-            一適為好推裡過充院下三自問……間裡陽發是演政次書為。密實備樓笑是？了該身生數來計行，果增真應關一地畫三西信來為一坡他原維孩各是間，買讓家地成如！為時最其生覺有業山，時先而請：期我表商適給國：學感須的好了笑找角王力用亞減當沒就他作一嗎。"},
-            {id: "I301011", value: "資訊軟體服務業2", translated: "這段目前是假字這段目前是假字", original: "這段是條文原文文言文"},
-            {id: "I301012", value: "資訊軟體服務業3", translated: "這段目前是假字這段目前是假字", original: "這段是條文原文文言文"}
+            {id: "I301010", value: "資訊軟體服務業", translated: "", original: "原文"},
+            {id: "I301011", value: "資訊軟體服務業2", translated: "", original: "這段是條文原文文言文"},
+            {id: "I301012", value: "資訊軟體服務業3", translated: "", original: "這段是條文原文文言文"}
         ]
 
         if company.nil?
@@ -287,12 +304,8 @@ class App < Sinatra::Base
         end
     end
 
-    # Satisfaction voting.
-    # Ajax API.
     post '/poll' do
-
-        # Return an array of percentages.
-        # Database mock data
-        json({results: [67, 12, 2, 5, 6, 8, 0]})
+        Poll.create(type: params[:type], ip: request.ip)
+        json(results: DB[:polls].select { [type, sum(1)] }.group(:type).order(:type).map { |row| row[:sum] })
     end
 end
