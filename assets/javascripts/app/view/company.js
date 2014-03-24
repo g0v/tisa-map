@@ -18,8 +18,11 @@ App.View.Company = Backbone.View.extend({
     addlocateCenter: function (data) {
         var lat = data.center.lat;
         var lng = data.center.lng;
-        this.companys.url = '/lng/' + lng + '/lat/' + lat + '/radius/100';
-        this.companys.fetch();
+
+        that.companys.url = '/lng/' + lng + '/lat/' + lat + '/radius/100?page=' + i;
+        that.companys.fetch();
+        
+        
     },
     addCenter: function () {
         var center = this.centers.pop();

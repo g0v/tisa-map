@@ -1,21 +1,6 @@
-div ng-controller="lyCtrl"
-    .ly-person ng-repeat="ly in lys"
-      .unit id="{{ly.name}}"
-        p.kmt.name class="{{ly.party}}" {{ly.name}}
-        .ly-person-left
-          img src="{{ly.avatar}}?size=large" width="200"
-        .ly-person-right
-          .ly-contact
-            div ng-repeat="(key, c) in ly.contact"
-              p
-                |{{key}}
-              ul
-                li.phone
-                  |{{c.phone}}
-                li.address
-                  |{{c.address}}
-                li.fax
-                  |{{c.fax}}
+
+div#ly_area
 
 - content_for :scripts
+  script[type="text/javascript" src="/assets/handlebars-v1.3.0.js"]
   script[type="text/javascript" src="/assets/ly_person.js"]
