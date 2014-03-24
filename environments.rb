@@ -182,9 +182,10 @@ class App < Sinatra::Base
     end
 
     def search_company(token)
+        matcher = Regexp.new(Regexp.escape(token))
         result = Company.filter("name LIKE ? OR taxid LIKE ?", "%#{token}%", "%#{token}%").order(:name).map do |i|
             {
-                pos: Regexp.new(Regexp.escape(token)) =~ i.name,
+                pos: [matcher =~ i.name, matcher =~ i.taxid].reject{|p|p.nil?}.min,
                 value: i.name,
                 id: i.taxid
             }
@@ -194,7 +195,7 @@ class App < Sinatra::Base
     end
 
     def search_category(token)
-        result = Category.filter('name LIKE ?', "%#{token}%").order(:name).map do |i|
+        result = Category.filter('name LIKE ? OR key LIKE ?', "%#{token}%", "%#{token}%").order(:name).map do |i|
             {
                 pos: Regexp.new(Regexp.escape(token)) =~ i.name,
                 value: i.name,
@@ -233,7 +234,7 @@ class App < Sinatra::Base
     # Display the company's categories.
     get "/company/:tax_id" do
 
-        company = Company.filter(taxid: params[:tax_id]).first
+        company = Company.where(taxid: params[:tax_id]).first
 
         # TODO: Fix category name when categories table is populated
         categories = company.categories.map do |c|
@@ -254,7 +255,7 @@ class App < Sinatra::Base
     # Display the comparison result for a company ID or industry ID
     get "/result/?" do
 
-        company = params[:id] ? Company.filter(taxid: params[:id]).first : nil
+        company = params[:id] ? Company.where(taxid: params[:id]).first : nil
 
         # The category keys the user chosen in previous steps.
         category_ids = params[:cat]
@@ -304,8 +305,13 @@ class App < Sinatra::Base
         end
     end
 
+    # The type parameter should be within range 0 to 6.
+    POLL_TYPE_RANGE = (0..6)
     post '/poll' do
-        Poll.create(type: params[:type], ip: request.ip)
-        json(results: DB[:polls].select { [type, sum(1)] }.group(:type).order(:type).map { |row| row[:sum] })
+        type = params[:type].to_i
+        halt 400 unless POLL_TYPE_RANGE.include? type
+
+        Poll.create(type: type, ip: request.ip)
+        json results: DB[:polls].select { [type, sum(1)] }.group(:type).where(:type => POLL_TYPE_RANGE).order(:type).map{|row| row[:sum]}
     end
 end

@@ -6,23 +6,26 @@
   var
     RESULT_DURATION = 1000, // ms of animation duration
     $section = $('#poll'),
-    $form = $('.poll-form form'),
-    $result = $('.poll-result'),
-    $button = $form.find('[type=submit]');
+    $formPanel = $('.poll-form'),
+    $resultPanel = $('.poll-result'),
+    $button = $formPanel.find('[type=submit]');
 
   // Handling the polling form submission
-  $form.submit(function(e){
+  $formPanel.find('form').submit(function(e){
     $button.button('loading');
-    $.post('/poll', $form.serialize(), function(data){
+    $.post('/poll', $(this).serialize(), function(data){
       // console.log('JSON Response', data);
       // Initialize easyPieChart
-      $result.find('.result-data').easyPieChart({
+      $resultPanel.find('.result-data').easyPieChart({
         animate: RESULT_DURATION
       });
 
+
+      var sum = data.results.reduce(function(s, i){return s+i}, 0);
+
       // Put percentage data into .result-data one-by-one
-      $result.find('.result-data').each(function(idx, elem){
-        var percentage = data.results[idx],
+      $resultPanel.find('.result-data').each(function(idx, elem){
+        var percentage = data.results[idx] * 100 / sum,
         $elem = $(elem);
 
         $({percent: 0}).animate({percent: percentage}, {
@@ -38,8 +41,8 @@
       $button.button('reset');
 
       // Swapping the form and result using bootstrap class.
-      $form.addClass('hide');
-      $result.removeClass('hide');
+      $formPanel.addClass('hide');
+      $resultPanel.removeClass('hide');
     }, 'json');
     e.preventDefault();
   })
