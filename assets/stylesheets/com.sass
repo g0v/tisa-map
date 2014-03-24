@@ -152,12 +152,15 @@ $topbar-height: 67px
   .thunder
     margin-top: image-height('com/title.png')/2 + image-height('com/thunder.png')/3
 
-  .items-section
-    +trailer(3)
+  @media screen and (min-width: #{$screen-md})
+    .items-section
+      +trailer(2)
 
   .map-section
-    +trailer(7)
+    @media screen and (min-width: #{$screen-md})
+      +trailer(7)
     h2
+      +leader(1)
       +trailer(1)
     #map
       border-radius: 4px
@@ -468,12 +471,13 @@ $topbar-height: 67px
   background-color: #AFAEAF
   +padding-leader(2)
   +padding-trailer(2)
-  .action-button-wrapper
-    height: 200px
-    &:first-child
-      background: image-url("com/left-worker.png") no-repeat center bottom
-    &:last-child
-      background: image-url("com/right-worker.png") no-repeat center bottom
+  @media screen and (min-width: #{$screen-sm})
+    .action-button-wrapper
+      height: 200px
+      &:first-child
+        background: image-url("com/left-worker.png") no-repeat center bottom
+      &:last-child
+        background: image-url("com/right-worker.png") no-repeat center bottom
   .secondary
     color: #fff
     padding: 15px 0
