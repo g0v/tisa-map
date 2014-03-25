@@ -7,7 +7,7 @@ require 'cgi'
 Bundler.require :default
 
 DB = Sequel.connect(YAML.load_file("config/database.yml")[ENV['RACK_ENV'] || "development"])
-DB.extension :pg_array, :pg_json
+DB.extension :pg_array, :pg_json, :pagination
 Sequel::Model.plugin :json_serializer
 Sequel::Plugins::JsonSerializer.configure(Sequel::Model, naked: true)
 
@@ -140,7 +140,11 @@ class App < Sinatra::Base
                   .first(name: params[:name])
     end
 
-    get "/business/:business" do # 所營事業項目
+    get "/category/:category" do # 所營事業項目
+        page = params[:page].to_i || 1
+        json Company.where("categories @> Array[?]::text[]", params[:category])
+                    .paginate(page, 30)
+                    .all
     end
 
     get "/lng/:lng/lat/:lat/radius/:radius" do # 中心點(longitude and latitude) + 半徑(meters)
