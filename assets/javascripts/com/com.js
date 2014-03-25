@@ -41,7 +41,6 @@
         word = item.value.replace(re,"<span class=\"text-info\">$1</span>");
 
       return $( "<li class=\"autocomplete-item\"></li>" )
-        .data( "item.autocomplete", item )
         .append( "<a>" + word + "<i class=\"pull-right text-muted\">" + item.type + "</i></a>" )
         .appendTo( ul );
     };
@@ -51,7 +50,7 @@
         that._renderItemData(ul, item);
       });
 
-      $(ul).addClass('dropdown-menu')
+      $(ul).addClass('dropdown-menu') // Bootstrap dropdown menu class
     }
   }
 
