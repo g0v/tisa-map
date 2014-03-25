@@ -141,7 +141,7 @@ class App < Sinatra::Base
     end
 
     get "/category/:category" do # 所營事業項目
-        page = params[:page].to_i || 1
+        page = params[:page].to_i > 0 ? params[:page].to_i : 1
         json Company.where("categories @> Array[?]::text[]", params[:category])
                     .paginate(page, 30)
                     .all
