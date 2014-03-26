@@ -7,7 +7,7 @@ section#poll.text-center
     p.instruction 請在下面點選你的意見
 
     form.container
-      div.row.poll-options: div.col-lg-10.col-lg-offset-1
+      div.row.poll-options: div.col-lg-10.col-lg-offset-1.clearfix
         input#poll-0[type="radio" name="type" value="0"]
         label[for="poll-0"]: span
           img[src="/img/com/fuck.png" alt="幹"]
@@ -29,11 +29,11 @@ section#poll.text-center
       div.row.poll-button-wrapper
         button.col-xs-8.col-xs-offset-2.col-lg-4.col-lg-offset-4.btn.btn-primary[type="submit" data-loading-text="送出中……"] 送出意見看統計
 
-  section.poll-result.hide
+  section.poll-result.animate-hidden
     p.instruction 統計結果
 
     div.container: div.row: div.col-lg-10.col-lg-offset-1
-      ul.result-set
+      ul.result-set.clearfix
         li
           div.result-data
           span: img[src="/img/com/fuck.png" alt="幹"] 不服

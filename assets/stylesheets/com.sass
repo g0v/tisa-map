@@ -283,6 +283,9 @@ $topbar-height: 67px
           height: $share-height
 
 #poll
+  .poll-form
+    transition: opacity 1s, height 0
+
   header
     background: $brand-info
     position: relative // For the triangle
@@ -444,7 +447,11 @@ $topbar-height: 67px
     +trailer(2)
 
   .poll-result
+    transition: opacity 1s, height 0
     +trailer(3) // The space the "submit" button occupies in .poll-form
+
+  .result-set
+    padding: 0
 
   .result-set li
     $item-count: 7
@@ -455,21 +462,41 @@ $topbar-height: 67px
       @extend %vertical-line
 
   // Where piechart populates
+  %piechart
+    position: absolute
+    line-height: 38px
+    top: 50%
+
   .result-data
     width: 100%
     position: relative // For :after
-    &:after
-      position: absolute
-      width: 100%
-      left: 0
-      height: 60px
-      line-height: 60px
-      top: 50%
-      margin-top: -30px
-      content: attr(data-percent)
 
-    canvas
-      width: 100%
+    $data-size: 36px
+    &:before 
+      @extend %piechart
+      left: 0
+      margin-top: -24px
+      width: 68%
+      content: attr(data-percent)
+      font-size: $data-size
+      color: #B1AFB0
+      text-align: right
+    &:after
+      @extend %piechart
+      width: 32%
+      margin-top: -18px
+      right: -2px //make little space between number
+      content: "%"
+      font-size: $data-size*.4
+      font-weight: lighter
+      color: #AFAFAF
+      text-align: left
+      
+.animate-hidden
+  opacity: 0
+  height: 0
+  overflow: hidden // firefox fix
+  transition: opacity 1s, height 0 1s
 
 #action
   background-color: #AFAEAF
