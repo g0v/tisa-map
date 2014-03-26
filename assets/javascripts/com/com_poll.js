@@ -14,7 +14,7 @@
   $formPanel.find('form').submit(function(e){
     $button.button('loading');
     $.post('/poll', $(this).serialize(), function(data){
-      console.log('JSON Response', data);
+      // console.log('JSON Response', data);
       // Initialize easyPieChart
       $resultPanel.find('.result-data').easyPieChart({
         animate: RESULT_DURATION,
