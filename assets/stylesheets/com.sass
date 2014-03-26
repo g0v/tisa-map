@@ -142,6 +142,49 @@ $topbar-height: 67px
   input[type=checkbox]:checked + label
     border: 2px solid $brand-primary
 
+.vcenter
+  display: inline-block
+  float: none
+  vertical-align: middle
+
+  &:after
+    content: ''
+    height: 100%
+    display: inline-block
+    vertical-align: middle
+  
+
+#not_affected
+  header
+    background: #59B5A4 image-url('com/ballon.png') top center no-repeat
+    background-size: cover
+    height: 400px
+    width: 100%
+  
+  .congratulation
+    width: 55%
+    @media (max-width: #{$screen-md})
+      width: 90%
+    margin: 0
+    border: 10px solid #000
+    border-radius: 20px
+    background: #fff
+    color: #000
+
+    display: inline-block
+    vertical-align: middle
+    h1
+      padding: 42px 0
+      margin: 0
+      font-size: 86px
+      @media (max-width: #{$screen-md})
+        +adjust-font-size-to($font-size-h1-mobile)
+
+    
+
+
+
+
 
 #affected
   $lighter-border: #EFEFEF
