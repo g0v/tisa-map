@@ -27,7 +27,7 @@
       $resultPanel.find('.result-data').each(function(idx, elem){
         var percentage = data.results[idx] * 100 / sum,
         $elem = $(elem);
-
+      // Animate number of percentage in pie
         $({percent: 0}).animate({percent: percentage}, {
           duration: RESULT_DURATION,
           step: function(val){
