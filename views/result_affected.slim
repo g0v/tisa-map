@@ -43,10 +43,29 @@ section#affected
             /   a[href="#"] CPC845+849 其他
 
         div.js-slider-container
-          section.content= category[:original]
           / section.content.translate
           /   div= category[:translated]
           /   aside.text-center: button.btn-arrow-right.js-slider-toggle 原始條文
+
+          section.content
+            - if category[:original][:service]
+              h4 跨境提供服務
+              p== nl2br category[:original][:service]
+            - if category[:original][:consumer]
+              h4 境外消費
+              p== nl2br category[:original][:consumer]
+            - if category[:original][:business]
+              h4 商業據點呈現
+              p== nl2br category[:original][:business]
+            - if category[:original][:person]
+              h4 自然人呈現
+              p== nl2br category[:original][:person]
+            - if category[:original][:other]
+              h4 其他承諾
+              p== nl2br category[:original][:other]
+            - if category[:original][:specific_commitments]
+              h4 具體承諾
+              p== nl2br category[:original][:specific_commitments]
 
           / section.content.oringin
           /   aside.text-center: button.btn-arrow-left.js-slider-toggle 返回
