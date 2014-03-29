@@ -298,15 +298,15 @@ class App < Sinatra::Base
         }
 
         if company.nil?
-            share_url = base_url + "/result?#{category_ids.map{|c| 'cat[]='+c}.join('&')}"
+            share_url = base_url + "/result/?#{category_ids.map{|c| 'cat[]='+c}.join('&')}"
         else
-            share_url = base_url + "/result?id=#{company.taxid}&#{category_ids.map{|c| 'cat[]='+c}.join('&')}"
+            share_url = base_url + "/result/?id=#{company.taxid}&#{category_ids.map{|c| 'cat[]='+c}.join('&')}"
         end
 
         # Populate locals
         locals = {
             categories: matched_categories,
-            share_url: CGI.escape(share_url),
+            share_url: share_url,
             company: company
         }
 

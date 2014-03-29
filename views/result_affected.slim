@@ -3,6 +3,8 @@
   meta[property="og:image" content="#{base_url}/img/com/og-affected.png"]
   meta[property="og:title" content=og[:title]]
   meta[property="og:description" content=og[:desc]]
+  link rel="canonical" href=share_url
+
 
 - if company.nil?
   input[type="hidden" value="" id="tax-name"]
@@ -155,7 +157,7 @@ section#affected
                 p== nl2br category[:original][:specific_commitments]
 
         footer
-          a[href="https://www.facebook.com/sharer/sharer.php?u=#{share_url}" target="_blank"] 告訴親友我被服貿了
+          a[href="https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape(share_url)}" target="_blank"] 告訴親友我被服貿了
 
 == slim :'partials/_poll'
 
