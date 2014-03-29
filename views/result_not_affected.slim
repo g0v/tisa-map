@@ -13,4 +13,32 @@ section#not_affected
   header.banner.text-center.vcenter
     div.congratulation: h1.text-center 你沒有被服貿
 
+  div.container.notice
+    h3.text-center
+      | ★ 請特別注意，因為以下種種原因，沒被服貿不代表不受影響 ★
+    div.row:div.col-md-6.col-md-offset-3
+      ul
+        li
+          a href=url('/docs/mapping-draft.pdf') 政府對照表初稿
+          | 可能有誤；
+        li
+          a href=url('/docs/mapping-draft.pdf') 政府對照表初稿
+          | 內，部分項目僅有行業分類，但欠缺營業項目代碼，這些項目包含：
+          ul
+            li 證卷、期貨及其相關服務
+            li 6619 其他證券業
+            li 6629 其他期貨業
+            li 6631 投資顧問業
+            li 非營利事業
+            li 8610 醫院
+            li 8701 居住型護理照顧服務業
+            li 8702 居住型身心障礙者照顧服務業
+            li 8703 居住型老人照顧服務業
+
+        li
+          | 「你被服貿了嗎？」尚未納入開放範圍更大之
+          a href="http://www.moeaic.gov.tw/system_external/ctlr?PRO=LawsLoad&id=66"「大陸地區人民來台投資業別項目」
+          | 以及 WTO 承諾項目。
+        li 公司行號歷史悠久，沒有營業項目代碼。
+
 == slim :'partials/_poll'
