@@ -27,19 +27,13 @@ appendix_yaml = YAML.load File.read 'pod/appendix1.yaml'
 Tisa.unrestrict_primary_key
 
 appendix_yaml.each do |item|
-  tisa = Tisa[item[:id]]
-  article = {
-    original: item[:original],
-    translated: item[:translated]
-  }
 
-  if tisa.nil?
-    tisa = Tisa.new
-    tisa.id = item[:id]
-    tisa.articles = article
-  else
-    tisa.articles = article
-  end
+  tisa = Tisa[item[:id]] || Tisa.new(id: item[:id])
+
+  tisa.articles = {
+    original:   Hash[item[:original].keys.zip(item[:original].values.map(&:strip))],
+    translated: Hash[item[:translated].keys.zip(item[:translated].values.map(&:strip))]
+  }
 
   if tisa.save
     puts "Saved #{item[:id]}"
