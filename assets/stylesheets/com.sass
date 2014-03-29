@@ -188,7 +188,7 @@ $topbar-height: 67px
     background-size: cover
     height: 400px
     width: 100%
-  
+
   .congratulation
     width: 55%
     @media (max-width: #{$screen-md})
@@ -208,11 +208,9 @@ $topbar-height: 67px
       @media (max-width: #{$screen-md})
         +adjust-font-size-to($font-size-h1-mobile)
 
-    
-
-
-
-
+  .notice
+    +leader(1)
+    +trailer(5)
 
 #affected
   $lighter-border: #EFEFEF
@@ -344,13 +342,13 @@ $topbar-height: 67px
     // Fine-tuned width that match the width
     .translate small
       &.service
-        left: $h4-font-size * str-length("陸商如何在大陸隔海提供服務給我們？")
+        left: $h4-font-size * str-length("中國境內廠商怎樣服務身在台灣的消費者？")
       &.consumer
-        left: $h4-font-size * str-length("台灣人去大陸時，陸商可以怎麼做生意？")
+        left: $h4-font-size * str-length("台灣消費者到中國境內怎樣被服務？")
       &.business
-        left: $h4-font-size * str-length("陸商來台灣可以怎樣做生意？")
+        left: $h4-font-size * str-length("中資廠商怎樣進入台灣？")
       &.person
-        left: $h4-font-size * str-length("有哪些大陸人可以來台灣提供服務？可待多久？用什麼身分來？")
+        left: $h4-font-size * str-length("中國工作者可以怎樣進入台灣？")
       &.other
         left: $h4-font-size * str-length("其他承諾")
 

@@ -282,10 +282,10 @@ class App < Sinatra::Base
           category.nil?
         }.map { |category|
           articles = category.group.tisa.articles
-
           articles.symbolize_keys!
           articles[:original].symbolize_keys!
           articles[:translated].symbolize_keys!
+          articles[:cpcs] = category.group.tisa.cpcs
 
           {
               id:     category.key,
