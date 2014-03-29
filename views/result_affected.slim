@@ -45,7 +45,7 @@ section#affected
               - if category[:translated][:service]
                 h4: a.collapsed[data-toggle="collapse"
                              href="#translated-service-#{category[:id]}"]
-                  | 陸商如何在大陸隔海提供服務給我們？
+                  | 中國境內廠商怎樣服務身在台灣的消費者？
                   small.service
                     == category[:translated][:service][0..40]
 
@@ -55,7 +55,7 @@ section#affected
               - if category[:translated][:consumer]
                 h4: a.collapsed[data-toggle="collapse"
                              href="#translated-consumer-#{category[:id]}"]
-                  | 台灣人去大陸時，陸商可以怎麼做生意？
+                  | 台灣消費者到中國境內怎樣被服務？
                   small.consumer
                     == category[:translated][:consumer][0..40]
 
@@ -65,7 +65,7 @@ section#affected
               - if category[:translated][:business]
                 h4: a.collapsed[data-toggle="collapse"
                              href="#translated-business-#{category[:id]}"]
-                  | 陸商來台灣可以怎樣做生意？
+                  | 中資廠商怎樣進入台灣？
                   small.business
                     == category[:translated][:business][0..40]
 
@@ -75,9 +75,9 @@ section#affected
               - if category[:translated][:person]
                 h4: a.collapsed[data-toggle="collapse"
                              href="#translated-person-#{category[:id]}"]
-                  | 有哪些大陸人可以來台灣提供服務？可待多久？用什麼身分來？
+                  | 中國工作者可以怎樣進入台灣？
                   small.person
-                    == category[:translated][:person][0..10]
+                    == category[:translated][:person][0..40]
 
                 p.collapse[id="translated-person-#{category[:id]}"]
                   == nl2br category[:translated][:person]
