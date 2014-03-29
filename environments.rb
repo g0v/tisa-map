@@ -119,11 +119,6 @@ class App < Sinatra::Base
         erb :'shenk/category', :locals => {rows: rows, activities: activities, reference: reference}
     end
 
-    get "/map" do
-        cache_control :no_cache, :max_age => 0
-        slim :'map', layout: :'layout/_layout'
-    end
-
     get "/ly" do
         slim :'ly', layout: :'layout/_layout'
     end
