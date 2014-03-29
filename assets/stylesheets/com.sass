@@ -190,14 +190,31 @@ $topbar-height: 67px
   $lighter-border: #EFEFEF
   .banner
     background: #AA3C3D image-url('com/clouds.png') center 30px no-repeat
-    height: image-height('com/clouds.png') +60px
+    @media (min-width: #{$screen-sm})
+      height: image-height('com/clouds.png')
+    @media (min-width: #{$screen-lg})
+      height: image-height('com/clouds.png') +60px
 
   .warning
     +squish-text
     margin-top: image-height('com/title.png')/2
+      
+    img
+      // max-width: 90%
 
   .thunder
-    margin-top: image-height('com/title.png')/2 + image-height('com/thunder.png')/3
+    @media (min-width: #{$screen-sm})
+      margin-top: image-height('com/title.png')/2 + image-height('com/thunder.png')/3
+    
+    margin-top: 20px
+    margin-bottom: -40px
+
+    img
+      @media (max-width: #{$screen-sm} )
+        width: 30%
+        margin: 0 auto
+
+
 
   @media screen and (min-width: #{$screen-md})
     .items-section
@@ -372,7 +389,7 @@ $topbar-height: 67px
 
 #poll
   .poll-form
-    transition: opacity 1s, height 0
+    +transition( opacity 1s, height 0 )
 
   header
     background: $brand-info
@@ -535,7 +552,7 @@ $topbar-height: 67px
     +trailer(2)
 
   .poll-result
-    transition: opacity 1s, height 0
+    +transition( opacity 1s, height 0 )
     +trailer(3) // The space the "submit" button occupies in .poll-form
 
   .result-set
@@ -585,7 +602,7 @@ $topbar-height: 67px
   height: 0
   overflow: hidden // firefox fix
   //height delay 1s to make placeholder
-  transition: opacity 1s, height 0 1s
+  +transition( opacity 1s, height 0 1s )
 
 #action
   background-color: #AFAEAF
