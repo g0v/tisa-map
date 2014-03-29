@@ -263,7 +263,52 @@ $topbar-height: 67px
       border-left: 1px solid $lighter-border
       padding-left: 4%
 
+    $h4-font-size: 19px
+    h4
+      $h4-font-size: 19px
+      position: relative // For <small> inside
 
+    h4 > small
+      position: absolute
+      display: none
+      bottom: 4px // micro-adjusted
+      right: 0
+      height: 1em
+      // 'left' is set separately.
+
+      padding-left: 1em // Separate <small> and <h4> text
+
+      +ellipsis
+
+    // "collapsed" is added by bootstrap when accordion is collapsed.
+    h4.collapsed > small
+      display: block
+      // border: 1px solid red
+
+    // Fine-tuned width that match the width
+    .translate small
+      &.service
+        left: $h4-font-size * str-length("陸商如何在大陸隔海提供服務給我們？")
+      &.consumer
+        left: $h4-font-size * str-length("台灣人去大陸時，陸商可以怎麼做生意？")
+      &.business
+        left: $h4-font-size * str-length("陸商來台灣可以怎樣做生意？")
+      &.person
+        left: $h4-font-size * str-length("有哪些大陸人可以來台灣提供服務？可待多久？用什麼身分來？")
+      &.other
+        left: $h4-font-size * str-length("其他承諾")
+
+    .oringin small
+      &.service
+        left: ($h4-font-size / 1px) * str-length("跨境提供服務") * 1px
+      &.consumer
+        left: ($h4-font-size / 1px) * str-length("境外消費") * 1px
+      &.business
+        left: ($h4-font-size / 1px) * str-length("商業據點呈現") * 1px
+      &.person
+        left: ($h4-font-size / 1px) * str-length("自然人呈現") * 1px
+      &.other
+        left: ($h4-font-size / 1px) * str-length("其他承諾") * 1px
 
     %arrow-btn
       display: inline-block
