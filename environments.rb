@@ -27,11 +27,15 @@ class App < Sinatra::Base
     helpers Sinatra::JSON
     helpers Sinatra::ContentFor
     helpers do
+        def base_url
+            @base_url ||= "#{request.scheme}://#{request.env['HTTP_HOST']}"
+        end
+
         def like_url escape=false
             if escape
-                CGI.unescape url("/")
+                CGI.unescape base_url
             else
-                url '/'
+                base_url
             end
         end
 
@@ -294,9 +298,9 @@ class App < Sinatra::Base
         }
 
         if company.nil?
-            share_url = url("/result?#{category_ids.map{|c| 'cat[]='+c}.join('&')}")
+            share_url = base_url + "/result?#{category_ids.map{|c| 'cat[]='+c}.join('&')}"
         else
-            share_url = url("/result?id=#{company.taxid}&#{category_ids.map{|c| 'cat[]='+c}.join('&')}")
+            share_url = base_url + "/result?id=#{company.taxid}&#{category_ids.map{|c| 'cat[]='+c}.join('&')}"
         end
 
         # Populate locals
