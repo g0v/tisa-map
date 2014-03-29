@@ -468,10 +468,10 @@ $topbar-height: 67px
     font-size: $font-size-h2-mobile
     line-height: 1.2
     color: lighten(#acafaf, 15%)
-
-    @media (min-width: #{$screen-md})
+    
+    @media screen and (min-width: #{$screen-sm})
       font-size: $font-size-h2 + 10px // Slightly larger than polling header
-
+    
     width: 1em // Constraint the width to be 1-word wide.
 
     //For span selected background color change
@@ -599,13 +599,28 @@ $topbar-height: 67px
 
   
   .result-set li
-    // @media screen and (min-width: #{$screen-sm})
-    $item-count: 7
     list-style: none
-    width: 100%/$item-count
-    float: left
+    +leader(1)
+    @media screen and (min-width: #{$screen-sm})
+      $item-count: 7
+      list-style: none
+      width: 100%/$item-count
+      float: left
     span
       @extend %vertical-line
+      //small screen hcak
+      
+      @media (max-width: #{$screen-sm})
+        display: inline-block
+        width: auto
+        font-size: 56px
+        vertical-align: middle
+
+        img
+          width: 1em
+      @media (max-width: #{$screen-xs})
+        font-size: 48px
+          
 
   // Where piechart populates
   %piechart
@@ -615,8 +630,16 @@ $topbar-height: 67px
     top: 50%
 
   .result-data
-    width: 100%
+    $canvas: 100px
+    width: $canvas
+    margin: auto
     position: relative // For :after
+
+    @media (max-width: #{$screen-sm})
+      display: inline-block
+      vertical-align: middle
+      margin-right: 5%
+
 
     $data-size: 28px
     &:before 
@@ -659,8 +682,8 @@ $topbar-height: 67px
         background: image-url("com/right-worker.png") no-repeat center bottom
 
   @media (max-width: #{$screen-sm})
-    .action-button-wrapper:last-child
-      +leader(1)
+    .action-button-wrapper:first-child
+      +trailer(1)
 
   .secondary
     color: #fff
