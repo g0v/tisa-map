@@ -654,6 +654,11 @@ $topbar-height: 67px
         background: image-url("com/left-worker.png") no-repeat center bottom
       &:last-child
         background: image-url("com/right-worker.png") no-repeat center bottom
+
+  @media (max-width: #{$screen-sm})
+    .action-button-wrapper:last-child
+      +leader(1)
+
   .secondary
     color: #fff
     padding: 15px 0
