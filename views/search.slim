@@ -18,10 +18,18 @@ div.query-form.text-center.container
         p
           | 您輸入的「
           span.text-primary= keyword
-          | 」可能是指下列行業別：
+          | 」可能是指下列營業登記項目：
         ul
           - for category in categories
             li
               a.btn.secondary[href="/result?cat[]=#{ category[:id] }"]
                 = "#{category[:id]} #{category[:value]}"
 
+      - if companies.empty? and categories.empty?
+        p
+          | 找不到關於「
+          span.text-primary= keyword
+          | 」的公司與營業登記項目 :(
+
+        p
+          a.btn.btn-primary[href=url("/")] 回搜尋頁面
