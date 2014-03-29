@@ -244,10 +244,10 @@ class App < Sinatra::Base
         company = Company.where(taxid: params[:tax_id]).first
 
         # TODO: Fix category name when categories table is populated
-        categories = company.categories.map do |c|
+        categories = company.categories.map do |key|
             {
-                id: c,
-                value: '' # TODO: put the category name here
+                id:     key,
+                value:  Category.where(key: key).first.name
             }
         end
 
