@@ -244,12 +244,16 @@ class App < Sinatra::Base
         company = Company.where(taxid: params[:tax_id]).first
 
         # TODO: Fix category name when categories table is populated
-        categories = company.categories.map do |key|
+        categories = company.categories.map { |key|
+            Category.where(key: key).first
+        }.reject { |category|
+            category.nil?
+        }.map { |category|
             {
-                id:     key,
-                value:  Category.where(key: key).first.name
+                id:     category.key,
+                value:  category.name
             }
-        end
+        }
 
         slim :'layout/_query', layout: :'layout/_layout' do
             slim :'category', locals: {
