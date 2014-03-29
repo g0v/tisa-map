@@ -85,6 +85,14 @@ $topbar-height: 67px
     border: 1px solid rgba($brand-danger, .4)
     border-radius: 3px
 
+  .mobile-share
+    $icon-height: 32px
+    display: block
+    width: ($icon-height + 4)*4
+    margin-top: ($topbar-height - $icon-height)/2
+    @media (min-width: #{$screen-sm})
+      display: none
+
 %label-selections
   p
     font-size: 18px
@@ -108,11 +116,23 @@ $topbar-height: 67px
   @extend %label-selections
 
   .banner
-    background: #ffac02 image-url('com/stripes.png') center top no-repeat
     height: image-height('com/stripes.png')
+    background: #ffac02 image-url('com/stripes.png') center top no-repeat
+    background-size: contain
+
+    @media (min-width: #{$screen-md})
+      background-size: auto
+
 
     img
-      margin-top: $topbar-height * -1
+      height: image-height('com/stripes.png')*1.5
+      width: auto
+      margin-top: $topbar-height * -0.25
+
+      @media (min-width: #{$screen-md})
+        width: image-width('com/triangle.png')
+        height: auto
+        margin-top: $topbar-height * -1
 
     @media (min-width: #{$screen-md})
       height: 360px
@@ -120,15 +140,23 @@ $topbar-height: 67px
       background-color: #ffac02
 
   .query-form
-    +leader(5)
-    +trailer(5)
+    +leader(2)
+    +trailer(2)
+
+    @media (min-width: #{$screen-md})
+      +leader(5)
+      +trailer(5)
 
     h1
       letter-spacing: 5px
 
     input
-      +leader(2)
-      +trailer(2)
+      +leader(1)
+      +trailer(1)
+
+      @media (min-width: #{$screen-md})
+        +leader(2)
+        +trailer(2)
 
 
 
