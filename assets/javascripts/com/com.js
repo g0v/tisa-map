@@ -6,7 +6,8 @@
 
   var
   companyCache = {}, // Autocomplete cache
-  lastXhr; // Autocomplete jqXHR object
+  lastXhr, // Autocomplete jqXHR object
+  isCompositing = false; // Currently in IME composition mode.
 
   $('#autocomplete').autocomplete({
     source: function(query, resp){
@@ -18,19 +19,37 @@
       if(companyCache[term]){
         resp(companyCache[term]);
       }
-      lastXhr = $.getJSON('/complete/'+term, {}, function(data){
+      lastXhr = $.getJSON('/complete/'+term, {}).done(function(data){
         companyCache[term] = data;
         resp(data);
+      }).fail(function(){
+        resp();
       });
     },
     delay: 0,
     autoFocus: true,
     sortResults:false,
     matchSubset: false,
-    maxItems: 6,
     select: function(event, ui) {
       window.location.href = '/company/' + ui.item.id;
     }
+  }).on('compositionstart', function(data) {
+    isCompositing = true;
+
+  }).on('compositionend', function() {
+    var $this = $(this);
+    isCompositing = false;
+
+    // Trigger search manually when IME composition ended.
+    setTimeout(function(){
+      $this.autocomplete('search');
+    }, 0);
+
+  }).on('autocompletesearch', function(e){
+    // Cancel searching request if the user is still compositing words in
+    // her/his IME.
+    //
+    if(isCompositing){ e.preventDefault(); }
   });
 
   // Setting up autocomplete style
