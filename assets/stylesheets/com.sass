@@ -1,7 +1,6 @@
 @import compass
 @import com-variables
 @import bootstrap
-@import map
 
 $base-font-size: $font-size-base
 $base-line-height: $font-size-base * $line-height-base
@@ -215,19 +214,7 @@ $topbar-height: 67px
 
   @media screen and (min-width: #{$screen-md})
     .items-section
-      +trailer(2)
-
-  .map-section
-    @media screen and (min-width: #{$screen-md})
-      +trailer(7)
-    h2
-      +leader(1)
-      +trailer(1)
-    #map
-      border-radius: 4px
-      border: 1em solid #fff
-      border-top: 0
-      width: 100%
+      +trailer(7) // Space between polling sections and category results
 
   .subtitle
     +leader(2)

@@ -3,10 +3,6 @@
   meta[property="og:image" content=url("/img/com/og-affected.png")]
   meta[property="og:title" content=og[:title]]
   meta[property="og:description" content=og[:desc]]
-  link[rel='stylesheet' href='http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css']
-    /[if lte IE 8]
-  link[rel="stylesheet" href="/assets/application.css"]
-  link[rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"]
 
 - if company.nil?
   input[type="hidden" value="" id="tax-name"]
@@ -163,9 +159,3 @@ section#affected
           a[href="https://www.facebook.com/sharer/sharer.php?u=#{share_url}" target="_blank"] 告訴親友我被服貿了
 
 == slim :'partials/_poll'
-
-- content_for :scripts
-  script[src= "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js" type= "text/javascript"]
-  script[src= "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js" type= "text/javascript"]
-  script[src="//cdn.leafletjs.com/leaflet-0.6.4/leaflet.js" type= "text/javascript"]
-  script[src="/assets/application.js" type= "text/javascript"]

@@ -119,11 +119,6 @@ class App < Sinatra::Base
         erb :'shenk/category', :locals => {rows: rows, activities: activities, reference: reference}
     end
 
-    get "/map" do
-        cache_control :no_cache, :max_age => 0
-        slim :'map', layout: :'layout/_layout'
-    end
-
     get "/ly" do
         slim :'ly', layout: :'layout/_layout'
     end
@@ -192,7 +187,7 @@ class App < Sinatra::Base
 
     def search_company(token)
         matcher = Regexp.new(Regexp.escape(token))
-        result = Company.filter("name LIKE ? OR taxid LIKE ?", "%#{token}%", "%#{token}%").order(:name).map do |i|
+        result = Company.filter("name LIKE ? OR taxid = ?", "%#{token}%", "%#{token}%").order(:name).map do |i|
             {
                 pos: [matcher =~ i.name, matcher =~ i.taxid].reject{|p|p.nil?}.min,
                 value: i.name,

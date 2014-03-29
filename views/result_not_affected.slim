@@ -3,9 +3,6 @@
   meta[property="og:image" content=url("/img/com/og-affected.png")]
   meta[property="og:title" content=og[:title]]
   meta[property="og:description" content=og[:desc]]
-  link[rel='stylesheet' href='http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css']
-  link[rel="stylesheet" href="/assets/application.css"]
-  link[rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"]
 
 - content_for :scripts
   script[src= "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js" type= "text/javascript"]
@@ -17,6 +14,3 @@ section#not_affected
     div.congratulation: h1.text-center 你沒有被服貿
 
 == slim :'partials/_poll'
-
-- content_for :scripts
-  script[src="/assets/application.js" type= "text/javascript"]
