@@ -187,7 +187,7 @@ class App < Sinatra::Base
 
     def search_company(token)
         matcher = Regexp.new(Regexp.escape(token))
-        result = Company.filter("name LIKE ? OR taxid LIKE ?", "%#{token}%", "%#{token}%").order(:name).map do |i|
+        result = Company.filter("name LIKE ? OR taxid = ?", "%#{token}%", "%#{token}%").order(:name).map do |i|
             {
                 pos: [matcher =~ i.name, matcher =~ i.taxid].reject{|p|p.nil?}.min,
                 value: i.name,
