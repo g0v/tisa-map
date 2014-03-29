@@ -197,10 +197,7 @@ $topbar-height: 67px
 
   .warning
     +squish-text
-    margin-top: image-height('com/title.png')/2
-      
-    img
-      // max-width: 90%
+    margin-top: image-height('com/title.png')/2      
 
   .thunder
     @media (min-width: #{$screen-sm})
@@ -256,14 +253,21 @@ $topbar-height: 67px
     .content
       padding: 1.8em 3em 1em
       div
-        display: inline-block
-        width: 80%
-        padding-bottom: 2.4em
+        @media ( min-width: #{$screen-md} )
+          display: inline-block
+          margin-top: 0
+          width: 80%
+          padding-bottom: 2.4em
+        
+        width: 100%
+        margin-top: .8em
 
       aside
-        display: inline-block
-        width: 20%
-        vertical-align: top
+        @media ( min-width: #{$screen-md} )
+          display: inline-block
+          width: 20%
+          vertical-align: top
+
 
       &.active
         display: block
@@ -273,32 +277,50 @@ $topbar-height: 67px
         position: absolute
         display: block
 
-    .translate div
-      border-right: 1px solid $lighter-border
-      padding-right: 4%
+    .translate 
+      div
+        @media ( min-width: #{$screen-md} )
+          border-top: none
+          border-right: 1px solid $lighter-border
+          padding-right: 4%
+        
+        //small screen
+        border-top: 1px solid $lighter-border
+      aside
+        @media ( min-width: #{$screen-md} )
+          float: right
+
     .oringin div
-      border-left: 1px solid $lighter-border
-      padding-left: 4%
+      @media ( min-width: #{$screen-md} )
+        border-top: none
+        border-left: 1px solid $lighter-border
+        padding-left: 4%
+      
+      //small screen
+      border-top: 1px solid $lighter-border
+      
 
     $h4-font-size: 19px
     h4
       $h4-font-size: 19px
       position: relative // For <small> inside
 
-    h4 > small
-      position: absolute
-      display: none
-      bottom: 4px // micro-adjusted
-      right: 0
-      height: 1em
-      // 'left' is set separately.
+    a
+      text-decoration: none
+      +link-colors($brand-info, darken($brand-info,10%))
+      & > small
+        position: absolute
+        display: none
+        bottom: 4px // micro-adjusted
+        right: 0
+        height: 1em
+        // 'left' is set separately.
 
-      padding-left: 1em // Separate <small> and <h4> text
-
-      +ellipsis
+        padding-left: 1em // Separate <small> and <h4> text
+        +ellipsis
 
     // "collapsed" is added by bootstrap when accordion is collapsed.
-    h4.collapsed > small
+    a.collapsed > small
       display: block
       // border: 1px solid red
 

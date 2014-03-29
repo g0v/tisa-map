@@ -44,10 +44,11 @@ section#affected
 
         div.js-slider-container
           section.content.translate
+            aside.text-center: button.btn-arrow-right.js-slider-toggle 原始條文
             div
               - if category[:translated][:service]
-                h4.collapsed[data-toggle="collapse"
-                             data-target="#translated-service-#{category[:id]}"]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#translated-service-#{category[:id]}"]
                   | 陸商如何在大陸隔海提供服務給我們？
                   small.service
                     == category[:translated][:service][0..40]
@@ -56,8 +57,8 @@ section#affected
                   == nl2br category[:translated][:service]
 
               - if category[:translated][:consumer]
-                h4.collapsed[data-toggle="collapse"
-                             data-target="#translated-consumer-#{category[:id]}"]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#translated-consumer-#{category[:id]}"]
                   | 台灣人去大陸時，陸商可以怎麼做生意？
                   small.consumer
                     == category[:translated][:consumer][0..40]
@@ -66,8 +67,8 @@ section#affected
                   == nl2br category[:translated][:consumer]
 
               - if category[:translated][:business]
-                h4.collapsed[data-toggle="collapse"
-                             data-target="#translated-business-#{category[:id]}"]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#translated-business-#{category[:id]}"]
                   | 陸商來台灣可以怎樣做生意？
                   small.business
                     == category[:translated][:business][0..40]
@@ -76,8 +77,8 @@ section#affected
                   == nl2br category[:translated][:business]
 
               - if category[:translated][:person]
-                h4.collapsed[data-toggle="collapse"
-                             data-target="#translated-person-#{category[:id]}"]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#translated-person-#{category[:id]}"]
                   | 有哪些大陸人可以來台灣提供服務？可待多久？用什麼身分來？
                   small.person
                     == category[:translated][:person][0..10]
@@ -86,8 +87,8 @@ section#affected
                   == nl2br category[:translated][:person]
 
               - if category[:translated][:other]
-                h4.collapsed[data-toggle="collapse"
-                             data-target="#translated-other-#{category[:id]}"]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#translated-other-#{category[:id]}"]
                   | 其他承諾
                   small.other
                     == category[:translated][:other][0..40]
@@ -99,14 +100,13 @@ section#affected
                 h4 具體承諾
                 p== nl2br category[:translated][:specific_commitments]
 
-            aside.text-center: button.btn-arrow-right.js-slider-toggle 原始條文
 
           section.content.oringin
             aside.text-center: button.btn-arrow-left.js-slider-toggle 返回
             div
               - if category[:original][:service]
-                h4.collapsed[data-toggle="collapse"
-                             data-target="#original-service-#{category[:id]}"]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#original-service-#{category[:id]}"]
                   | 跨境提供服務
                   small.service
                     == category[:original][:service][0..50]
@@ -115,8 +115,8 @@ section#affected
                   == nl2br category[:original][:service]
 
               - if category[:original][:consumer]
-                h4.collapsed[data-toggle="collapse"
-                             data-target="#original-consumer-#{category[:id]}"]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#original-consumer-#{category[:id]}"]
                   | 境外消費
                   small.consumer
                     == category[:original][:consumer][0..50]
@@ -125,8 +125,8 @@ section#affected
                   == nl2br category[:original][:consumer]
 
               - if category[:original][:business]
-                h4.collapsed[data-toggle="collapse"
-                             data-target="#original-business-#{category[:id]}"]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#original-business-#{category[:id]}"]
                   | 商業據點呈現
                   small.business
                     == category[:original][:business][0..50]
@@ -135,8 +135,8 @@ section#affected
                   == nl2br category[:original][:business]
 
               - if category[:original][:person]
-                h4.collapsed[data-toggle="collapse"
-                             data-target="#original-person-#{category[:id]}"]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#original-person-#{category[:id]}"]
                   | 自然人呈現
                   small.person
                     == category[:original][:person][0..50]
@@ -145,8 +145,8 @@ section#affected
                   == nl2br category[:original][:person]
 
               - if category[:original][:other]
-                h4.collapsed[data-toggle="collapse"
-                             data-target="#original-other-#{category[:id]}"]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#original-other-#{category[:id]}"]
                   | 其他承諾
                   small.other
                     == category[:original][:other][0..50]
