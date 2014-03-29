@@ -1,6 +1,6 @@
 - content_for :head
   title 你被服貿了！看看有什麼影響。
-  meta[property="og:image" content=url("/img/com/og-affected.png")]
+  meta[property="og:image" content="#{base_url}/img/com/og-affected.png"]
   meta[property="og:title" content=og[:title]]
   meta[property="og:description" content=og[:desc]]
 
@@ -34,7 +34,7 @@ section#affected
             / 對照表與對照行業別
             small
               |  －－ 
-              a[href=url('/docs/mapping-draft.pdf') title="對照表"] 對應到 
+              a[href='/docs/mapping-draft.pdf' title="對照表"] 對應到 
               = category[:cpcs].map{|cpc| cpc[:key]}.join '、'
 
         div.js-slider-container

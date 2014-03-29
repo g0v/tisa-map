@@ -1,6 +1,6 @@
 - content_for :head
   title 你沒有被服貿，但是⋯⋯
-  meta[property="og:image" content=url("/img/com/og-affected.png")]
+  meta[property="og:image" content="#{base_url}/img/com/og-affected.png"]
   meta[property="og:title" content=og[:title]]
   meta[property="og:description" content=og[:desc]]
 
@@ -19,10 +19,10 @@ section#not_affected
     div.row:div.col-md-6.col-md-offset-3
       ul
         li
-          a href=url('/docs/mapping-draft.pdf') 政府對照表初稿
+          a href='/docs/mapping-draft.pdf' 政府對照表初稿
           | 可能有誤；
         li
-          a href=url('/docs/mapping-draft.pdf') 政府對照表初稿
+          a href='/docs/mapping-draft.pdf' 政府對照表初稿
           | 內，部分項目僅有行業分類，但欠缺營業項目代碼，這些項目包含：
           ul
             li 證卷、期貨及其相關服務
@@ -38,7 +38,9 @@ section#not_affected
         li
           | 「你被服貿了嗎？」尚未納入開放範圍更大之
           a href="http://www.moeaic.gov.tw/system_external/ctlr?PRO=LawsLoad&id=66"「大陸地區人民來台投資業別項目」
-          | 以及 WTO 承諾項目。
+          | 以及 
+          a href="http://bit.ly/1mABW3E" WTO 承諾項目
+          | 。
         li 公司行號歷史悠久，沒有營業項目代碼。
 
 == slim :'partials/_poll'
