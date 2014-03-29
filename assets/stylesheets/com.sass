@@ -241,8 +241,9 @@ $topbar-height: 67px
 
 
 
-  @media screen and (min-width: #{$screen-md})
-    .items-section
+  .items-section
+    +trailer(4)
+    @media screen and (min-width: #{$screen-md})
       +trailer(7) // Space between polling sections and category results
 
   .subtitle
