@@ -38,6 +38,16 @@ html
           .fb-btn
             iframe src="//www.facebook.com/plugins/like.php?href=#{like_url(true)}&width=150&layout=button_count&action=like&show_faces=false&share=true&height=21&colorscheme=dark&appId=639424269440362" scrolling="no" frameborder="0" allowTransparency="true"
 
+        / AddtoAny
+        .mobile-share.center-block
+          div.a2a_kit.a2a_kit_size_32.a2a_default_style
+            / a.a2a_dd[href="http://www.addtoany.com/share_save?linkurl=http%3A%2F%2Ftisa.g0v.tw&amp;linkname=%E4%BD%A0%E8%A2%AB%E6%9C%8D%E8%B2%BF%E4%BA%86%E5%97%8E%EF%BC%9F"]
+            a.a2a_button_facebook
+            a.a2a_button_twitter
+            a.a2a_button_google_plus
+            a [href="http://line.me/R/msg/text/?%E4%BD%A0%E8%A2%AB%E6%9C%8D%E8%B2%BF%E4%BA%86%E5%97%8E%EF%BC%9F%E6%9C%8D%E8%B2%BF%E5%8D%94%E8%AD%B0%E8%A1%8C%E6%A5%AD%E5%B0%8D%E7%85%A7%E5%8F%AA%E8%A6%8130%E7%A7%92%0Ahttp%3A%2F%2Ftisa.g0v.tw%2F"]
+              img[src="http://tisa.g0v.tw/img/linebutton_40x40_en.png" width="32px" height="32px" alt="LINE it!"]
+
     == yield
 
     footer#footer: div.container
@@ -59,5 +69,14 @@ html
     == slim :'partials/_sn'
 
     script[src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"]
+    / AddtoAny script start
+    javascript:
+      var a2a_config = a2a_config || {};
+      a2a_config.linkname = "你被服貿了嗎？";
+      a2a_config.linkurl = "http://tisa.g0v.tw";
+      a2a_config.locale = "zh-TW";
+      a2a_config.custom_services = [["Line","http://line.me/R/msg/text/?%E4%BD%A0%E8%A2%AB%E6%9C%8D%E8%B2%BF%E4%BA%86%E5%97%8E%EF%BC%9F%0Ahttp%3A%2F%2Ftisa.g0v.tw%2F","http://tisa.g0v.tw/img/linebutton_40x40_en.png"]];
+    script[src="//static.addtoany.com/menu/page.js" type="text/javascript"]
+    / AddtoAny script end
     script[src="/assets/com/com.js" type="text/javascript"]
     == yield_content :scripts
