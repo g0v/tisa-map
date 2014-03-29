@@ -6,6 +6,9 @@ require "slim"
 require 'cgi'
 Bundler.require :default
 
+$:.unshift "lib"
+require "hash/keys"
+
 DB = Sequel.connect(YAML.load_file("config/database.yml")[ENV['RACK_ENV'] || "development"])
 DB.extension :pg_array, :pg_json, :pagination
 Sequel::Model.plugin :json_serializer
@@ -267,74 +270,24 @@ class App < Sinatra::Base
         company = params[:id] ? Company.where(taxid: params[:id]).first : nil
 
         # The category keys the user chosen in previous steps.
-        category_ids = params[:cat]
+        category_ids = params[:cat] || []
 
-        # The categories that are affected.
-        # TODO: Query the matched category
-        matched_categories = [
-            {id: "I301010", value: "資訊軟體服務業", original: {
-                service: '沒有限制。',
-                consumer: '沒有限制。',
-                business: '允許大陸服務提供者在臺灣以獨資、合資、合夥及設立分公司等形式設立商業據點，提 供電腦及其相關服務。',
-                person: "除有關下列各類自然人之進入臺灣及短期停留措施外，不予承諾：
-i. 商業訪客進入臺灣停留期間不得超過三個月。（商業訪客係指為參加商務會議、商務談判、籌建商業據點或其他類似活動，而在臺灣停留的自然人，且停留期間未接受來 自臺灣方面支付的酬勞，亦未對大眾從事 直接銷售的活動。）
-ii. 跨國企業內部調動人員進入臺灣初次停留 期間為三年，惟可申請展延，每次不得逾 三年，且展延次數無限制。
-（跨國企業內部調動人員係指被其他世界貿 易組織會員的法人僱用滿一年，透過在臺 灣設立的分公司、子公司或分支機構，以 負責人、高級經理人員或專家身分，短期 進入臺灣以提供服務的自然人。 「負責人」係指董事、總經理、分公司經
-理或經董事會授權得代表公司的部門負責人。
-「高級經理人員」係指有權任免或推薦公 司人員，且對日常業務有決策權的部門 負責人或管理人員。
-「專家」係指組織內擁有先進的專業技術，且對該組織的服務、研發設備、技 術或管理擁有專門知識的人員。專家包 括，但不限於，取得專門職業證照者。）
-iii.在臺灣無商業據點的大陸企業所僱用的人員得依下列條件進入臺灣及停留:
-  （i） 該大陸企業已與在臺灣從事商業活動 的企業簽訂驗貨、售後服務、技術指導 等，及其他與左列服務相關的服務契 約。
-  （ii） 此類人員應符合前述「專家」的定義。
-  （iii）此類人員在臺灣期間不得從事其他與
-  服務契約無關的服務活動。
-  （iv）本項承諾僅限於契約所定的服務行
-  為。並未給予此類人員以取得專業證照
-  的身分，在臺灣廣泛執業的資格。 每次停留的期間不得超過三個月或契約 期間，以較短者為準。此類進入許可的有 效期間自核發的翌日起算為三個月至三 年。符合條件者可在許可有效期間內多次 進入臺灣。
-    "
-            }, translated: {
-                service: '愛怎麼做都行。',
-                consumer: '愛怎麼做都行。',
-                business: '大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。',
-                person: "除有關下列各類自然人之進入臺灣及短期停留措施外，不予承諾：
-i. 商業訪客進入臺灣停留期間不得超過三個月。（商業訪客係指為參加商務會議、商務談判、籌建商業據點或其他類似活動，而在臺灣停留的自然人，且停留期間未接受來 自臺灣方面支付的酬勞，亦未對大眾從事 直接銷售的活動。）
-ii. 跨國企業內部調動人員進入臺灣初次停留 期間為三年，惟可申請展延，每次不得逾 三年，且展延次數無限制。
-（跨國企業內部調動人員係指被其他世界貿 易組織會員的法人僱用滿一年，透過在臺 灣設立的分公司、子公司或分支機構，以 負責人、高級經理人員或專家身分，短期 進入臺灣以提供服務的自然人。 「負責人」係指董事、總經理、分公司經
-理或經董事會授權得代表公司的部門負責人。
-「高級經理人員」係指有權任免或推薦公 司人員，且對日常業務有決策權的部門 負責人或管理人員。
-「專家」係指組織內擁有先進的專業技術，且對該組織的服務、研發設備、技 術或管理擁有專門知識的人員。專家包 括，但不限於，取得專門職業證照者。）
-iii.在臺灣無商業據點的大陸企業所僱用的人員得依下列條件進入臺灣及停留:
-  （i） 該大陸企業已與在臺灣從事商業活動 的企業簽訂驗貨、售後服務、技術指導 等，及其他與左列服務相關的服務契 約。
-  （ii） 此類人員應符合前述「專家」的定義。
-  （iii）此類人員在臺灣期間不得從事其他與
-  服務契約無關的服務活動。
-  （iv）本項承諾僅限於契約所定的服務行
-  為。並未給予此類人員以取得專業證照
-  的身分，在臺灣廣泛執業的資格。 每次停留的期間不得超過三個月或契約 期間，以較短者為準。此類進入許可的有 效期間自核發的翌日起算為三個月至三 年。符合條件者可在許可有效期間內多次 進入臺灣。
-    "
-            }},
-            # Mockup for ID > 54
-            {id: "I301011", value: "資訊軟體服務業2", original: {
-                specific_commitments: "積極審慎修正有關大陸保險業在臺灣設立代表處及參股評等之規定。"
-            },translated: {
-                specific_commitments: "積極審慎修正有關大陸保險業在臺灣設立代表處及參股評等之規定。"
-            }},
+        matched_categories = category_ids.map { |key|
+          Category.where(key: key).first
+        }.reject { |category|
+          category.nil?
+        }.map { |category|
+          articles = category.group.tisa.articles
 
-            # Mockup for ID == 24
-            {id: "I301012", value: "電影或錄影帶之行銷服務業—進口大陸電影片", original: {
-    service: "除與「其他承諾」有關者外，不予承諾。",
-    consumer: "沒有限制。",
-    business: "除與「其他承諾」有關者外，不予承諾。",
-    person: "除與「其他承諾」有關者外，不予承諾。",
-    other: "根據大陸有關規定設立的製片單位所拍攝、符合臺灣相關規定所定義之大陸電影片，經臺灣主管機關審查通過後，每年以15部為限，可在臺灣商業發行映演，並應符合大陸電影片進入臺灣發行映演之相關規定。"
-            },translated: {
-    service: "除與「其他承諾」有關者外，不予承諾。",
-    consumer: "愛怎麼做都行。",
-    business: "除與「其他承諾」有關者外，不予承諾。",
-    person: "除與「其他承諾」有關者外，不予承諾。",
-    other: "大陸電影片，在通過審查後，每年可以有15部影片在台灣上映。"
-            }}
-        ]
+          articles.symbolize_keys!
+          articles[:original].symbolize_keys!
+          articles[:translated].symbolize_keys!
+
+          {
+              id:     category.key,
+              value:  category.name,
+          }.merge(articles)
+        }
 
         if company.nil?
             share_url = url("/result?#{category_ids.map{|c| 'cat[]='+c}.join('&')}")
