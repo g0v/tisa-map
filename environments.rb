@@ -278,7 +278,11 @@ class App < Sinatra::Base
         company = params[:id] ? Company.where(taxid: params[:id]).first : nil
 
         # The category keys the user chosen in previous steps.
-        category_ids = params[:cat] || []
+        if params[:cat].is_a? Hash  # cat[0] = ...
+            category_ids = params[:cat].values
+        else                        # cat[] = ...
+            category_ids = params[:cat] || []
+        end
 
         matched_categories = category_ids.map { |key|
           Category.where(key: key).first
