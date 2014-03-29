@@ -5,11 +5,19 @@
   "use strict";
 
   var
+  DEBOUNCE_DELAY = 500, // milliseconds
   companyCache = {}, // Autocomplete cache
   lastXhr, // Autocomplete jqXHR object
-  isCompositing = false; // Currently in IME composition mode.
+  isCompositing = false, // Currently in IME composition mode.
+  debounceHandler = null, // Debounce timer is running or not
+  pendingTerm = ''; // The term queried in most recent query
 
-  $('#autocomplete').autocomplete({
+  var resetPendingTerm = function(){
+    pendingTerm = '';
+  }
+
+  var $autocomplete = $('#autocomplete');
+  $autocomplete.autocomplete({
     source: function(query, resp){
       var term = query.term;
 
@@ -19,11 +27,15 @@
       if(companyCache[term]){
         resp(companyCache[term]);
       }
+
+      pendingTerm = term;
       lastXhr = $.getJSON('/complete/'+term, {}).done(function(data){
         companyCache[term] = data;
         resp(data);
+        resetPendingTerm();
       }).fail(function(){
         resp();
+        resetPendingTerm();
       });
     },
     delay: 0,
@@ -37,23 +49,47 @@
     isCompositing = true;
 
   }).on('compositionend', function() {
-    var $this = $(this);
     isCompositing = false;
 
     // Trigger search manually when IME composition ended.
     setTimeout(function(){
-      $this.autocomplete('search');
+      $autocomplete.autocomplete('search');
     }, 0);
 
   }).on('autocompletesearch', function(e){
-    // Cancel searching request if the user is still compositing words in
+    // Prevent searching requests if the user is still compositing words in
     // her/his IME.
     //
-    if(isCompositing){ e.preventDefault(); }
+    if(isCompositing){
+      // console.log('is compositing!');
+      e.preventDefault();
+    }
+
+    // If the debounced timer is ticking, prevent search requests
+    //
+    if(debounceHandler){
+      // console.log("Debounced!");
+      e.preventDefault();
+    }
+
+    // Setup debounce timer if the search is not prevented this time.
+    //
+    if(!e.isDefaultPrevented()){
+      debounceHandler = setTimeout(function(){
+        debounceHandler = null; // Cleanup handler
+
+        // If the pending term is now different,
+        // initate search immediately when debounce timer times up.
+        //
+        if(pendingTerm !== $autocomplete.val()){
+          $autocomplete.autocomplete('search');
+        }
+      }, DEBOUNCE_DELAY);
+    }
   });
 
   // Setting up autocomplete style
-  var meta = $('#autocomplete').data('uiAutocomplete')
+  var meta = $('#autocomplete').data('uiAutocomplete');
   if(meta){
     meta._renderItem = function(ul, item){
       var re = new RegExp("(" + this.term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + ")", "gi"),
@@ -69,7 +105,7 @@
         that._renderItemData(ul, item);
       });
 
-      $(ul).addClass('dropdown-menu') // Bootstrap dropdown menu class
+      $(ul).addClass('dropdown-menu'); // Bootstrap dropdown menu class
     }
   }
 
