@@ -96,7 +96,7 @@
         word = item.value.replace(re,"<span class=\"text-info\">$1</span>");
 
       return $( "<li class=\"autocomplete-item\"></li>" )
-        .append( "<a>" + word + "<i class=\"pull-right text-muted\">" + item.type + "</i></a>" )
+        .append( "<a><i class=\"pull-right text-muted\">" + item.type + "</i>" + word + "</a>" )
         .appendTo( ul );
     };
     meta._renderMenu = function(ul, items){
