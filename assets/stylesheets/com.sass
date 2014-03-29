@@ -706,6 +706,15 @@ $topbar-height: 67px
     +transform(translateZ(0) translate(-50%,0))
     // +transform(translate3d(-50%,0,0))
 
+// Disqus
+#disqus_thread
+  +leader(1)
+  +trailer(1)
+
+  @media screen and (min-width: $screen-md-min)
+    +leader(2)
+    +trailer(2)
+
 // jquery-ui autocomplete style overriding
 #autocomplete.ui-autocomplete-loading
   background: #fff image-url('ajax-loader.gif') right 1em center no-repeat
