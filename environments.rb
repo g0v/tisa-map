@@ -160,11 +160,6 @@ class App < Sinatra::Base
                   .all
     end
 
-    post "/github/?" do
-        fork { exec("sleep 5; /etc/init.d/tisa restart") }
-        Oj.dump({status: "ok"})
-    end
-
     # 「你被服貿了嗎」homepage.
     get "/" do
 
@@ -215,6 +210,8 @@ class App < Sinatra::Base
 
     # Display the search result for a specific keyword.
     get "/search" do
+        redirect to('/') if params[:keyword].nil? or params[:keyword].empty?
+
         keyword = params[:keyword]
 
         companies = search_company(keyword)
@@ -232,6 +229,8 @@ class App < Sinatra::Base
 
     # Autocomplete
     get "/complete/:term" do
+        return [].to_json if params[:term].empty?
+
         result = search_company(params[:term]).map{|c| c[:type]="公司行號"; c} +
                  search_category(params[:term]).map{|c| c[:type]="營業登記項目"; c}
 
@@ -254,6 +253,12 @@ class App < Sinatra::Base
                 value:  category.name
             }
         }
+
+
+        # If no category found for this company, redirect to result page immediately
+        if categories.empty?
+            return redirect to("/result?id=#{params[:tax_id]}")
+        end
 
         slim :'layout/_query', layout: :'layout/_layout' do
             slim :'category', locals: {

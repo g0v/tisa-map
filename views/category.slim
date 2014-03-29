@@ -17,5 +17,5 @@ form#category.query-form.text-center.container action="/result/" method="get"
         input id="lala-#{category[:id]}" type="checkbox" name="cat[]" value=category[:id]
         label.btn.secondary for="lala-#{category[:id]}" = "#{category[:id]} #{category[:value]}"
 
-  div.row: button.col-lg-3.col-centered.btn.btn-primary type="submit" 看結果
+  div.row: button.col-lg-3.col-centered.btn.btn-primary[type="submit" disabled] 看結果
 

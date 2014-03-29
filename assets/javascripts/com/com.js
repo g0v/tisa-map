@@ -109,6 +109,34 @@
     }
   }
 
+  var $categoryForm = $('#category'),
+      $categorySubmit = $categoryForm.find('[type=submit]'),
+      hasCategories = function(){
+        // Returns false if no categories selected
+        var params = $categoryForm.serializeArray(), i;
+        for(i=0; i<params.length; i+=1){
+          console.log(params[i])
+          if(params[i].name === 'cat[]'){
+            return true; // cat[] found
+          }
+        }
+        // cat[] not found
+        return false;
+      };
+
+  $categoryForm.submit(function(e){
+    if(!hasCategories()){
+      e.preventDefault();
+      alert('請選擇至少一個營業登記項目。');
+    }
+  }).on('change', 'input', function(){
+    if(hasCategories()){
+      $categorySubmit.prop('disabled', false);
+    }else{
+      $categorySubmit.prop('disabled', true);
+    };
+  });
+
   // Result page slider toggle
   $('.js-slider-toggle').click(function(){
     $(this).parents('.js-slider-container').toggleClass('is-toggled');
