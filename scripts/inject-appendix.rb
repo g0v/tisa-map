@@ -19,6 +19,7 @@ Sequel::Model.plugin :json_serializer
 Sequel::Plugins::JsonSerializer.configure(Sequel::Model, naked: true)
 
 # Load tisas
+require_relative '../models/cpcs.rb'
 require_relative '../models/tisas.rb'
 
 # Read YAML
