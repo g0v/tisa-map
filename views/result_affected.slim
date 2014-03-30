@@ -39,7 +39,7 @@ section#affected
               a[href='/docs/mapping-draft.pdf' title="對照表"] 對應到 
               = category[:cpcs].map{|cpc| cpc[:key]}.join '、'
 
-              - if category[:note][:range]
+              - if category[:note][:range] and !category[:note][:range].empty?
                 | ，
                 a[href='http://www.dgbas.gov.tw/ct.asp?xItem=28854&ctNode=5479&mp=1'
                   title=category[:note][:range]
@@ -104,7 +104,7 @@ section#affected
                 h4 具體承諾
                 p== nl2br category[:translated][:specific_commitments]
 
-              - if category[:note][:limit]
+              - if category[:note][:limit] and !category[:note][:limit].empty?
                 h4: a.collapsed[data-toggle="collapse"
                              href="#original-limit-#{category[:id]}"]
                   | 中資的限制條件
@@ -113,7 +113,7 @@ section#affected
                 p.collapse[id="original-limit-#{category[:id]}"]
                   == nl2br category[:note][:limit]
 
-              - if category[:note][:text]
+              - if category[:note][:text] and !category[:note][:text].empty?
                 h4: a.collapsed[data-toggle="collapse"
                              href="#original-note-#{category[:id]}"]
                   | 備註
@@ -180,7 +180,7 @@ section#affected
                   | 具體承諾
                 p== nl2br category[:original][:specific_commitments]
 
-              - if category[:note][:limit]
+              - if category[:note][:limit] and !category[:note][:limit].empty?
                 h4: a.collapsed[data-toggle="collapse"
                              href="#original-limit-#{category[:id]}"]
                   | 陸資投資限制條件
@@ -189,7 +189,7 @@ section#affected
                 p.collapse[id="original-limit-#{category[:id]}"]
                   == nl2br category[:note][:limit]
 
-              - if category[:note][:text]
+              - if category[:note][:text] and !category[:note][:text].empty?
                 h4: a.collapsed[data-toggle="collapse"
                              href="#original-note-#{category[:id]}"]
                   | 備註
