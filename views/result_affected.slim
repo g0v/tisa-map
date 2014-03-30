@@ -39,6 +39,13 @@ section#affected
               a[href='/docs/mapping-draft.pdf' title="對照表"] 對應到 
               = category[:cpcs].map{|cpc| cpc[:key]}.join '、'
 
+              - if category[:note][:range]
+                | ，
+                a[href='http://www.dgbas.gov.tw/ct.asp?xItem=28854&ctNode=5479&mp=1'
+                  title=category[:note][:range]
+                  data-toggle="tooltip"] 並非全部開放，請參考行業標準分類
+                | 。
+
         div.js-slider-container
           section.content.translate
             aside.text-center: button.btn-arrow-right.js-slider-toggle 原始條文
@@ -97,6 +104,23 @@ section#affected
                 h4 具體承諾
                 p== nl2br category[:translated][:specific_commitments]
 
+              - if category[:note][:limit]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#original-limit-#{category[:id]}"]
+                  | 中資的限制條件
+                  small.limit
+                    == category[:note][:limit][0..50]
+                p.collapse[id="original-limit-#{category[:id]}"]
+                  == nl2br category[:note][:limit]
+
+              - if category[:note][:text]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#original-note-#{category[:id]}"]
+                  | 備註
+                  small.note
+                    == category[:note][:text][0..50]
+                p.collapse[id="original-note-#{category[:id]}"]
+                  == nl2br category[:note][:text]
 
           section.content.oringin
             aside.text-center: button.btn-arrow-left.js-slider-toggle 返回
@@ -155,6 +179,24 @@ section#affected
                 h4
                   | 具體承諾
                 p== nl2br category[:original][:specific_commitments]
+
+              - if category[:note][:limit]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#original-limit-#{category[:id]}"]
+                  | 陸資投資限制條件
+                  small.limit
+                    == category[:note][:limit][0..50]
+                p.collapse[id="original-limit-#{category[:id]}"]
+                  == nl2br category[:note][:limit]
+
+              - if category[:note][:text]
+                h4: a.collapsed[data-toggle="collapse"
+                             href="#original-note-#{category[:id]}"]
+                  | 備註
+                  small.note
+                    == category[:note][:text][0..50]
+                p.collapse[id="original-note-#{category[:id]}"]
+                  == nl2br category[:note][:text]
 
         footer
           a[href="https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape(share_url)}" target="_blank"] 告訴親友我被服貿了
