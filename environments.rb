@@ -322,7 +322,7 @@ class App < Sinatra::Base
             }
             slim :'result_not_affected', layout: :'layout/_layout', locals: locals
         else
-            category_names = matched_categories.map{|c| c[:text]}.join '、'
+            category_names = matched_categories.map{|c| c[:value]}.join '、'
             if company.nil?
                 locals[:og] = {
                     title: "我被服貿了！",
