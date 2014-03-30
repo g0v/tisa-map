@@ -147,4 +147,9 @@
     $('.in').collapse('hide');
   });
 
+  // Activate tooltips if any.
+  $('[data-toggle="tooltip"]').tooltip({
+    container: 'body'
+  });
+
 }(jQuery));
