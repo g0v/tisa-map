@@ -581,9 +581,7 @@ $topbar-height: 67px
           background: darken($brand-primary, 5%)
           border-radius: 100px
           z-index: 1
-
-      span.onmousedown:before
-        visibility: hidden
+          visibility: hidden // FOR DRAG
 
         img
           opacity: 1
@@ -592,7 +590,8 @@ $topbar-height: 67px
       position: relative
       width: 100%/ $item-count * ($item-count - 1)
       margin: 0 auto
-      z-index: 5
+      z-index: 10
+      
 
     .drag-point
       position: absolute
@@ -601,9 +600,8 @@ $topbar-height: 67px
       height: $size
       margin-left: $size / -2
       border-radius: 100px
-      z-index: 10
       top: -5px
-      background: red
+      background: darken($brand-primary, 5%)
 
   .poll-button-wrapper
     +leader(2)

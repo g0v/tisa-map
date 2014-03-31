@@ -54,42 +54,62 @@
     e.preventDefault();
   });
 
+
+
+  // --------------Drag Select Bar---------------
   
-  // 
-  
-  //vendor prefix 
+  //vendor transform prefix 
   var transformProp = 'transform' in document.body.style?
                 'transform': 'webkitTransform' in document.body.style?
                     'webkitTransform': 'mozTransform' in document.body.style?
                         'mozTransform': 'oTransform' in document.body.style?
                             'oTransform': 'msTransform';
 
-  var barWidth = $('.poll-options label').width()*7;
+  var wrapper = document.querySelector('.drag-point').parentNode;  //dragger's wrapper 
+  var shift = {
+    clicked: false //flag for directed click label
+  };
 
+  //INIT
+  fixGrid();
+
+  //DROP 
   interact('.poll-options label')
     .dropzone(true)
     .accept('.drag-point')
     .on('dragenter', function(event){
       var dropzoneElement = event.target;
-      dropzoneElement.click();
-    })
+      dropzoneElement.control.checked = true;
+    });
 
-  var wrapper = document.querySelector('.drag-point').parentNode;
-
+  //DRAG
   interact('.drag-point').draggable({
     onmove: function(event) {
       var target = event.target;
+      if( shift.clicked ) target.x = shift.x;
+      shift.clicked = false;
       target.x = (target.x|0) + event.dx;
       target.style[transformProp] = 'translate(' + target.x + 'px)';
+    },
+    onend: function(event) {
+      //bounce to actived radio input
+      fixGrid();
     }
   }).restrict({
     drag: wrapper
   });
 
+  //click label directly
   $('.poll-options input').click(function(){
-    var shift = $('.poll-options input:checked + label').position().left ;
-    document.querySelector('.drag-point').style[transformProp] = 'translate(' + shift + 'px)';
+    fixGrid();
   });
 
-  
+  // fix circle to label center for click directly
+  function fixGrid () {
+    var circleWidth = 13;
+    shift.x = $('.poll-options input:checked + label').position().left - circleWidth;
+    document.querySelector('.drag-point').style[transformProp] = 'translate(' + shift.x + 'px)';
+    shift.clicked = true;
+  }
+
 }(jQuery));
