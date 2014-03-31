@@ -1,4 +1,5 @@
 //= require ../jquery.easypiechart
+//= require ../interact
 
 (function($){
   "use strict";
@@ -51,5 +52,44 @@
       $resultPanel.removeClass('animate-hidden');
     }, 'json');
     e.preventDefault();
-  })
+  });
+
+  
+  // 
+  
+  //vendor prefix 
+  var transformProp = 'transform' in document.body.style?
+                'transform': 'webkitTransform' in document.body.style?
+                    'webkitTransform': 'mozTransform' in document.body.style?
+                        'mozTransform': 'oTransform' in document.body.style?
+                            'oTransform': 'msTransform';
+
+  var barWidth = $('.poll-options label').width()*7;
+
+  interact('.poll-options label')
+    .dropzone(true)
+    .accept('.drag-point')
+    .on('dragenter', function(event){
+      var dropzoneElement = event.target;
+      dropzoneElement.click();
+    })
+
+  var wrapper = document.querySelector('.drag-point').parentNode;
+
+  interact('.drag-point').draggable({
+    onmove: function(event) {
+      var target = event.target;
+      target.x = (target.x|0) + event.dx;
+      target.style[transformProp] = 'translate(' + target.x + 'px)';
+    }
+  }).restrict({
+    drag: wrapper
+  });
+
+  $('.poll-options input').click(function(){
+    var shift = $('.poll-options input:checked + label').position().left ;
+    document.querySelector('.drag-point').style[transformProp] = 'translate(' + shift + 'px)';
+  });
+
+  
 }(jQuery));
