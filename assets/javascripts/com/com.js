@@ -143,8 +143,12 @@
 
   // Result page slider toggle
   $('.js-slider-toggle').click(function(){
-    $(this).parents('.js-slider-container').toggleClass('is-toggled');
     $('.in').collapse('hide');
+    var slide = $(this);
+    setTimeout(function(){
+      slide.parents('.js-slider-container').toggleClass('is-toggled');  
+    },400);
+    
   });
 
 }(jQuery));
