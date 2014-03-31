@@ -6,3 +6,13 @@ javascript:
 - content_for :scripts
   script[type="text/javascript" src="https://apis.google.com/js/platform.js"]
     |{lang: 'zh-TW'}
+
+/ AddtoAny script for mobile
+javascript:
+  var a2a_config = a2a_config || {};
+  a2a_config.linkname = "你被服貿了嗎？";
+  a2a_config.linkurl = "http://tisa.g0v.tw";
+  a2a_config.locale = "zh-TW";
+  a2a_config.custom_services = [["Line","http://line.me/R/msg/text/?%E4%BD%A0%E8%A2%AB%E6%9C%8D%E8%B2%BF%E4%BA%86%E5%97%8E%EF%BC%9F%0Ahttp%3A%2F%2Ftisa.g0v.tw%2F","http://tisa.g0v.tw/img/linebutton_40x40_en.png"]];
+script[src="//static.addtoany.com/menu/page.js" type="text/javascript"]
+    
