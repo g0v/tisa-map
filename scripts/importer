@@ -34,6 +34,8 @@ File.open(ARGV[0], "r").each_with_index do |line, index|
                             elsif item.is_a?(String)
                               item
                             end
+                          }.reject { |item|
+                            item.empty?
                           }.pg_array
                         else
                           [].pg_array
