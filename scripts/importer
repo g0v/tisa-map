@@ -30,7 +30,7 @@ File.open(ARGV[0], "r").each_with_index do |line, index|
     json["categories"]= if json["所營事業資料"].is_a?(Array)
                           json["所營事業資料"].map { |item|
                             if item.is_a?(Array)
-                              item[1]
+                              item[0]
                             elsif item.is_a?(String)
                               item
                             end
@@ -43,7 +43,7 @@ File.open(ARGV[0], "r").each_with_index do |line, index|
 
     if json["name"]
       unless Company.first(taxid: json["taxid"])
-        puts json["taxid"]
+        puts json["taxid"], json["categories"].inspect
         Company.new(json.slice("taxid", "name", "address", "categories", "status", "owner")).save
       end
     end
