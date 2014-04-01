@@ -488,6 +488,7 @@ $topbar-height: 67px
       top: -.1em // Little hack to keep images and words aligned.
 
   .poll-options
+    position: relative //make containing box for drag
     $item-count: 7
     $segment-thickness: 15px
 
@@ -507,8 +508,8 @@ $topbar-height: 67px
       cursor: pointer
 
       // Prevent accedental line break due to percentage-pixel rounding error
-      &:last-child
-        float: right
+      // &:last-child
+        // float: right
 
       // left-half of the segment
       &:before
@@ -580,9 +581,27 @@ $topbar-height: 67px
           background: darken($brand-primary, 5%)
           border-radius: 100px
           z-index: 1
+          visibility: hidden // FOR DRAG
 
         img
           opacity: 1
+    
+    .drag-wrapper
+      position: relative
+      width: 100%/ $item-count * ($item-count - 1)
+      margin: 0 auto
+      z-index: 10
+      
+
+    .drag-point
+      position: absolute
+      $size: 26px
+      width: $size
+      height: $size
+      margin-left: $size / -2
+      border-radius: 100px
+      top: -5px
+      background: darken($brand-primary, 5%)
 
   .poll-button-wrapper
     +leader(2)
@@ -746,6 +765,7 @@ $topbar-height: 67px
   @media screen and (min-width: $screen-md-min)
     +leader(2)
     +trailer(2)
+
 
 // jquery-ui autocomplete style overriding
 #autocomplete.ui-autocomplete-loading
