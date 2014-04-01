@@ -42,9 +42,10 @@ File.open(ARGV[0], "r").each_with_index do |line, index|
     json["owner"]     = json["代表人姓名"]
 
     if json["name"]
-      company = Company.new(json.slice("taxid", "name", "address", "categories", "status", "owner")).save
-      puts company.taxid
-    # puts Oj.dump(json.slice("taxid", "name", "status", "address", "categories"))
+      unless Company.first(taxid: json["taxid"])
+        puts json["taxid"]
+        Company.new(json.slice("taxid", "name", "address", "categories", "status", "owner")).save
+      end
     end
 
 end
