@@ -68,18 +68,21 @@ CSV.foreach(CSV_FILENAME) do |row|
   # Get first 4 elements from CSV row
   key, category_limit, note, open_limit = row
 
-  cat = Category.filter(key: key).first
-  next if cat.nil?
+  if key && cat = Category.filter(key: key).first
 
-  cat.note = {
-    range: insert_space((category_limit || '').gsub("\r", "\n")),
-    text: insert_space((note || '').gsub("\r", "\n")),
-    limit: insert_space((open_limit || '').gsub("\r", "\n"))
-  }
+    cat.note = {
+      range:  insert_space((category_limit || '').gsub("\r", "\n")),
+      text:   insert_space((note || '').gsub("\r", "\n")),
+      limit:  insert_space((open_limit || '').gsub("\r", "\n"))
+    }
 
-  if cat.save
-    puts "#{key} Done!"
+    if cat.save
+      puts "#{key} Done!"
+    else
+      puts "#{key} save error."
+    end
+
   else
-    puts "#{key} save error."
+    puts "key #{key} not found"
   end
 end
