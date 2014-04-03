@@ -30,10 +30,12 @@ File.open(ARGV[0], "r").each_with_index do |line, index|
     json["categories"]= if json["所營事業資料"].is_a?(Array)
                           json["所營事業資料"].map { |item|
                             if item.is_a?(Array)
-                              item[1]
+                              item[0]
                             elsif item.is_a?(String)
                               item
                             end
+                          }.reject { |item|
+                            item.empty?
                           }.pg_array
                         else
                           [].pg_array
@@ -42,9 +44,10 @@ File.open(ARGV[0], "r").each_with_index do |line, index|
     json["owner"]     = json["代表人姓名"]
 
     if json["name"]
-      company = Company.new(json.slice("taxid", "name", "address", "categories", "status", "owner")).save
-      puts company.taxid
-    # puts Oj.dump(json.slice("taxid", "name", "status", "address", "categories"))
+      unless Company.first(taxid: json["taxid"])
+        puts json["taxid"], json["categories"].inspect
+        Company.new(json.slice("taxid", "name", "address", "categories", "status", "owner")).save
+      end
     end
 
 end
