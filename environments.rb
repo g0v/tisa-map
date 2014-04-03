@@ -298,7 +298,7 @@ class App < Sinatra::Base
           {
               id:     category.key,
               value:  category.name,
-              note: category.note.symbolize_keys!
+              note:   category.note.symbolize_keys!
           }.merge(articles)
         }
 
