@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+# -*- coding: UTF-8 -*-
+
+require "oj";
+require "active_support/core_ext/hash/slice"
+require "pg"
+require "sequel"
+
+::DB = Sequel.connect("postgres://tisa:tisamap@localhost/tisa")
+Sequel.extension :core_extensions
+DB.extension :pg_array
+
+class Company < Sequel::Model
+end
+
+File.open(ARGV[0], "r").each_with_index do |line, index|
+    line.sub!(/^(\d\d\d\d\d\d\d\d),/, "")
+    number = $1
+    json = Oj.load(line).merge("taxid" => number)
+
+    json["name"]      = if json["商業名稱"].is_a?(String)
+                          json["商業名稱"]
+                        elsif json["商業名稱"].is_a?(Array)
+                          json["商業名稱"][0]
+                        else
+                          json["商業名稱"].to_s
+                        end
+
+    json["address"]   = json["地址"]
+    json["categories"]= if json["營業項目"].is_a?(Array)
+                          json["營業項目"].pg_array
+                        elsif json["營業項目"].is_a?(String)
+                          json["營業項目"].split(/\s+/).map { |item|
+                              item =~ /([A-Z]\d\d\d\d\d\d|[A-Z][A-Z]\d\d\d\d\d)/
+                              $1
+                          }.reject { |item|
+                              item.nil?
+                          }.pg_array
+                        end
+
+    json["status"]    = json["現況"]
+    json["owner"]     = json["負責人姓名"]
+
+    if json["name"] && !Company.first(taxid: json["taxid"])
+        puts json["taxid"], json["categories"].inspect
+        Company.new(json.slice("taxid", "name", "address", "categories", "status", "owner")).save
+    end
+
+end
