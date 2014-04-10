@@ -32,13 +32,13 @@ table
             br
 
         td
-          - tisa.groups.first.standards.each do |standard|
+          - tisa.groups.first.standards_dataset.order(:id).each do |standard|
             = standard.key
             = standard.description
             br
 
         td
-          - tisa.groups.first.categories.each do |category|
+          - tisa.groups.first.categories_dataset.order(:id).each do |category|
             = category.key
             = category.name
             br
