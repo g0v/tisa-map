@@ -284,9 +284,14 @@ class App < Sinatra::Base
             category_ids = params[:cat] || []
         end
 
-        matched_categories = category_ids.map { |key|
-          Category.where(key: key).first
-        }.reject { |category|
+        matched_categories = []
+
+        # Find all categories
+        category_ids.each do |key|
+          matched_categories += Category.where(key: key).to_a
+        end
+
+        matched_categories = matched_categories.reject { |category|
           category.nil?
         }.map { |category|
           articles = category.group.tisa.articles
@@ -347,5 +352,10 @@ class App < Sinatra::Base
 
         Poll.create(type: type, ip: request.ip)
         json results: DB[:polls].select { [type, sum(1)] }.group(:type).where(:type => POLL_TYPE_RANGE).order(:type).map{|row| row[:sum]}
+    end
+
+    get '/tisa' do
+      @tisas = Tisa.order(:id).all
+      slim :tisa
     end
 end
