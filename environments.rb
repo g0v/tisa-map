@@ -348,4 +348,9 @@ class App < Sinatra::Base
         Poll.create(type: type, ip: request.ip)
         json results: DB[:polls].select { [type, sum(1)] }.group(:type).where(:type => POLL_TYPE_RANGE).order(:type).map{|row| row[:sum]}
     end
+
+    get '/tisa' do
+      @tisas = Tisa.order(:id).all
+      slim :tisa
+    end
 end

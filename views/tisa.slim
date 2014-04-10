@@ -1,0 +1,28 @@
+table
+  thead
+    tr
+      td= "ID"
+      td= "聯合國 CPC"
+      td= "行政院主計處標準行業分類"
+      td= "經濟部商業司營業登記項目"
+  tbody
+    - @tisas.each do |tisa|
+      tr
+        td= tisa.id
+
+        td
+          - tisa.cpcs.each do |cpc|
+            = cpc.key
+            br
+
+        td
+          - tisa.groups.first.standards.each do |standard|
+            = standard.key
+            = standard.description
+            br
+
+        td
+          - tisa.groups.first.categories.each do |category|
+            = category.key
+            = category.name
+            br
