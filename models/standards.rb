@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
-class Standards < Sequel::Model
+class Standard < Sequel::Model
   many_to_one :group
 end
