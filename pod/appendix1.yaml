@@ -385,11 +385,11 @@
     :service: 見模式（3）。
     :consumer: 沒有限制。
     :business: >
-      允許大陸服務提供者在臺灣投資左列業務。大陸服務提供者須為在海外或大陸上市之電信業者；大陸服務提供者總持股比例不超過 50%，不具控制力。
+      允許大陸服務提供者在臺灣投資左列業務<small>（註：即第二類電信事業特殊業務裡的「存轉網路服務」、「存取網路服務」、「數據交換通信服務」三項）</small>。大陸服務提供者須為在海外或大陸上市之電信業者；大陸服務提供者總持股比例不超過 50%，不具控制力。
     :person: *computer_person
 
   :translated:
-    :service: 服貿裡沒說可以。
+    :service: 服貿裡沒說可以。 <small>（註：原文裡，不需廠商登台的「跨境提供服務」的規定，卻要參考實際需登台的「商業據點呈現」規定，我們將之解讀為「若要提供服務就一定要登台」的意思。）</small>
     :consumer: 愛怎麼做都行。
     :business: 原電信業大陸業者可以在台灣以合資形式，投資台灣現有企業，成立服務據點，但總持股必須低於一半。
     :person: *computer_person
@@ -404,11 +404,11 @@
 #   :other: >
 #     根據大陸有關規定設立的製片單位所拍攝、符合臺灣相關規定所定義之大陸電影片，經臺灣主管機關審查通過後，每年以 15 部為限，可在臺灣商業發行映演，並應符合大陸電影片進入臺灣發行映演之相關規定。
 
-  :translated:
-    :service: 愛怎麼做都行。
-    :consumer: 愛怎麼做都行。
-    :business: 愛怎麼做都行。
-    :person: *computer_person
+  # :translated:
+  #   :service: 愛怎麼做都行。
+  #   :consumer: 愛怎麼做都行。
+  #   :business: 愛怎麼做都行。
+  #   :person: *computer_person
 
 
 # CPC512, 513, 514+516, 517, 511+515+518
@@ -550,13 +550,12 @@
     :consumer: 沒有限制。
     :business: >
       允許大陸服務提供者在臺灣以獨資、合資、合夥及設立分公司等形式設立商業據點，提供無操作員醫療設備租賃服務。
-    :person: *computer_person
+    :person: 除「中資廠商怎樣進入台灣？」所列內容外，服貿裡沒說可以。
 
   :translated:
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
-    :business: 愛怎麼做都行。
-    :person: *computer_person
+    :person: 除「中資廠商怎樣進入台灣？」所列內容外，服貿裡沒說可以。
 
 
 # No CPC! 老人及身心障礙者福利機構 (TODO: CPC93311、93323 ??)
@@ -587,7 +586,6 @@
   :translated:
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
-    :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
     :person: *computer_person
 
 
@@ -605,6 +603,7 @@
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
     :person: *computer_person
+    :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
 
 
 # CPC7471
