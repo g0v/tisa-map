@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+
+require "csv"
+require "active_support/core_ext/array"
+require "active_support/core_ext/hash"
+require "pg"
+require "sequel"
+
+::DB = Sequel.connect("postgres://tisa:tisamap@localhost/tisa")
+Sequel.extension :core_extensions
+DB.extension :pg_array
+
+class Company < Sequel::Model
+end
+
+csv = CSV.open(ARGV[0])
+
+keys = csv.first
+data = csv.map { |row| row }
+
+puts "存轉網路服務"
+data.each do |row|
+  obj = Hash[keys.zip(row)]
+  if obj['存轉網路服務']
+    puts obj.slice("申請編號", "執照號數", "經營者名單", "存轉網路服務")
+    c = Company.first(name: obj['經營者名單'])
+    puts c.taxid, c.categories.include?("G902011L")
+    c.categories.push("G902011L") unless c.categories.include?("G902011L")
+    c.save
+  end
+end
+
+puts "存取網路服務"
+data.each do |row|
+  obj = Hash[keys.zip(row)]
+  if obj['存取網路服務']
+    puts obj.slice("申請編號", "執照號數", "經營者名單", "存取網路服務")
+    c = Company.first(name: obj['經營者名單'])
+    puts c.taxid, c.categories.include?("G902011M")
+    c.categories.push("G902011M") unless c.categories.include?("G902011M")
+    c.save
+  end
+end
+
+puts "數據交換通信服務"
+data.each do |row|
+  obj = Hash[keys.zip(row)]
+  if obj['數據交換通信服務']
+    puts obj.slice("申請編號", "執照號數", "經營者名單", "數據交換通信服務")
+    c = Company.first(name: obj['經營者名單'])
+    puts c.taxid, c.categories.include?("G902011O")
+    c.categories.push("G902011O") unless c.categories.include?("G902011O")
+    c.save
+  end
+end
