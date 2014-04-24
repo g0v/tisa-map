@@ -27,7 +27,14 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: &computer_person_translated >
+      能進入台灣的只有：
+
+      1. 未直接營利的商業訪客，可停留 3 個月。
+
+      2. 受雇滿一年的跨國企業負責人、高級經理、專家（不一定需要執照）可調動來台灣，一次停留 3 年，但可無限次延展。
+
+      3. 在台灣沒有商業據點的大陸企業所僱用的專家，或是任何與台灣從事商業的企業有簽訂相關「驗貨、售後服務、技術指導」服務契約的大陸企業所僱用的人員，可為業務需要停留 3 個月。
 
 # CPC83104**
 - :id: 2
@@ -43,7 +50,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC83101**
@@ -60,7 +67,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC83106-83109
@@ -77,7 +84,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點（不含電信設備及電力設備租賃）。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC871**
@@ -94,7 +101,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點（不含廣播電視廣告）。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC 86401**
@@ -111,7 +118,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以合資、合夥形式成立服務據點（僅限市場分析、消費者態度與偏好分析）。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC 865
@@ -128,7 +135,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC8676
@@ -149,7 +156,7 @@
     :business: >
       (1) 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
       (2) 除「醫療器材的非臨床試驗檢驗的技術檢測及分析服務」之外，在互信互利基礎上，大陸機構可以和台灣機構展開檢測數據的接受合作。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 
@@ -177,7 +184,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC883、5115
@@ -193,7 +200,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC86751
@@ -210,7 +217,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以合資設立公司行號，且持股可在一半以上。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC633, 8861-8866
@@ -227,7 +234,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC874
@@ -244,7 +251,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC875
@@ -261,7 +268,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC876, 87906**
@@ -279,7 +286,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC88442**
@@ -296,7 +303,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以合資形式，投資台灣現有企業，成立服務據點，但持股必須低於一半。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC87909
@@ -312,8 +319,8 @@
     :service: 同 ECFA。
     :consumer: 愛怎麼做都行。
     :business: >
-      允許大陸服務提供者在臺灣以獨資、合資、合夥及設立分公司等形式設立商業據點，與臺灣會展產業的企業或公會、商會、協會等團體合辦展覽。
-    :person: *computer_person
+      大陸服務商在台灣可以獨資、合資、合夥及分公司形式成立服務據點，並與台灣企業或公會、商會、協會等團體合辦展覽。
+    :person: *computer_person_translated
 
 
 # CPC87904
@@ -330,7 +337,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC87905
@@ -347,7 +354,7 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC87906**
@@ -376,23 +383,23 @@
     :consumer: 愛怎麼做都行。
     :business: >
       大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # No CPC! 第二類電信事業特殊業務之存轉網路服務、存取網路服務及數據交換通信服務
 - :id: 21
   :original:
-    :service: 見模式（3）。
+    :service: 見模式（3）商業據點呈現。
     :consumer: 沒有限制。
     :business: >
-      允許大陸服務提供者在臺灣投資左列業務。大陸服務提供者須為在海外或大陸上市之電信業者；大陸服務提供者總持股比例不超過 50%，不具控制力。
+      允許大陸服務提供者在臺灣投資左列業務<small>（註：即第二類電信事業特殊業務裡的「存轉網路服務」、「存取網路服務」、「數據交換通信服務」三項）</small>。大陸服務提供者須為在海外或大陸上市之電信業者；大陸服務提供者總持股比例不超過 50%，不具控制力。
     :person: *computer_person
 
   :translated:
-    :service: 服貿裡沒說可以。
+    :service: 服貿裡沒說可以。 <small>（註：原文裡，不需廠商登台的「跨境提供服務」的規定，卻要參考實際需登台的「商業據點呈現」規定，我們將之解讀為「若要提供服務就一定要登台」的意思。）</small>
     :consumer: 愛怎麼做都行。
     :business: 原電信業大陸業者可以在台灣以合資形式，投資台灣現有企業，成立服務據點，但總持股必須低於一半。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC96113，尚無營業項目對照
@@ -404,11 +411,11 @@
 #   :other: >
 #     根據大陸有關規定設立的製片單位所拍攝、符合臺灣相關規定所定義之大陸電影片，經臺灣主管機關審查通過後，每年以 15 部為限，可在臺灣商業發行映演，並應符合大陸電影片進入臺灣發行映演之相關規定。
 
-  :translated:
-    :service: 愛怎麼做都行。
-    :consumer: 愛怎麼做都行。
-    :business: 愛怎麼做都行。
-    :person: *computer_person
+  # :translated:
+  #   :service: 愛怎麼做都行。
+  #   :consumer: 愛怎麼做都行。
+  #   :business: 愛怎麼做都行。
+  #   :person: *computer_person
 
 
 # CPC512, 513, 514+516, 517, 511+515+518
@@ -424,7 +431,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以合資形式成立服務據點，但持股必須低於 12%。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC8929
@@ -440,7 +447,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC622
@@ -456,7 +463,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC631,632,6111,6113,6121
@@ -472,7 +479,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC9401
@@ -488,7 +495,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC9402
@@ -504,7 +511,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC9404,9405,9409**
@@ -520,7 +527,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC9311
@@ -540,7 +547,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商在台灣可以合資形式設立非營利醫院。台灣董事不能超過全體三分之一，並且三分之一以上必須是台灣醫事人員。
-    :person: *computer_person
+    :person: 除「中資廠商怎樣進入台灣？」所列內容外，服貿裡沒說可以。
 
 
 # No CPC! 無操作員醫療設備之出租或租賃服務業
@@ -555,8 +562,8 @@
   :translated:
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
-    :business: 愛怎麼做都行。
-    :person: *computer_person
+    :business: 大陸服務商在台灣可以獨資、合資、合夥及分公司形式成立服務據點。
+    :person: *computer_person_translated
 
 
 # No CPC! 老人及身心障礙者福利機構 (TODO: CPC93311、93323 ??)
@@ -572,7 +579,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以合資形式成立服務據點，但持股必須低於一半。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC64110**
@@ -588,7 +595,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC642
@@ -604,7 +611,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC7471
@@ -620,7 +627,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。但總數最多三間，且只能對台灣人提供台灣旅遊服務。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # No CPC! 娛樂服務業 —演出場所經營 (TODO: CPC9619** ??)
@@ -636,7 +643,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以合資形式成立服務據點，但持股必須低於一半。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC96413
@@ -652,7 +659,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # No CPC! 遊樂園及主題樂園(非屬 森林遊樂區者)
@@ -668,7 +675,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC745
@@ -684,7 +691,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以合資形式成立服務據點，但持股必須低於一半。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # No CPC! 空運服務之銷售及行銷，適用世界貿易組織「服務貿易總協定『空運服務業附則』」的定義。
@@ -700,7 +707,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 經兩岸民航主管機關認可的大陸民航業者，可以在台灣設立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # No CPC! 航空貨物集散站經營業
@@ -716,7 +723,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以合資形式成立服務據點，但持股必須低於 10%。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # No CPC! 旅客運輸(限於小客車租賃業)
@@ -732,7 +739,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點，提供小客車租賃服務。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # No CPC! 貨物運輸（TODO: CPC7123 ??）
@@ -748,7 +755,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC6112, 8867
@@ -764,7 +771,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC7441, 7442
@@ -789,7 +796,7 @@
       若是公路客運轉運站、車站、調度站，大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
 
       若是公路橋樑及隧道管理，大陸服務商可以在台灣以合資形式成立服務據點，但持股必須低於一半。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC 7442
@@ -816,7 +823,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC71219**
@@ -832,7 +839,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC742
@@ -848,7 +855,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以合資形式成立服務據點，但持股必須低於一半。不過，保稅倉儲類的只能開在港區以內。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC7480
@@ -864,7 +871,7 @@
     :service: 愛怎麼做都行。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以合資形式成立服務據點，但持股必須低於一半。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC9701
@@ -880,7 +887,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # CPC9702
@@ -896,7 +903,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # No CPC! 殯儀館及火化場
@@ -912,7 +919,7 @@
     :service: 辦不到。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # No CPC! 線上遊戲-限製作及研發服務
@@ -928,7 +935,7 @@
     :service: 服貿裡沒說可以。
     :consumer: 愛怎麼做都行。
     :business: 大陸服務商可以在台灣以獨資、合資、合夥與分公司形式成立服務據點。
-    :person: *computer_person
+    :person: *computer_person_translated
 
 
 # 銀行及其他金融服務(不包括證券期貨和保險)
@@ -945,13 +952,17 @@
 
   :translated:
     :specific_commitments: >
-      1. 儘速取消大陸的銀行來臺灣設立分支機構及參股投資的 OECD 條件。
+      1. 以後大陸銀行來台設立分行及參股，不需要在經濟合作暨發展組織（OECD）的國家有 5 年的經營經驗。
 
-      2. 已在臺灣設有分行的大陸的銀行符合條件者，可申請增設分行。
+      2. 在台灣已經有分行的大陸銀行，可以申請增設分行。
 
-      3. 單一大陸的銀行得申請投資臺灣上市（櫃）銀行、金控公司的持股比率提高至 10%（如加計大陸合格境內機構投資者為 15%）；投資未上市（櫃）銀行、金控公司的持股比率提高至 15%；參股投資金控公司子銀行的持股比率可達 20%。參股投資金控公司或其子銀行，維持現行二者擇一規定。
+      3. 鬆綁大陸銀行在台投資持股比例：
+        a. 上市（櫃）銀行、金控公司：10%~15%
+        b. 未上市（櫃）銀行、金控公司：15%
+        c. 金控公司子銀行：20%
 
-      4. 大陸的銀聯公司得申請來臺灣設立分支機構。
+      4. 中國銀聯（幾乎所有總部在中國的銀行都是銀聯成員）可以申請來臺灣設立分行。
+
 
 
 # 保險及其相關服務
@@ -962,7 +973,7 @@
 
   :translated:
     :specific_commitments: >
-      積極審慎修正有關大陸保險業在臺灣設立代表處及參股評等之規定。
+      台灣政府承諾會積極修正有關大陸保險業在台灣設立代表處、參股、評等的規定。
 
 # 證券、期貨及其相關服務
 - :id: 55
@@ -978,10 +989,10 @@
 
   :translated:
     :specific_commitments: >
-      1. 大陸證券期貨機構按照臺灣有關規定申請在臺灣設立代表人辦事處須具備的海外證券、期貨業務經驗為 2 年以上，且包括香港及澳門。
+      1. 大陸證券期貨機構在台灣申請設立「代表人辦事處」的資格中，須具備的海外（含香港、澳門）證券、期貨業務經驗為 2 年。
 
-      2. 循序放寬大陸合格境內機構投資者投資臺灣證券之限額，初期可考慮由 5 億美元提高至 10 億美元。
+      2. 台灣政府承諾，會循序放寬大陸投資者投資台灣證券的額度上限，一開始可以考慮加倍，提高至 10 億美元。
 
-      3. 積極研議放寬大陸證券期貨機構參股投資臺灣證券期貨機構的有關限制。
+      3. 台灣政府承諾，會積極研議，放寬大陸證券期貨機構參股投資台灣證券期貨機構的限制。
 
-      4. 積極研議大陸合格境內個人投資者投資臺灣資本市場。
+      4. 台灣政府承諾，會積極研議放寬大陸投資者來投資台灣資本市場。
