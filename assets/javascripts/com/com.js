@@ -143,12 +143,28 @@
 
   // Result page slider toggle
   $('.js-slider-toggle').click(function(){
-    $('.in').collapse('hide');
-    var slide = $(this);
+    var toggleButton = $(this),
+        content = toggleButton.parents('.content'), // Translated or Original
+        expandedParagraphs = content.find('.in'), // Paragraphs not collapsed
+        timeOut = 0;
+
+    // If there are non-collapsed slides
+    //
+    if(expandedParagraphs.length){
+      expandedParagraphs.collapse('hide');
+
+      // Manually add back collapsed class to [data-toggle]
+      // which isn't handled by bootstrap collapse.
+      content.find('[data-toggle]').addClass('collapsed');
+
+      // Wait a little bit
+      timeOut = 400;
+    }
+
     setTimeout(function(){
-      slide.parents('.js-slider-container').toggleClass('is-toggled');  
-    },400);
-    
+      toggleButton.parents('.js-slider-container').toggleClass('is-toggled');
+    }, timeOut);
+
   });
 
   // Activate tooltips if any.
