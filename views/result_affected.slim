@@ -27,7 +27,7 @@ section#affected
       |的影響
 
   div.container.items-section
-    - for category in categories
+    - categories.each_with_index do |category, category_idx|
       div.row: .col-lg-10.col-lg-offset-1: article.item
 
         header
@@ -52,52 +52,52 @@ section#affected
             div
               - if category[:translated][:service]
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#translated-service-#{category[:id]}"]
+                             href="#translated-service-#{category[:id]}-#{category_idx}"]
                   | 中國境內廠商怎樣服務身在台灣的消費者？
                   small.service
                     == category[:translated][:service][0..40]
 
-                p.collapse[id="translated-service-#{category[:id]}"]
+                p.collapse[id="translated-service-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:translated][:service]
 
               - if category[:translated][:consumer]
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#translated-consumer-#{category[:id]}"]
+                             href="#translated-consumer-#{category[:id]}-#{category_idx}"]
                   | 台灣消費者到中國境內怎樣被服務？
                   small.consumer
                     == category[:translated][:consumer][0..40]
 
-                p.collapse[id="translated-consumer-#{category[:id]}"]
+                p.collapse[id="translated-consumer-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:translated][:consumer]
 
               - if category[:translated][:business]
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#translated-business-#{category[:id]}"]
+                             href="#translated-business-#{category[:id]}-#{category_idx}"]
                   | 中資廠商怎樣進入台灣？
                   small.business
                     == category[:translated][:business][0..40]
 
-                p.collapse[id="translated-business-#{category[:id]}"]
+                p.collapse[id="translated-business-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:translated][:business]
 
               - if category[:translated][:person]
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#translated-person-#{category[:id]}"]
+                             href="#translated-person-#{category[:id]}-#{category_idx}"]
                   | 中國工作者可以怎樣進入台灣？
                   small.person
                     == category[:translated][:person][0..40]
 
-                p.collapse[id="translated-person-#{category[:id]}"]
+                p.collapse[id="translated-person-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:translated][:person]
 
               - if category[:translated][:other]
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#translated-other-#{category[:id]}"]
+                             href="#translated-other-#{category[:id]}-#{category_idx}"]
                   | 其他承諾
                   small.other
                     == category[:translated][:other][0..40]
 
-                p.collapse[id="translated-other-#{category[:id]}"]
+                p.collapse[id="translated-other-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:translated][:other]
 
               - if category[:translated][:specific_commitments]
@@ -106,20 +106,20 @@ section#affected
 
               - if category[:note][:limit] and !category[:note][:limit].empty?
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#original-limit-#{category[:id]}"]
+                             href="#original-limit-#{category[:id]}-#{category_idx}"]
                   | 中資的限制條件
                   small.limit
                     == category[:note][:limit][0..50]
-                p.collapse[id="original-limit-#{category[:id]}"]
+                p.collapse[id="original-limit-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:note][:limit]
 
               - if category[:note][:text] and !category[:note][:text].empty?
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#original-note-#{category[:id]}"]
+                             href="#original-note-#{category[:id]}-#{category_idx}"]
                   | 備註
                   small.note
                     == category[:note][:text][0..50]
-                p.collapse[id="original-note-#{category[:id]}"]
+                p.collapse[id="original-note-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:note][:text]
 
           section.content.oringin
@@ -127,52 +127,52 @@ section#affected
             div
               - if category[:original][:service]
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#original-service-#{category[:id]}"]
+                             href="#original-service-#{category[:id]}-#{category_idx}"]
                   | 跨境提供服務
                   small.service
                     == category[:original][:service][0..50]
 
-                p.collapse[id="original-service-#{category[:id]}"]
+                p.collapse[id="original-service-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:original][:service]
 
               - if category[:original][:consumer]
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#original-consumer-#{category[:id]}"]
+                             href="#original-consumer-#{category[:id]}-#{category_idx}"]
                   | 境外消費
                   small.consumer
                     == category[:original][:consumer][0..50]
 
-                p.collapse[id="original-consumer-#{category[:id]}"]
+                p.collapse[id="original-consumer-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:original][:consumer]
 
               - if category[:original][:business]
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#original-business-#{category[:id]}"]
+                             href="#original-business-#{category[:id]}-#{category_idx}"]
                   | 商業據點呈現
                   small.business
                     == category[:original][:business][0..50]
 
-                p.collapse[id="original-business-#{category[:id]}"]
+                p.collapse[id="original-business-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:original][:business]
 
               - if category[:original][:person]
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#original-person-#{category[:id]}"]
+                             href="#original-person-#{category[:id]}-#{category_idx}"]
                   | 自然人呈現
                   small.person
                     == category[:original][:person][0..50]
 
-                p.collapse[id="original-person-#{category[:id]}"]
+                p.collapse[id="original-person-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:original][:person]
 
               - if category[:original][:other]
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#original-other-#{category[:id]}"]
+                             href="#original-other-#{category[:id]}-#{category_idx}"]
                   | 其他承諾
                   small.other
                     == category[:original][:other][0..50]
 
-                p.collapse[id="original-other-#{category[:id]}"]
+                p.collapse[id="original-other-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:original][:other]
 
               - if category[:original][:specific_commitments]
@@ -182,20 +182,20 @@ section#affected
 
               - if category[:note][:limit] and !category[:note][:limit].empty?
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#original-limit-#{category[:id]}"]
+                             href="#original-limit-#{category[:id]}-#{category_idx}"]
                   | 陸資投資限制條件
                   small.limit
                     == category[:note][:limit][0..50]
-                p.collapse[id="original-limit-#{category[:id]}"]
+                p.collapse[id="original-limit-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:note][:limit]
 
               - if category[:note][:text] and !category[:note][:text].empty?
                 h4: a.collapsed[data-toggle="collapse"
-                             href="#original-note-#{category[:id]}"]
+                             href="#original-note-#{category[:id]}-#{category_idx}"]
                   | 備註
                   small.note
                     == category[:note][:text][0..50]
-                p.collapse[id="original-note-#{category[:id]}"]
+                p.collapse[id="original-note-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:note][:text]
 
         footer
