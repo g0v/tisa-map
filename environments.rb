@@ -236,15 +236,6 @@ class App < Sinatra::Base
     end
 
     # Autocomplete
-    get "/complete_ori/:term" do
-        return [].to_json if params[:term].empty?
-
-        result = search_company(params[:term]).map{|c| c[:type]="公司行號"; c} +
-                 search_category(params[:term]).map{|c| c[:type]="營業登記項目"; c}
-
-        result.to_json
-    end
-
     get "/complete/:term" do
       return [].to_json if params[:term].empty?
 
