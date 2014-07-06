@@ -237,14 +237,14 @@ class App < Sinatra::Base
 
     # Autocomplete
     get "/complete/:term" do
-      return [].to_json if params[:term].empty?
+        return [].to_json if params[:term].empty?
 
-      keywords = Keyword.filter("keyword LIKE ?" , "%#{params[:term]}%").limit(5)
-      results = keywords.map do |keyword|
-        keyword.get_value_type_url(lambda(&method(:url)))
-      end
+        keywords = Keyword.filter("keyword LIKE ?" , "%#{params[:term]}%").limit(5)
+        results = keywords.map do |keyword|
+            keyword.get_value_type_url(lambda(&method(:url)))
+        end
 
-      results.to_json
+        results.to_json
     end
 
     # Display the company's categories.
