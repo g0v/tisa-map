@@ -43,11 +43,7 @@
     sortResults:false,
     matchSubset: false,
     select: function(event, ui) {
-      if (ui.item.type === "公司行號") {
-        window.location.href = '/company/' + ui.item.id;
-      } else {
-        window.location.href = '/result?cat[]=' + ui.item.id;
-      }
+      window.location.href = ui.item.url;
     }
   }).on('compositionstart', function(data) {
     isCompositing = true;
