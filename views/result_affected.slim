@@ -55,7 +55,7 @@ section#affected
                              data-target="#translated-service-#{category[:id]}-#{category_idx}"]
                   | 中國境內廠商怎樣服務身在台灣的消費者？
                   small.service
-                    == category[:translated][:service][0..40]
+                    == strip_tags category[:translated][:service][0..40]
 
                 p.collapse[id="translated-service-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:translated][:service]
@@ -65,7 +65,7 @@ section#affected
                              data-target="#translated-consumer-#{category[:id]}-#{category_idx}"]
                   | 台灣消費者到中國境內怎樣被服務？
                   small.consumer
-                    == category[:translated][:consumer][0..40]
+                    == strip_tags category[:translated][:consumer][0..40]
 
                 p.collapse[id="translated-consumer-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:translated][:consumer]
@@ -75,7 +75,7 @@ section#affected
                              data-target="#translated-business-#{category[:id]}-#{category_idx}"]
                   | 中資廠商怎樣進入台灣？
                   small.business
-                    == category[:translated][:business][0..40]
+                    == strip_tags category[:translated][:business][0..40]
 
                 p.collapse[id="translated-business-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:translated][:business]
@@ -85,7 +85,7 @@ section#affected
                              data-target="#translated-person-#{category[:id]}-#{category_idx}"]
                   | 中國工作者可以怎樣進入台灣？
                   small.person
-                    == category[:translated][:person][0..40]
+                    == strip_tags category[:translated][:person][0..40]
 
                 p.collapse[id="translated-person-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:translated][:person]
@@ -95,7 +95,7 @@ section#affected
                              data-target="#translated-other-#{category[:id]}-#{category_idx}"]
                   | 其他承諾
                   small.other
-                    == category[:translated][:other][0..40]
+                    == strip_tags category[:translated][:other][0..40]
 
                 p.collapse[id="translated-other-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:translated][:other]
@@ -109,7 +109,7 @@ section#affected
                              data-target="#original-limit-#{category[:id]}-#{category_idx}"]
                   | 中資的限制條件
                   small.limit
-                    == category[:note][:limit][0..50]
+                    == strip_tags category[:note][:limit][0..50]
                 p.collapse[id="original-limit-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:note][:limit]
 
@@ -118,7 +118,7 @@ section#affected
                              data-target="#original-note-#{category[:id]}-#{category_idx}"]
                   | 備註
                   small.note
-                    == category[:note][:text][0..50]
+                    == strip_tags category[:note][:text][0..50]
                 p.collapse[id="original-note-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:note][:text]
 
@@ -130,7 +130,7 @@ section#affected
                              data-target="#original-service-#{category[:id]}-#{category_idx}"]
                   | 跨境提供服務
                   small.service
-                    == category[:original][:service][0..50]
+                    == strip_tags category[:original][:service][0..50]
 
                 p.collapse[id="original-service-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:original][:service]
@@ -140,7 +140,7 @@ section#affected
                              data-target="#original-consumer-#{category[:id]}-#{category_idx}"]
                   | 境外消費
                   small.consumer
-                    == category[:original][:consumer][0..50]
+                    == strip_tags category[:original][:consumer][0..50]
 
                 p.collapse[id="original-consumer-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:original][:consumer]
@@ -150,7 +150,7 @@ section#affected
                              data-target="#original-business-#{category[:id]}-#{category_idx}"]
                   | 商業據點呈現
                   small.business
-                    == category[:original][:business][0..50]
+                    == strip_tags category[:original][:business][0..50]
 
                 p.collapse[id="original-business-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:original][:business]
@@ -160,7 +160,7 @@ section#affected
                              data-target="#original-person-#{category[:id]}-#{category_idx}"]
                   | 自然人呈現
                   small.person
-                    == category[:original][:person][0..50]
+                    == strip_tags category[:original][:person][0..50]
 
                 p.collapse[id="original-person-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:original][:person]
@@ -170,7 +170,7 @@ section#affected
                              data-target="#original-other-#{category[:id]}-#{category_idx}"]
                   | 其他承諾
                   small.other
-                    == category[:original][:other][0..50]
+                    == strip_tags category[:original][:other][0..50]
 
                 p.collapse[id="original-other-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:original][:other]
@@ -185,7 +185,7 @@ section#affected
                              data-target="#original-limit-#{category[:id]}-#{category_idx}"]
                   | 陸資投資限制條件
                   small.limit
-                    == category[:note][:limit][0..50]
+                    == strip_tags category[:note][:limit][0..50]
                 p.collapse[id="original-limit-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:note][:limit]
 
@@ -194,7 +194,7 @@ section#affected
                              data-target="#original-note-#{category[:id]}-#{category_idx}"]
                   | 備註
                   small.note
-                    == category[:note][:text][0..50]
+                    == strip_tags category[:note][:text][0..50]
                 p.collapse[id="original-note-#{category[:id]}-#{category_idx}"]
                   == nl2br category[:note][:text]
 

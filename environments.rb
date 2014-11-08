@@ -42,6 +42,10 @@ class App < Sinatra::Base
         def nl2br content
             content.gsub("\n",'<br>')
         end
+
+        def strip_tags content
+            content.gsub(%r{</?[^>]+>}, '')
+        end
     end
 
     set :json_encoder, :to_json
