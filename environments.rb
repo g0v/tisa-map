@@ -6,10 +6,11 @@ require "slim"
 require 'cgi'
 Bundler.require :default
 
-$:.unshift "lib"
+$:.unshift File.join(File.dirname(__FILE__),"lib")
 require "hash/keys"
 
-DB = Sequel.connect(YAML.load_file("config/database.yml")[ENV['RACK_ENV'] || "development"])
+database_config_file = File.join(File.dirname(__FILE__),"config/database.yml")
+DB = Sequel.connect(YAML.load_file(database_config_file)[ENV['RACK_ENV'] || "development"])
 DB.extension :pg_array, :pg_json, :pagination
 Sequel::Model.plugin :json_serializer
 Sequel::Plugins::JsonSerializer.configure(Sequel::Model, naked: true)
@@ -222,8 +223,11 @@ class App < Sinatra::Base
 
         keyword = params[:keyword]
 
-        companies = search_company(keyword)
-        categories = search_category(keyword)
+        companies = Keyword.filter("keyword LIKE ? AND type = 'companies'" , "%#{params[:term]}%").limit(10)
+        categories = Keyword.filter("keyword LIKE ? AND type = 'categories'" , "%#{params[:term]}%").limit(10)
+
+        companies = companies.map {|k| k.get_value_type_url(lambda(&method(:url)))}
+        categories = categories.map {|k| k.get_value_type_url(lambda(&method(:url)))}
 
         # Nested templates: _layout > _query > search
         slim :'layout/_query', layout: :'layout/_layout' do
@@ -239,10 +243,12 @@ class App < Sinatra::Base
     get "/complete/:term" do
         return [].to_json if params[:term].empty?
 
-        result = search_company(params[:term]).map{|c| c[:type]="公司行號"; c} +
-                 search_category(params[:term]).map{|c| c[:type]="營業登記項目"; c}
+        keywords = Keyword.filter("keyword LIKE ?" , "%#{params[:term]}%").limit(5)
+        results = keywords.map do |keyword|
+            keyword.get_value_type_url(lambda(&method(:url)))
+        end
 
-        result.to_json
+        results.to_json
     end
 
     # Display the company's categories.
@@ -271,6 +277,32 @@ class App < Sinatra::Base
         slim :'layout/_query', layout: :'layout/_layout' do
             slim :'category', locals: {
                 company: company,
+                categories: categories
+            }
+        end
+    end
+
+    # Display the standard's categories.
+    get "/standard/:id" do
+
+        model = Standard[params[:id]]
+
+        categories = model.group.categories.map { |category|
+            {
+                id:     category.key,
+                value:  category.name
+            }
+        }
+
+
+        # If no category found for this company, redirect to result page immediately
+        if categories.empty?
+            return redirect to("/result")
+        end
+
+        slim :'layout/_query', layout: :'layout/_layout' do
+            slim :'standard', locals: {
+                standard: model,
                 categories: categories
             }
         end

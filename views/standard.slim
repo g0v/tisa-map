@@ -1,0 +1,21 @@
+form#category.query-form.text-center.container action="/result/" method="get"
+  .row
+    .col-lg-8.col-lg-offset-2
+      h1 你被服貿了嗎
+
+      input[type="hidden" name="standard_id" value=standard.id]
+
+      p
+        | 請選擇
+        span.text-primary= standard.description
+        | 的主要業務類別（可複選）
+
+
+  div.row: ul.col-lg-10.col-lg-offset-1
+    -for category in categories
+      li
+        input id="lala-#{category[:id]}" type="checkbox" name="cat[]" value=category[:id]
+        label.btn.secondary for="lala-#{category[:id]}" = "#{category[:id]} #{category[:value]}"
+
+  div.row: button.col-lg-3.col-centered.btn.btn-primary[type="submit" disabled] 看結果
+
