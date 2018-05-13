@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    container_name: tisa.web
+    image: tisa
+    command: '/bin/bash -l -c "bundle install && RACK_ENV=production bundle exec unicorn -c config/unicorn.rb -D"'
+    ports:
+    - "3000:3000"
+    volumes:
+    - .:/app
+    links:
+    - db
+  db:
+    container_name: tisa.db
+    image: postgres:10.3
